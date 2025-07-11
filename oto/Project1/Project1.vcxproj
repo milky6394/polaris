@@ -153,18 +153,6 @@
   <ItemGroup>
     <ClCompile Include="osu.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="chelly.h" />
-    <ClInclude Include="idol.h" />
-    <ClInclude Include="live.h" />
-    <ClInclude Include="note.h" />
-    <ClInclude Include="god.h" />
-    <ClInclude Include="liveeasy.h" />
-    <ClInclude Include="kick.h" />
-    <ClInclude Include="gray.h" />
-    <ClInclude Include="bling.h" />
-    <ClInclude Include="san.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

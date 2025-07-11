@@ -9,6 +9,11 @@
 #include "bling.h"
 #include "san.h"
 
+#define SELECT_X 4
+#define SELECT_Y 2
+#define ZURE 0
+#define WINDOW_X 640
+#define WINDOW_Y 700
 
 class GameControl {
 public:

@@ -6,7 +6,7 @@
 
 class GameControl {
 public:
-    Player* pl;
+    Player* pl = new Player();
 
     GameControl() {
 

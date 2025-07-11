@@ -1,14 +1,15 @@
 #include "DxLib.h"
+#include "player.h"
 
 #define WINDOW_X 1280
 #define WINDOW_Y 720
 
 class GameControl {
 public:
-    int x = 40;
-    int y = 40;
+    Player* pl;
+
     GameControl() {
-      
+
     }
 
     ~GameControl() {
@@ -16,7 +17,7 @@ public:
     }
 
     void All() {
-        DrawCircle(x, y, 10, GetColor(255, 255, 255), TRUE);
+        pl->PlayerMove();
     }
 };
 

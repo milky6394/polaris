@@ -8,6 +8,7 @@
 class GameControl {
 public:
     Player* pl = new Player();
+    Map* mp = new Map();
 
     GameControl() {
 
@@ -19,6 +20,7 @@ public:
 
     void All() {
         pl->PlayerMove();
+        mp->MapPracer();
     }
 };
 

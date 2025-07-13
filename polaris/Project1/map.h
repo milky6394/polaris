@@ -3,10 +3,10 @@
 
 
 int Mappixelx(int x) {
-    return x * 100;
+    return 390 + (x * 50);
 }
 int Mappixely(int y) {
-    return y * 100;
+    return 110 + (y * 50);
 }
 
 class MapControler {

@@ -1,6 +1,6 @@
 #include "DxLib.h"
 #include "player.h"
-#include "map.h"
+//#include "map.h"
 
 #define WINDOW_X 1280
 #define WINDOW_Y 720
@@ -20,7 +20,7 @@ public:
 
     void All() {
         mp->MapPracer();
-        pl->PlayerMove();
+        pl->PlayerAll();
     }
 };
 

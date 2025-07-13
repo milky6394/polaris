@@ -4,11 +4,12 @@ class Player {
 public:
 
     int x, y;
-
+    int map[10][10];
 
     Player() {
         x = 40;
         y = 40;
+        map[0][0] = 1;
     }
 
     void PlayerMove() {

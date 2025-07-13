@@ -1,5 +1,7 @@
 #include "DxLib.h"
 #include "func.h"
+#include "map.h"
+
 bool pushspace = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
 bool Space() {
     if (CheckHitKey(KEY_INPUT_SPACE)) {
@@ -71,16 +73,16 @@ bool Left() {
 }
 //leftキー1回押しの関数
 
+int x, y;
+
+
 class Player {
 public:
 
-    int x, y;
-    int map[10][10];
 
     Player() {
         x = 40;
         y = 40;
-        map[0][0] = 1;
     }
 
 

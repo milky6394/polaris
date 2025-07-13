@@ -1,6 +1,5 @@
 #include "DxLib.h"
 #include "func.h"
-#include "map.h"
 
 bool pushspace = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//Šeƒ{ƒ^ƒ“‚ğ’·‰Ÿ‚µ‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì•Ï”
 bool Space() {

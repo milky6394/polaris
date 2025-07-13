@@ -1,5 +1,7 @@
 #include "DxLib.h"
 #include "player.h"
+#include "map.h"
+
 
 
 #define WINDOW_X 1280

@@ -8,15 +8,14 @@ int Mappixel(int x) {
 
 class Map {
 public:
-    int map[10][10] = {};
+    int map[10][10] = {};//map‚ðŠi”[‚·‚é”z—ñ
 
     Map() {
-        map[1][1] = 5;
+        map[9][9] = 1;
     }
 
 
     void MapPracer() {
-
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (map[i][j] = 5) {

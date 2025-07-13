@@ -1,5 +1,4 @@
 #include "DxLib.h"
-#include "func.h"
 
 
 int Mappixelx(int x) {

@@ -23,9 +23,6 @@
     <ClInclude Include="player.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="func.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="map.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>

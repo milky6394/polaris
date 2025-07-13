@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "func.h"
 
 class Player {
 public:
@@ -11,6 +12,7 @@ public:
         y = 40;
         map[0][0] = 1;
     }
+
 
     void PlayerMove() {
         if (CheckHitKey(KEY_INPUT_UP)) {

@@ -1,5 +1,4 @@
 #include "DxLib.h"
-#include "func.h"
 
 bool pushspace = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
 bool Space() {
@@ -77,11 +76,24 @@ int x, y;
 
 class Player {
 public:
+    int playermap[10][10] =
+    {
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0} };//mapを格納する配列
 
 
     Player() {
         x = 40;
         y = 40;
+        playermap[0][0] = 1;
     }
 
 

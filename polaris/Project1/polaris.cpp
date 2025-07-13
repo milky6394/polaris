@@ -2,15 +2,13 @@
 #include "player.h"
 #include "map.h"
 
-
-
 #define WINDOW_X 1280
 #define WINDOW_Y 720
 
 class GameControl {
 public:
     Player* pl = new Player();
-    Map* mp = new Map();
+    MapControler* mp = new MapControler();
 
     GameControl() {
 

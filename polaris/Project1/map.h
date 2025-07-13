@@ -6,11 +6,11 @@ int Mappixel(int x) {
     return x * 100;
 }
 
-class Map {
+class MapControler {
 public:
     int map[10][10] = {};//map‚ðŠi”[‚·‚é”z—ñ
 
-    Map() {
+    MapControler() {
         map[9][9] = 1;
     }
 

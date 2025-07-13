@@ -98,7 +98,7 @@ public:
         if (Right()) {
             x += 10;
         }
-        DrawCircle(x, y, 10, GetColor(255, 255, 255), TRUE);
+        DrawCircle(x, y, 5, GetColor(255, 255, 255), TRUE);
 
     }
 };

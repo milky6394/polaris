@@ -1,12 +1,13 @@
 #include "DxLib.h"
 
 
-int Mappixelx(int x) {
+int Mappixel_X(int x) {
     return 390 + (x * 50);
 }
-int Mappixely(int y) {
+int Mappixel_Y(int y) {
     return 110 + (y * 50);
 }
+//ˆø”‚É—^‚¦‚½”z—ñ‚ÌÀ•W‚ğ‰æ–Ê“àÀ•W‚É•ÏŠ·‚·‚éŠÖ”
 
 class MapControler {
 public:
@@ -24,7 +25,6 @@ public:
     {1,1,1,1,1,1,1,1,1,1}};//map‚ğŠi”[‚·‚é”z—ñ
 
     MapControler() {
-        map[1][1] = 1;
     }
 
 
@@ -32,9 +32,10 @@ public:
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (map[i][j] == 1) {
-                    DrawCircle(Mappixelx(i), Mappixely(j), 10, GetColor(255, 255, 255), TRUE);
+                    DrawCircle(Mappixel_X(i), Mappixel_Y(j), 10, GetColor(255, 255, 255), TRUE);
                 }
             }
         }
     }
+    //map‚ğ•`‰æ‚·‚éŠÖ”
 };

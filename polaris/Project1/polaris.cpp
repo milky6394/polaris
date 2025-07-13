@@ -19,8 +19,8 @@ public:
     }
 
     void All() {
-        pl->PlayerMove();
         mp->MapPracer();
+        pl->PlayerMove();
     }
 };
 

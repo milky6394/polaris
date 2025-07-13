@@ -71,11 +71,18 @@ bool Left() {
 }
 //leftキー1回押しの関数
 
-int x, y;
-
+int Playerpixel_X(int x) {
+    return 390 + (x * 50);
+}
+int Playerpixel_Y(int y) {
+    return 110 + (y * 50);
+}
+//playermapの配列座標を画面内座標に変換する関数
 
 class Player {
 public:
+    int x, y;
+
     int playermap[10][10] =
     {
     {0,0,0,0,0,0,0,0,0,0},
@@ -87,30 +94,46 @@ public:
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0} };//mapを格納する配列
+    {0,0,0,0,0,0,0,0,0,0} };//playermapを格納する配列
 
 
     Player() {
-        x = 40;
-        y = 40;
-        playermap[0][0] = 1;
+        x = 0;
+        y = 0;
+        playermap[0][0] = 1;//playerの初期位置設定
     }
 
+    void Player_XY() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (playermap[i][j]) {
+                    x = i;
+                    y = j;
+                }
+            }
+        }
+    }
+    //playerのplayermap内での配列座標を取得する関数
 
     void PlayerMove() {
+        Player_XY();
         if (Up()) {
-            y -= 10;
+            playermap[x][y] = 0;
+            playermap[x][y - 1] = 1;
         }
         if (Down()) {
-            y += 10;
+            playermap[x][y] = 0;
+            playermap[x][y + 1] = 1;
         }
         if (Left()) {
-            x -= 10;
+            playermap[x][y] = 0;
+            playermap[x - 1][y] = 1;
         }
         if (Right()) {
-            x += 10;
+            playermap[x][y] = 0;
+            playermap[x + 1][y] = 1;
         }
-        DrawCircle(x, y, 5, GetColor(255, 255, 255), TRUE);
+        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(255, 0, 0), TRUE);
 
     }
 };

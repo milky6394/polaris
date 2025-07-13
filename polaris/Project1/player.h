@@ -111,7 +111,7 @@ public:
     //player‚Ìplayermap“à‚Å‚Ì”z—ñÀ•W‚ðŽæ“¾‚·‚éŠÖ”
 
     void PlayerMove() {
-        switch (mpp->map[x][y]) {
+        switch (mpp->map[0][x][y]) {
         case 0:
             break;
         case 1:

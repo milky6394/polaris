@@ -1,62 +1,71 @@
 #include "DxLib.h"
-bool pushspace, pushup, pushdown, pushright, pushleft;
+bool pushspace, pushup, pushdown, pushright, pushleft;//各ボタンを長押しできないようにするための変数
 bool Space() {
     if (CheckHitKey(KEY_INPUT_SPACE)) {
-        if (!pushFlag) {
-            pushFlag = true;
+        if (!pushspace) {
+            pushspace = true;
             return true;
         }
     }
     else {
-        pushFlag = false;
+        pushspace = false;
     }
     return false;
 }
-bool Space() {
-    if (CheckHitKey(KEY_INPUT_SPACE)) {
-        if (!pushFlag) {
-            pushFlag = true;
+//spaceキー1回押しの関数
+
+bool Up() {
+    if (CheckHitKey(KEY_INPUT_UP)) {
+        if (!pushup) {
+            pushup = true;
             return true;
         }
     }
     else {
-        pushFlag = false;
+        pushup = false;
     }
     return false;
 }
-bool Space() {
-    if (CheckHitKey(KEY_INPUT_SPACE)) {
-        if (!pushFlag) {
-            pushFlag = true;
+//upキー1回押しの関数
+
+bool Down() {
+    if (CheckHitKey(KEY_INPUT_DOWN)) {
+        if (!pushdown) {
+            pushdown = true;
             return true;
         }
     }
     else {
-        pushFlag = false;
+        pushdown = false;
     }
     return false;
 }
-bool Space() {
-    if (CheckHitKey(KEY_INPUT_SPACE)) {
-        if (!pushFlag) {
-            pushFlag = true;
+//downキー1回押しの関数
+
+bool Right() {
+    if (CheckHitKey(KEY_INPUT_RIGHT)) {
+        if (!pushright) {
+            pushright = true;
             return true;
         }
     }
     else {
-        pushFlag = false;
+        pushright = false;
     }
     return false;
 }
-bool Space() {
-    if (CheckHitKey(KEY_INPUT_SPACE)) {
-        if (!pushFlag) {
-            pushFlag = true;
+//rightキー1回押しの関数
+
+bool Left() {
+    if (CheckHitKey(KEY_INPUT_LEFT)) {
+        if (!pushleft) {
+            pushleft = true;
             return true;
         }
     }
     else {
-        pushFlag = false;
+        pushleft = false;
     }
     return false;
 }
+//leftキー1回押しの関数

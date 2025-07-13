@@ -15,16 +15,16 @@ public:
 
 
     void PlayerMove() {
-        if (CheckHitKey(KEY_INPUT_UP)) {
+        if (Up()) {
             y -= 10;
         }
-        if (CheckHitKey(KEY_INPUT_DOWN)) {
+        if (Down()) {
             y += 10;
         }
-        if (CheckHitKey(KEY_INPUT_LEFT)) {
+        if (Left()) {
             x -= 10;
         }
-        if (CheckHitKey(KEY_INPUT_RIGHT)) {
+        if (Right()) {
             x += 10;
         }
         DrawCircle(x, y, 10, GetColor(255, 255, 255), TRUE);

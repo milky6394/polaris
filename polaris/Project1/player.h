@@ -7,7 +7,7 @@ public:
 
     int x, y;//Playerの現在の座標
     int r, g, b;
-    bool pushspace = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
+    bool pushz = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
 
     int playermap[10][10] =
     {
@@ -32,15 +32,15 @@ public:
         playermap[0][0] = 1;//playerの初期位置設定
     }
 
-    bool Space() {
-        if (CheckHitKey(KEY_INPUT_SPACE)) {
-            if (!pushspace) {
-                pushspace = true;
+    bool Button_Z() {
+        if (CheckHitKey(KEY_INPUT_Z)) {
+            if (!pushz) {
+                pushz = true;
                 return true;
             }
         }
         else {
-            pushspace = false;
+            pushz = false;
         }
         return false;
     }
@@ -237,7 +237,7 @@ public:
     //playerを移動させる関数 mapの位置によって移動できる方向が異なる
 
     void PlayerAction() {
-        if (Space()) {
+        if (Button_Z()) {
             switch (mpp->map[1][y][x]) {
             case 0:
 

@@ -154,6 +154,7 @@
     <ClCompile Include="polaris.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="event.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="map.h" />

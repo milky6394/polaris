@@ -29,5 +29,8 @@
     <ClInclude Include="menu.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

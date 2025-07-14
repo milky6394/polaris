@@ -166,6 +166,5 @@ public:
         Menu_XY();
         MenuCursor();
         DrawTriangle(Menupixel_X(x), Menupixel_Y(y), Menupixel_X(x), Menupixel_Y(y) - 20, Menupixel_X(x) + 10, Menupixel_Y(y) - 10, GetColor(255, 255, 255), true);
-
     }
 };

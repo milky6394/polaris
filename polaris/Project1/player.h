@@ -5,7 +5,8 @@ class Player {
 public:
     MapControler* mpp = new MapControler();
 
-    int x, y;
+    int x, y;//Playerの現在の座標
+    int r, g, b;
     bool pushspace = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
 
     int playermap[10][10] =
@@ -25,6 +26,9 @@ public:
     Player() {
         x = 0;
         y = 0;
+        r = 255;
+        g = 0;
+        b = 0;
         playermap[0][0] = 1;//playerの初期位置設定
     }
 
@@ -231,10 +235,37 @@ public:
         }
     }
 
+    void PlayerAction() {
+        if (Space()) {
+            switch (mpp->map[1][y][x]) {
+            case 0:
+
+                break;
+            case 1:
+                r = 255;
+                g = 0;
+                b = 0;
+                break;
+            case 2:
+                r = 0;
+                g = 255;
+                b = 0;
+                break;
+            case 3:
+                r = 0;
+                g = 0;
+                b = 255;
+                break;
+            }
+
+        }
+    }
+
     void PlayerAll() {
         Player_XY();
+        PlayerAction();
         PlayerMove();
-        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(255, 0, 0), TRUE);
+        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
 
     }
 };

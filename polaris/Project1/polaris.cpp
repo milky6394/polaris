@@ -10,19 +10,48 @@ public:
     Player* pl = new Player();
     MapControler* mp = new MapControler();
     MenuControler* me = new MenuControler();
-
+    bool flag;
+    bool pushx;
     GameControl() {
-
+        flag = true;
+        pushx = false;
     }
 
     ~GameControl() {
   
     }
+    bool toggle() {
+        flag = !flag;
+        return !flag;
+    }
+    //Xキーを押すたびに真偽が入れ替わる関数
+
+    bool Button_X() {
+        if (CheckHitKey(KEY_INPUT_X)) {
+            if (!pushx) {
+                pushx = true;
+                return true;
+            }
+        }
+        else {
+            pushx = false;
+        }
+        return false;
+    }
+    //Xキー1回押しの関数
 
     void All() {
-        //mp->MapPracer();
-        //pl->PlayerAll();
-        me->MenuDraw();
+        mp->MapPracer();
+        if (Button_X()) {
+            toggle();
+        }
+        if (flag) {
+            pl->PlayerAll();
+        }
+        else {
+            me->MenuDraw();
+        }
+        pl->PlayerDraw();
     }
 };
 

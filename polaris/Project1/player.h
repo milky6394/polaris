@@ -263,10 +263,14 @@ public:
     }
     //playerの位置によって特定のアクションを起こせる関数
 
+    void PlayerDraw() {
+        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
+    }
+
     void PlayerAll() {
         Player_XY();
         PlayerAction();
         PlayerMove();
-        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
     }
+
 };

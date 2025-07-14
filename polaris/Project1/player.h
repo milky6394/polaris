@@ -101,7 +101,7 @@ public:
     void Player_XY() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                if (playermap[i][j]) {
+                if (playermap[j][i]) {
                     x = i;
                     y = j;
                 }
@@ -111,121 +111,121 @@ public:
     //player‚Ìplayermap“à‚Å‚Ì”z—ñÀ•W‚ğæ“¾‚·‚éŠÖ”
 
     void PlayerMove() {
-        switch (mpp->map[0][x][y]) {
+        switch (mpp->map[0][y][x]) {
         case 0:
             break;
         case 1:
             if (Up()) {
-                playermap[x][y] = 0;
-                playermap[x][y - 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
             }
             else if (Down()) {
-                playermap[x][y] = 0;
-                playermap[x][y + 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
             }
             else if (Left()) {
-                playermap[x][y] = 0;
-                playermap[x - 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
             }
             else if (Right()) {
-                playermap[x][y] = 0;
-                playermap[x + 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         case 2:
             if (Down()) {
-                playermap[x][y] = 0;
-                playermap[x][y + 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
             }
             else if (Left()) {
-                playermap[x][y] = 0;
-                playermap[x - 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
             }
             else if (Right()) {
-                playermap[x][y] = 0;
-                playermap[x + 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         case 3:
             if (Down()) {
-                playermap[x][y] = 0;
-                playermap[x][y + 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
             }
             else if (Left()) {
-                playermap[x][y] = 0;
-                playermap[x - 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
             }
             break;
         case 4:
             if (Up()) {
-                playermap[x][y] = 0;
-                playermap[x][y - 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
             }
             else if (Down()) {
-                playermap[x][y] = 0;
-                playermap[x][y + 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
             }
             else if (Left()) {
-                playermap[x][y] = 0;
-                playermap[x - 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
             }
             break;
         case 5:
             if (Up()) {
-                playermap[x][y] = 0;
-                playermap[x][y - 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
             }
             else if (Left()) {
-                playermap[x][y] = 0;
-                playermap[x - 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
             }
             break;
         case 6:
             if (Up()) {
-                playermap[x][y] = 0;
-                playermap[x][y - 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
             }
             else if (Left()) {
-                playermap[x][y] = 0;
-                playermap[x - 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
             }
             else if (Right()) {
-                playermap[x][y] = 0;
-                playermap[x + 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         case 7:
             if (Up()) {
-                playermap[x][y] = 0;
-                playermap[x][y - 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
             }
             else if (Right()) {
-                playermap[x][y] = 0;
-                playermap[x + 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         case 8:
             if (Up()) {
-                playermap[x][y] = 0;
-                playermap[x][y - 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
             }
             else if (Down()) {
-                playermap[x][y] = 0;
-                playermap[x][y + 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
             }
             else if (Right()) {
-                playermap[x][y] = 0;
-                playermap[x + 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         case 9:
             if (Down()) {
-                playermap[x][y] = 0;
-                playermap[x][y + 1] = 1;
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
             }
             else if (Right()) {
-                playermap[x][y] = 0;
-                playermap[x + 1][y] = 1;
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         }

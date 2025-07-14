@@ -234,6 +234,7 @@ public:
             break;
         }
     }
+    //playerを移動させる関数 mapの位置によって移動できる方向が異なる
 
     void PlayerAction() {
         if (Space()) {
@@ -260,12 +261,12 @@ public:
 
         }
     }
+    //playerの位置によって特定のアクションを起こせる関数
 
     void PlayerAll() {
         Player_XY();
         PlayerAction();
         PlayerMove();
         DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
-
     }
 };

@@ -1,6 +1,6 @@
 #include "DxLib.h"
 #include "player.h"
-//#include "map.h"
+#include "menu.h"
 
 #define WINDOW_X 1280
 #define WINDOW_Y 720
@@ -9,6 +9,7 @@ class GameControl {
 public:
     Player* pl = new Player();
     MapControler* mp = new MapControler();
+    MenuControler* me = new MenuControler();
 
     GameControl() {
 
@@ -19,8 +20,9 @@ public:
     }
 
     void All() {
-        mp->MapPracer();
-        pl->PlayerAll();
+        //mp->MapPracer();
+        //pl->PlayerAll();
+        me->MenuDraw();
     }
 };
 

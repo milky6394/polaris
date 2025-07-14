@@ -245,6 +245,17 @@ public:
             }
         }
     }
+    //inventoryに引数の値を格納する関数
+    
+    bool Item(int a) {
+        for (int i = 0; i < 25; i++) {
+            if (inventory[i] == a) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //inventoryに引数のアイテムが入っているか判定する関数
 
     void PlayerAction() {
         if (Button_Z()) {

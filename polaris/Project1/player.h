@@ -22,6 +22,7 @@ public:
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0} };//playermap‚ğŠi”[‚·‚é”z—ñ
 
+    int inventory[25] ={};//playermap‚ğŠi”[‚·‚é”z—ñ
 
     Player() {
         x = 0;
@@ -236,6 +237,15 @@ public:
     }
     //player‚ğˆÚ“®‚³‚¹‚éŠÖ” map‚ÌˆÊ’u‚É‚æ‚Á‚ÄˆÚ“®‚Å‚«‚é•ûŒü‚ªˆÙ‚È‚é
 
+    void Invent(int a) {
+        for (int i = 0; i < 25; i++) {
+            if (inventory[i] == 0) {
+                inventory[i] = a;
+                break;
+            }
+        }
+    }
+
     void PlayerAction() {
         if (Button_Z()) {
             switch (mpp->map[1][y][x]) {
@@ -256,6 +266,18 @@ public:
                 r = 0;
                 g = 0;
                 b = 255;
+                break;
+            case 4:
+                Invent(1);
+                break;
+            case 5:
+                Invent(2);
+                break;
+            case 6:
+                Invent(3);
+                break;
+            case 7:
+                Invent(4);
                 break;
             }
 

@@ -165,6 +165,13 @@ public:
     void MenuDraw() {
         Menu_XY();
         MenuCursor();
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (menumap[0][j][i] != 0) {
+                    DrawCircle(Menupixel_X(i), Menupixel_Y(j), 10, GetColor(255, 255, 255), TRUE);
+                }
+            }
+        }
         DrawTriangle(Menupixel_X(x), Menupixel_Y(y), Menupixel_X(x), Menupixel_Y(y) - 20, Menupixel_X(x) + 10, Menupixel_Y(y) - 10, GetColor(255, 255, 255), true);
     }
 };

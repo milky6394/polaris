@@ -1,13 +1,16 @@
 #include "DxLib.h"
 #include "map.h"
+#include "event.h"
 
 class Player {
 public:
     MapControler* mpp = new MapControler();
+    EventControler* ev = new EventControler();
 
     int x, y;//Playerの現在の座標
     int r, g, b;
     bool pushz = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
+    int draw;
 
     int playermap[10][10] =
     {
@@ -31,6 +34,8 @@ public:
         g = 0;
         b = 0;
         playermap[0][0] = 1;//playerの初期位置設定
+        draw = 0;
+
     }
 
     bool Button_Z() {
@@ -290,20 +295,37 @@ public:
             case 7:
                 Invent(4);
                 break;
+            case 8:
+                EventKey(2);
+                break;
             }
 
         }
     }
     //playerの位置によって特定のアクションを起こせる関数
 
+    void EventKey(int x) {
+        draw = x;
+    }
+    //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
+
     void PlayerDraw() {
         DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
     }
+    //playerの位置描画関数
 
     void PlayerAll() {
-        Player_XY();
-        PlayerAction();
-        PlayerMove();
+        if (draw > 0) {
+            ev->EventDraw();
+            if (Button_Z()) {
+                draw--;
+            }
+        }//Eventが行われているならplayerの処理より優先
+        else {
+            Player_XY();
+            PlayerAction();
+            PlayerMove();
+        }
     }
 
 };

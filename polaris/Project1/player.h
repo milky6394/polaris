@@ -1,16 +1,20 @@
 #include "DxLib.h"
 #include "map.h"
 #include "event.h"
+#include "menu.h"
 
 class Player {
 public:
     MapControler* mpp = new MapControler();
     EventControler* ev = new EventControler();
+    MenuControler* me = new MenuControler();
 
     int x, y;//Playerの現在の座標
     int r, g, b;
     bool pushz = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
     int draw;
+    bool flag;
+    bool pushx;
 
     int playermap[10][10] =
     {
@@ -35,7 +39,8 @@ public:
         b = 0;
         playermap[0][0] = 1;//playerの初期位置設定
         draw = 0;
-
+        flag = true;
+        pushx = false;
     }
 
     bool Button_Z() {
@@ -98,7 +103,26 @@ public:
         }
         return false;
     }
+    bool Button_X() {
+        if (CheckHitKey(KEY_INPUT_X)) {
+            if (!pushx) {
+                pushx = true;
+                return true;
+            }
+        }
+        else {
+            pushx = false;
+        }
+        return false;
+    }
     //キー1回押しの関数
+
+    bool toggle() {
+        flag = !flag;
+        return !flag;
+    }
+    //Xキーを押すたびに真偽が入れ替わる関数
+
 
     int Playerpixel_X(int x) {
         return 390 + (x * 50);
@@ -309,22 +333,33 @@ public:
     }
     //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
 
+
     void PlayerDraw() {
         DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
     }
     //playerの位置描画関数
 
     void PlayerAll() {
-        if (draw > 0) {
-            ev->EventDraw();
-            if (Button_Z()) {
-                draw--;
+        PlayerDraw();
+        if (Button_X()) {
+            toggle();
+        }
+
+        if (flag) {
+            if (draw > 0) {
+                ev->EventDraw();
+                if (Button_Z()) {
+                    draw--;
+                }
+            }//Eventが行われているならplayerの処理より優先
+            else {
+                Player_XY();
+                PlayerAction();
+                PlayerMove();
             }
-        }//Eventが行われているならplayerの処理より優先
+        }
         else {
-            Player_XY();
-            PlayerAction();
-            PlayerMove();
+            me->MenuDraw();
         }
     }
 

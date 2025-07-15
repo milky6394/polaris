@@ -5,7 +5,7 @@ public:
     int x, y;
     bool pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
 
-    int menumap[3][10][10] = {{
+    int menumap[4][10][10] = {{
     {1,0,0,0,0,0,0,0,0,1},
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
@@ -38,17 +38,28 @@ public:
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
+    },{
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0},
     }};
     /*
     menuのmapを格納する配列
     1層目：アイコンの描画位置の指定
-    2層目：そのマスでの特殊操作
-    3層目：そのマスに描画する画像
+    2層目：メニューカーソルの位置
+    3層目：そのマスでの特殊操作
+    4層目：そのマスに描画する画像
     */
     MenuControler() {
         x = 0;
         y = 0;
-        menumap[1][0][0] = 1;
     }
 
     bool Up() {
@@ -171,9 +182,9 @@ public:
         MenuCursor();
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                if (menumap[0][j][i] != 0) {
-                    DrawCircle(Menupixel_X(i), Menupixel_Y(j), 10, GetColor(255, 255, 255), TRUE);
-                }
+                if (menumap[2][j][i] != 0) {
+                    DrawCircle(Menupixel_X(i), Menupixel_Y(j), menumap[2][j][i]*10, GetColor(255, 255, 255), TRUE);
+                }//3層目の数字×10の大きさの〇をその場に描画
             }
         }
         DrawTriangle(Menupixel_X(x), Menupixel_Y(y), Menupixel_X(x), Menupixel_Y(y) - 20, Menupixel_X(x) + 10, Menupixel_Y(y) - 10, GetColor(255, 255, 255), true);

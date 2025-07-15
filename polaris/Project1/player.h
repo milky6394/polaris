@@ -11,10 +11,9 @@ public:
 
     int x, y;//Playerの現在の座標
     int r, g, b;
-    bool pushz = false, pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
+    bool pushx, pushz, pushup, pushdown, pushright, pushleft;//各ボタンを長押しできないようにするための変数
     int draw;
     bool flag;
-    bool pushx;
 
     int playermap[10][10] =
     {
@@ -41,6 +40,11 @@ public:
         draw = 0;
         flag = true;
         pushx = false;
+        pushz = false;
+        pushup = false;
+        pushdown = false;
+        pushright = false;
+        pushleft = false;
     }
 
     bool Button_Z() {
@@ -122,7 +126,6 @@ public:
         return !flag;
     }
     //Xキーを押すたびに真偽が入れ替わる関数
-
 
     int Playerpixel_X(int x) {
         return 390 + (x * 50);
@@ -309,15 +312,19 @@ public:
                 break;
             case 4:
                 Invent(1);
+                ItemMenu();
                 break;
             case 5:
                 Invent(2);
+                ItemMenu();
                 break;
             case 6:
                 Invent(3);
+                ItemMenu();
                 break;
             case 7:
                 Invent(4);
+                ItemMenu();
                 break;
             case 8:
                 EventKey(2);
@@ -333,6 +340,14 @@ public:
     }
     //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
 
+    void ItemMenu() {
+        for (int i = 5; i < 10; i++) {
+            for (int j = 5; j < 10; j++) {
+                me->menumap[2][j][i] = inventory[(i - 5) + ((j - 5) * 5)];
+            }
+        }
+    }
+    //playerのインベントリをmenuに反映
 
     void PlayerDraw() {
         DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
@@ -340,10 +355,10 @@ public:
     //playerの位置描画関数
 
     void PlayerAll() {
-        PlayerDraw();
+        PlayerDraw();//player描画
         if (Button_X()) {
             toggle();
-        }
+        }//Xを押したらメニュー切り替え
 
         if (flag) {
             if (draw > 0) {
@@ -357,7 +372,7 @@ public:
                 PlayerAction();
                 PlayerMove();
             }
-        }
+        }//Xキーを押したらメニュー表示
         else {
             me->MenuDraw();
         }

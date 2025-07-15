@@ -25,7 +25,8 @@ public:
     //ƒL[1‰ñ‰Ÿ‚µ‚ÌŠÖ”
 
     void EventDraw() {
-
-        DrawTriangle(x, y, x + 10, y - 10, x + 10, y - 10, GetColor(255, 255, 255), true);
+        while(WaitKey()!= KEY_INPUT_Z) {
+            DrawTriangle(x, y, x + 10, y - 10, x + 10, y - 10, GetColor(255, 255, 255), true);
+        }
     }
 };

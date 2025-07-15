@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "player.h"
 #include "menu.h"
+#include "event.h"
 
 #define WINDOW_X 1280
 #define WINDOW_Y 720
@@ -10,6 +11,7 @@ public:
     Player* pl = new Player();
     MapControler* mp = new MapControler();
     MenuControler* me = new MenuControler();
+    EventControler* ev = new EventControler();
     bool flag;
     bool pushx;
     GameControl() {

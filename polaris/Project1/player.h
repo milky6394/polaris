@@ -5,7 +5,7 @@
 
 class Player {
 public:
-    MapControler* mpp = new MapControler();
+    MapControler* mp = new MapControler();
     EventControler* ev = new EventControler();
     MenuControler* me = new MenuControler();
 
@@ -148,7 +148,7 @@ public:
     //playerのplayermap内での配列座標を取得する関数
 
     void PlayerMove() {
-        switch (mpp->map[mpp->mapnumber][0][y][x]) {
+        switch (mp->map[mp->mapnumber][0][y][x]) {
         case 0:
             break;
         case 1:
@@ -290,14 +290,15 @@ public:
     //inventoryに引数のアイテムが入っているか判定する関数
 
     void MapChange(int a,int b) {
-        mpp->mapnumber = mpp->map[mpp->mapnumber][1][y][x] % 100;
+        mp->mapnumber = mp->map[mp->mapnumber][1][y][x] % 100;
         playermap[y][x] = 0;
         playermap[b][a] = 1;
     }
+    //100で割った余りのIDのマップに飛ぶ。移動先のマップの初期位置は引数でx,yが指定できる
 
     void PlayerAction() {
         if (Button_Z()) {
-            switch (mpp->map[mpp->mapnumber][1][y][x]) {
+            switch (mp->map[mp->mapnumber][1][y][x]) {
             case 0:
 
                 break;
@@ -329,9 +330,9 @@ public:
                 ItemMenu();
                 break;
             case 7:
+                EventKey(1);
                 Invent(4);
                 ItemMenu();
-                EventKey(1);
                 break;
             case 8:
                 EventKey(2);
@@ -368,6 +369,7 @@ public:
     //playerの位置描画関数
 
     void PlayerAll() {
+        mp->MapPracer();
         PlayerDraw();//player描画
         if (Button_X()) {
             toggle();

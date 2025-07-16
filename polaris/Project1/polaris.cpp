@@ -7,7 +7,7 @@
 class GameControl {
 public:
     Player* pl = new Player();
-    MapControler* mp = new MapControler();
+    //MapControler* mp = new MapControler();
 
     GameControl() {
 
@@ -18,7 +18,6 @@ public:
     }
 
     void All() {
-        mp->MapPracer();
         pl->PlayerAll();
     }
 };

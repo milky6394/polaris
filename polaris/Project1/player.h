@@ -148,7 +148,7 @@ public:
     //playerのplayermap内での配列座標を取得する関数
 
     void PlayerMove() {
-        switch (mpp->map[0][y][x]) {
+        switch (mpp->map[mpp->mapnumber][0][y][x]) {
         case 0:
             break;
         case 1:
@@ -289,9 +289,15 @@ public:
     }
     //inventoryに引数のアイテムが入っているか判定する関数
 
+    void MapChange(int a,int b) {
+        mpp->mapnumber = mpp->map[mpp->mapnumber][1][y][x] % 100;
+        playermap[y][x] = 0;
+        playermap[b][a] = 1;
+    }
+
     void PlayerAction() {
         if (Button_Z()) {
-            switch (mpp->map[1][y][x]) {
+            switch (mpp->map[mpp->mapnumber][1][y][x]) {
             case 0:
 
                 break;
@@ -325,9 +331,16 @@ public:
             case 7:
                 Invent(4);
                 ItemMenu();
+                EventKey(1);
                 break;
             case 8:
                 EventKey(2);
+                break;
+            case 100:
+                MapChange(9,0);
+                break;
+            case 101:
+                MapChange(0,0);
                 break;
             }
 

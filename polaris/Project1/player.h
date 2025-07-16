@@ -265,6 +265,50 @@ public:
                 playermap[y][x + 1] = 1;
             }
             break;
+        case 10:
+            if (Down()) {
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
+            }
+            break;
+        case 11:
+            if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
+            }
+            break;
+        case 12:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            break;
+        case 13:
+            if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
+            }
+            break;
+        case 14:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            else if (Down()) {
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
+            }
+            break;
+        case 15:
+            if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
+            }
+            else if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
+            }
+            break;
         }
     }
     //player‚ğˆÚ“®‚³‚¹‚éŠÖ” map‚ÌˆÊ’u‚É‚æ‚Á‚ÄˆÚ“®‚Å‚«‚é•ûŒü‚ªˆÙ‚È‚é

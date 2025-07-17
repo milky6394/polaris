@@ -155,144 +155,48 @@ public:
 
     void PlayerMove() {
         switch (mp->map[mp->mapnumber][0][y][x]) {
-        case 0:
-            break;
-        case 1:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 2:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 3:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        case 4:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        case 5:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        case 6:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 7:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 8:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 9:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
         case 10:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
             break;
         case 11:
-            if (Left()) {
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            else if (Down()) {
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
+            }
+            else if (Left()) {
                 playermap[y][x] = 0;
                 playermap[y][x - 1] = 1;
+            }
+            else if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         case 12:
-            if (Up()) {
+            if (Down()) {
                 playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
+                playermap[y + 1][x] = 1;
+            }
+            else if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
+            }
+            else if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
             }
             break;
         case 13:
-            if (Right()) {
+            if (Down()) {
                 playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
+                playermap[y + 1][x] = 1;
+            }
+            else if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
             }
             break;
         case 14:
@@ -304,8 +208,104 @@ public:
                 playermap[y][x] = 0;
                 playermap[y + 1][x] = 1;
             }
+            else if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
+            }
             break;
         case 15:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            else if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
+            }
+            break;
+        case 16:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            else if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
+            }
+            else if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
+            }
+            break;
+        case 17:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            else if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
+            }
+            break;
+        case 18:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            else if (Down()) {
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
+            }
+            else if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
+            }
+            break;
+        case 19:
+            if (Down()) {
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
+            }
+            else if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
+            }
+            break;
+        case 20:
+            if (Down()) {
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
+            }
+            break;
+        case 21:
+            if (Left()) {
+                playermap[y][x] = 0;
+                playermap[y][x - 1] = 1;
+            }
+            break;
+        case 22:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            break;
+        case 23:
+            if (Right()) {
+                playermap[y][x] = 0;
+                playermap[y][x + 1] = 1;
+            }
+            break;
+        case 24:
+            if (Up()) {
+                playermap[y][x] = 0;
+                playermap[y - 1][x] = 1;
+            }
+            else if (Down()) {
+                playermap[y][x] = 0;
+                playermap[y + 1][x] = 1;
+            }
+            break;
+        case 25:
             if (Right()) {
                 playermap[y][x] = 0;
                 playermap[y][x + 1] = 1;
@@ -314,6 +314,8 @@ public:
                 playermap[y][x] = 0;
                 playermap[y][x - 1] = 1;
             }
+            break;
+        default:
             break;
         }
     }

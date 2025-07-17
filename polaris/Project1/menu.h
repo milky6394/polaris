@@ -3,7 +3,7 @@
 class MenuControler {
 public:
     int x, y;
-    bool pushup = false, pushdown = false, pushright = false, pushleft = false;//各ボタンを長押しできないようにするための変数
+    bool pushup = false, pushdown = false, pushright = false, pushleft = false, pushz = false;//各ボタンを長押しできないようにするための変数
     bool gameend;
     int menumap[4][10][10] = {{
     {1,0,0,0,0,0,0,0,0,1},
@@ -37,7 +37,7 @@ public:
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
+    {100,0,0,0,0,0,0,0,0,0},
     },{
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
@@ -63,6 +63,18 @@ public:
         gameend = false;
     }
 
+    bool Button_Z() {
+        if (CheckHitKey(KEY_INPUT_Z)) {
+            if (!pushz) {
+                pushz = true;
+                return true;
+            }
+        }
+        else {
+            pushz = false;
+        }
+        return false;
+    }
     bool Up() {
         if (CheckHitKey(KEY_INPUT_UP)) {
             if (!pushup) {
@@ -178,11 +190,34 @@ public:
     }
     //上下左右キーを押したときに、その先にアイコンがあった場合移動
 
+    bool MeEnd() {
+        return gameend;
+    }
+    //gameendをplayerへ送る関数
+
+    void MenuAction() {
+        if (Button_Z()) {
+            switch (menumap[2][y][x]) {
+            case 0:
+
+                break;
+            case 1:
+
+                break;
+            case 100:
+                gameend = true;
+                break;
+            }
+
+        }
+    }
+
     void MenuDraw() {
         Menu_XY();
         MenuCursor();
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        MenuAction();
+        for (int i = 5; i < 10; i++) {
+            for (int j = 5; j < 10; j++) {
                 if (menumap[2][j][i] != 0) {
                     DrawCircle(Menupixel_X(i), Menupixel_Y(j), menumap[2][j][i]*10, GetColor(255, 255, 255), TRUE);
                 }//3層目の数字×10の大きさの〇をその場に描画

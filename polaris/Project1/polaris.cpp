@@ -7,7 +7,6 @@
 class GameControl {
 public:
     Player* pl = new Player();
-    //MapControler* mp = new MapControler();
 
     GameControl() {
 
@@ -16,6 +15,10 @@ public:
     ~GameControl() {
         delete pl;
     }
+    bool GameEnd() {
+        return pl->PlEnd();
+    }
+    //gameend‚ğplayer‚©‚çó‚¯æ‚éŠÖ”
 
     void All() {
         pl->PlayerAll();
@@ -37,7 +40,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
         ga->All();
 
-        if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)break;
+        if (ga->GameEnd()==true)break;//gameend‚ªtrue‚É‚È‚Á‚½‚çI—¹
         int endTime = GetNowCount();
         WaitTimer((1000 / 60) - (endTime - startTime));
     }

@@ -3,12 +3,10 @@
 class EventControler {
 public:
     int x, y;
-    bool pushz;
 
     EventControler() {
         x = 1000;
         y = 600;
-        pushz = false;
     }
 
     void EventDraw() {

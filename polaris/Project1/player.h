@@ -413,6 +413,11 @@ public:
     }
     //player‚ÌƒCƒ“ƒxƒ“ƒgƒŠ‚ğmenu‚É”½‰f
 
+    bool PlEnd() {
+        return me->MeEnd();
+    }
+    //gameend‚ğmain‚Ö‘—‚éŠÖ”
+
     void PlayerDraw() {
         DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
     }

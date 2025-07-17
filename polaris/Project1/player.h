@@ -329,7 +329,7 @@ public:
     }
     //inventoryに引数の値を格納する関数
     
-    bool Item(int a) {
+    bool ItemCheck(int a) {
         for (int i = 0; i < 25; i++) {
             if (inventory[i] == a) {
                 return true;
@@ -339,12 +339,47 @@ public:
     }
     //inventoryに引数のアイテムが入っているか判定する関数
 
+    bool ItemOff(int a) {
+        for (int i = 0; i < 25; i++) {
+            if (inventory[i] == a) {
+                inventory[i] = 0;
+                return true;
+            }
+        }
+        return false;
+    }
+    //inventoryに引数のアイテムが入っているか判定し、入っていたらそれを削除する関数
+
     void MapChange(int a,int b) {
         mp->mapnumber = mp->map[mp->mapnumber][1][y][x] % 100;
         playermap[y][x] = 0;
         playermap[b][a] = 1;
     }
     //100で割った余りのIDのマップに飛ぶ。移動先のマップの初期位置は引数でx,yが指定できる
+
+    void EventKey(int a) {
+        draw = a;
+    }
+    //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
+
+    void ItemMenu() {
+        for (int i = 5; i < 10; i++) {
+            for (int j = 5; j < 10; j++) {
+                me->menumap[2][j][i] = inventory[(i - 5) + ((j - 5) * 5)];
+            }
+        }
+    }
+    //playerのインベントリをmenuに反映
+
+    bool PlEnd() {
+        return me->MeEnd();
+    }
+    //gameendをmainへ送る関数
+
+    void PlayerDraw() {
+        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
+    }
+    //playerの位置描画関数
 
     void PlayerAction() {
         if (Button_Z()) {
@@ -388,40 +423,16 @@ public:
                 EventKey(2);
                 break;
             case 100:
-                MapChange(9,0);
+                MapChange(9, 0);
                 break;
             case 101:
-                MapChange(0,0);
+                MapChange(0, 0);
                 break;
             }
 
         }
     }
     //playerの位置によって特定のアクションを起こせる関数
-
-    void EventKey(int x) {
-        draw = x;
-    }
-    //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
-
-    void ItemMenu() {
-        for (int i = 5; i < 10; i++) {
-            for (int j = 5; j < 10; j++) {
-                me->menumap[2][j][i] = inventory[(i - 5) + ((j - 5) * 5)];
-            }
-        }
-    }
-    //playerのインベントリをmenuに反映
-
-    bool PlEnd() {
-        return me->MeEnd();
-    }
-    //gameendをmainへ送る関数
-
-    void PlayerDraw() {
-        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
-    }
-    //playerの位置描画関数
 
     void PlayerAll() {
         mp->MapPracer();

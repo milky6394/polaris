@@ -3,7 +3,7 @@
 class MenuControler {
 public:
     int x, y;
-    bool pushup = false, pushdown = false, pushright = false, pushleft = false, pushz = false;//各ボタンを長押しできないようにするための変数
+    bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
     bool gameend;
     int menumap[4][10][10] = {{
     {1,0,0,0,0,0,0,0,0,1},
@@ -60,6 +60,11 @@ public:
     MenuControler() {
         x = 0;
         y = 0;
+        pushup = false;
+        pushdown = false;
+        pushright = false;
+        pushleft = false;
+        pushz = false;
         gameend = false;
     }
 

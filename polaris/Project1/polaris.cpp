@@ -14,7 +14,7 @@ public:
     }
 
     ~GameControl() {
-  
+        delete pl;
     }
 
     void All() {

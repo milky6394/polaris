@@ -4,7 +4,7 @@ class MenuControler {
 public:
     int x, y;
     bool pushup = false, pushdown = false, pushright = false, pushleft = false;//Šeƒ{ƒ^ƒ“‚ğ’·‰Ÿ‚µ‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì•Ï”
-
+    bool gameend;
     int menumap[4][10][10] = {{
     {1,0,0,0,0,0,0,0,0,1},
     {0,0,0,0,0,0,0,0,0,0},
@@ -60,6 +60,7 @@ public:
     MenuControler() {
         x = 0;
         y = 0;
+        gameend = false;
     }
 
     bool Up() {

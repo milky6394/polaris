@@ -47,6 +47,12 @@ public:
         pushleft = false;
     }
 
+    ~Player() {
+        delete mp;
+        delete ev;
+        delete me;
+    }
+
     bool Button_Z() {
         if (CheckHitKey(KEY_INPUT_Z)) {
             if (!pushz) {

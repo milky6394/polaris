@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
         ga->All();
 
-        if (ga->GameEnd()==true)break;//gameend‚ªtrue‚É‚È‚Á‚½‚çI—¹
+        if (ga->GameEnd() == true)break;//gameend‚ªtrue‚É‚È‚Á‚½‚çI—¹
         int endTime = GetNowCount();
         WaitTimer((1000 / 60) - (endTime - startTime));
     }

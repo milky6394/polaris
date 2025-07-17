@@ -361,6 +361,8 @@ public:
 
     void EventKey(int a) {
         draw = a;
+        ev->st = 0;
+        ev->StringReset();
     }
     //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
 
@@ -422,7 +424,7 @@ public:
                 ItemMenu();
                 break;
             case 8:
-                EventKey(2);
+                EventKey(1);
                 break;
             case 100:
                 MapChange(9, 0);

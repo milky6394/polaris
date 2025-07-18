@@ -32,5 +32,8 @@
     <ClInclude Include="event.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

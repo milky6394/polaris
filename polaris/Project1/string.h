@@ -15,6 +15,10 @@ public:
         st = 0;
     }
 
+    ~StringControler() {
+        delete im;
+    }
+
     void StringReset() {
         for (int i = 0; i < 1000; i++) {
             String[i] = {};

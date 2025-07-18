@@ -1,10 +1,15 @@
 #include "DxLib.h"
+//#include "item.h"
 
 class MenuControler {
 public:
+    //ItemManager* im = new ItemManager();
+
     int x, y;
     bool pushup, pushdown, pushright, pushleft, pushz;//Šeƒ{ƒ^ƒ“‚ğ’·‰Ÿ‚µ‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì•Ï”
     bool gameend;
+    char menustring[1000] = {};
+
     int menumap[4][10][10] = {{
     {1,0,0,0,0,0,0,0,0,1},
     {0,0,0,0,0,0,0,0,0,0},
@@ -67,6 +72,10 @@ public:
         pushz = false;
         gameend = false;
     }
+
+    //~MenuControler() {
+    //    delete im;
+    //}
 
     bool Button_Z() {
         if (CheckHitKey(KEY_INPUT_Z)) {
@@ -228,6 +237,13 @@ public:
             gameend = true;
             break;
         }
+    }
+
+    void DrawMenuString(int a) {
+        for (int i = 0; i < 1000; i++) {
+            //menustring[i] = im->ItemString[a][i];
+        }
+        DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", menustring);
     }
 
     void MenuDraw() {

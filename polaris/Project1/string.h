@@ -1,7 +1,7 @@
 #include "DxLib.h"
 #include "item.h"
 
-class EventControler {
+class StringControler {
 public:
     ItemManager* im = new ItemManager();
 
@@ -9,7 +9,7 @@ public:
     int st;
     char String[1000] = {};
 
-    EventControler() {
+    StringControler() {
         x = 1000;
         y = 650;
         st = 0;

@@ -213,7 +213,20 @@ public:
                 gameend = true;
                 break;
             }
+        }
+    }
 
+    void MenuString() {
+        switch (menumap[2][y][x]) {
+        case 0:
+
+            break;
+        case 1:
+
+            break;
+        case 100:
+            gameend = true;
+            break;
         }
     }
 

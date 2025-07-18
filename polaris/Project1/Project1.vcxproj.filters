@@ -29,7 +29,7 @@
     <ClInclude Include="menu.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="event.h">
+    <ClInclude Include="string.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="item.h">

@@ -1,12 +1,12 @@
 #include "DxLib.h"
 #include "map.h"
-#include "event.h"
+#include "string.h"
 #include "menu.h"
 
 class Player {
 public:
     MapControler* mp = new MapControler();
-    EventControler* ev = new EventControler();
+    StringControler* sc = new StringControler();
     MenuControler* me = new MenuControler();
 
     int x, y;//Playerの現在の座標
@@ -51,7 +51,7 @@ public:
 
     ~Player() {
         delete mp;
-        delete ev;
+        delete sc;
         delete me;
     }
 
@@ -364,8 +364,8 @@ public:
     void StringKey(int a,int b) {
         draw = b - a + 1;
         st = a - 1;
-        ev->st = 0;
-        ev->StringReset();
+        sc->st = 0;
+        sc->StringReset();
     }
     //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
 
@@ -422,7 +422,7 @@ public:
                 ItemMenu();
                 break;
             case 7:
-                StringKey(1,1);
+                StringKey(4,4);
                 Invent(4);
                 ItemMenu();
                 break;
@@ -450,10 +450,10 @@ public:
 
         if (flag) {
             if (draw > 0) {
-                ev->EventDraw(st);
+                sc->EventDraw(st);
                 if (Button_Z()) {
-                    ev->st = 0;
-                    ev->StringReset();
+                    sc->st = 0;
+                    sc->StringReset();
                     st++;
                     draw--;
                 }

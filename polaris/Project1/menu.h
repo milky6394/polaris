@@ -270,6 +270,6 @@ public:
                 }//3‘w–Ú‚Ì”š~10‚Ì‘å‚«‚³‚ÌZ‚ğ‚»‚Ìê‚É•`‰æ
             }
         }
-        DrawTriangle(Menupixel_X(x), Menupixel_Y(y), Menupixel_X(x), Menupixel_Y(y) - 20, Menupixel_X(x) + 10, Menupixel_Y(y) - 10, GetColor(255, 255, 255), true);
+        DrawTriangle(Menupixel_X(x), Menupixel_Y(y), Menupixel_X(x), Menupixel_Y(y) - 20, Menupixel_X(x) + 10, Menupixel_Y(y) - 10, GetColor(255, 0, 0), true);
     }
 };

@@ -3,11 +3,11 @@
 
 class EventControler {
 public:
+    ItemManager* im = new ItemManager();
+
     int x, y;
     int st;
-    char String[1000] = { "¡“ú‚Ì“V‹C‚Í“Ü‚è‚È‚ñ‚¾‚¯‚Ç‚±‚Á‚©‚çæ‚Í‚Ç‚ñ‚ÈŠ´‚¶‚ÉŒ©‚¦‚é‚Ì‚©‚ª‹C‚É‚È‚é‚Ì‚Å‚½‚­‚³‚ñ‘‚¢‚Ä‚İ‚Ü‚·" };
-
-    char NowSt[1000] = {};
+    char String[1000] = {};
 
     EventControler() {
         x = 1000;
@@ -17,16 +17,16 @@ public:
 
     void StringReset() {
         for (int i = 0; i < 1000; i++) {
-            NowSt[i] = {};
+            String[i] = {};
         }
     }
 
-    void EventDraw() {
-        NowSt[st] = String[st];
+    void EventDraw(int a) {
+        String[st] = im->ItemString[a][st];
         if (st < 999) {
             st++;
         }
-        DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", NowSt);
+        DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", String);
         DrawTriangle(x, y, x + 10, y - 10, x - 10, y - 10, GetColor(255, 255, 255), true);
     }
 };

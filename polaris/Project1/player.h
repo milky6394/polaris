@@ -14,6 +14,7 @@ public:
     bool pushx, pushz, pushup, pushdown, pushright, pushleft;//各ボタンを長押しできないようにするための変数
     int draw;
     bool flag;
+    int st;
 
     int playermap[10][10] =
     {
@@ -45,6 +46,7 @@ public:
         pushdown = false;
         pushright = false;
         pushleft = false;
+        st = 0;
     }
 
     ~Player() {
@@ -359,8 +361,9 @@ public:
     }
     //100で割った余りのIDのマップに飛ぶ。移動先のマップの初期位置は引数でx,yが指定できる
 
-    void EventKey(int a) {
-        draw = a;
+    void StringKey(int a,int b) {
+        draw = b - a + 1;
+        st = a - 1;
         ev->st = 0;
         ev->StringReset();
     }
@@ -419,12 +422,12 @@ public:
                 ItemMenu();
                 break;
             case 7:
-                EventKey(1);
+                StringKey(1,1);
                 Invent(4);
                 ItemMenu();
                 break;
             case 8:
-                EventKey(1);
+                StringKey(1,3);
                 break;
             case 100:
                 MapChange(9, 0);
@@ -447,11 +450,14 @@ public:
 
         if (flag) {
             if (draw > 0) {
-                ev->EventDraw();
+                ev->EventDraw(st);
                 if (Button_Z()) {
+                    ev->st = 0;
+                    ev->StringReset();
+                    st++;
                     draw--;
                 }
-            }//Eventが行われているならplayerの処理より優先
+            }//Stringが描画されているならplayerの処理より優先
             else {
                 Player_XY();
                 PlayerAction();

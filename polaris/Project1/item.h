@@ -3,7 +3,7 @@
 class ItemManager {
 public:
 
-    char ItemString[100][1000] = {
+    char ItemString[300][1000] = {
         { "test" },
         { "さてこれはアイテム1です" },
         { "さてさてこれはアイテム2です" },

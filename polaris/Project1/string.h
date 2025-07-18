@@ -24,6 +24,7 @@ public:
             String[i] = {};
         }
     }
+    //String‚ð‰Šú‰»‚·‚éŠÖ”
 
     void EventDraw(int a) {
         String[st] = im->ItemString[a][st];

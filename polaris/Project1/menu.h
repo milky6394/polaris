@@ -1,9 +1,9 @@
 #include "DxLib.h"
-//#include "item.h"
+#include "string.h"
 
 class MenuControler {
 public:
-    //ItemManager* im = new ItemManager();
+    ItemManager* im = new ItemManager();
 
     int x, y;
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
@@ -73,9 +73,9 @@ public:
         gameend = false;
     }
 
-    //~MenuControler() {
-    //    delete im;
-    //}
+    ~MenuControler() {
+        delete im;
+    }
 
     bool Button_Z() {
         if (CheckHitKey(KEY_INPUT_Z)) {
@@ -224,6 +224,7 @@ public:
             }
         }
     }
+    //menuの配列内でZキーをクリックしたときに行う処理
 
     void MenuString() {
         switch (menumap[2][y][x]) {
@@ -231,24 +232,36 @@ public:
 
             break;
         case 1:
-
+            DrawMenuString(1);
+            break;
+        case 2:
+            DrawMenuString(2);
+            break;
+        case 3:
+            DrawMenuString(3);
+            break;
+        case 4:
+            DrawMenuString(4);
             break;
         case 100:
-            gameend = true;
+            DrawMenuString(100);
             break;
         }
     }
+    //表示する説明文を選ぶ関数
 
     void DrawMenuString(int a) {
         for (int i = 0; i < 1000; i++) {
-            //menustring[i] = im->ItemString[a][i];
+            menustring[i] = im->ItemString[a][i];
         }
         DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", menustring);
     }
+    //menuの配列内の引数の説明文を表示する関数
 
     void MenuDraw() {
         Menu_XY();
         MenuCursor();
+        MenuString();
         MenuAction();
         for (int i = 5; i < 10; i++) {
             for (int j = 5; j < 10; j++) {

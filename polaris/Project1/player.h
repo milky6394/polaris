@@ -1,6 +1,5 @@
 #include "DxLib.h"
 #include "map.h"
-#include "string.h"
 #include "menu.h"
 
 class Player {
@@ -330,6 +329,7 @@ public:
                 break;
             }
         }
+        ItemMenu();
     }
     //inventoryに引数の値を格納する関数
     
@@ -363,11 +363,11 @@ public:
 
     void StringKey(int a,int b) {
         draw = b - a + 1;
-        st = a - 1;
+        st = a;
         sc->st = 0;
         sc->StringReset();
     }
-    //オブジェクトの説明文などを出すトリガーになる関数。引数の数だけクリックすると戻る
+    //a~bの配列に入っているオブジェクトの説明文などを出す関数。引数の数だけクリックすると戻る
 
     void ItemMenu() {
         for (int i = 5; i < 10; i++) {
@@ -411,23 +411,22 @@ public:
                 break;
             case 4:
                 Invent(1);
-                ItemMenu();
+                StringKey(1, 1);
                 break;
             case 5:
                 Invent(2);
-                ItemMenu();
+                StringKey(2, 2);
                 break;
             case 6:
                 Invent(3);
-                ItemMenu();
+                StringKey(3, 3);
                 break;
             case 7:
-                StringKey(4,4);
+                StringKey(4, 4);
                 Invent(4);
-                ItemMenu();
                 break;
             case 8:
-                StringKey(1,3);
+                StringKey(5, 6);
                 break;
             case 100:
                 MapChange(9, 0);

@@ -1,12 +1,14 @@
 #include "DxLib.h"
 #include "map.h"
 #include "menu.h"
+#include "choice.h"
 
 class Player {
 public:
     MapControler* mp = new MapControler();
     StringControler* sc = new StringControler();
     MenuControler* me = new MenuControler();
+    ChoiceManager* co = new ChoiceManager();
 
     int x, y;//Playerの現在の座標
     int r, g, b;
@@ -458,9 +460,10 @@ public:
                 }
             }//Stringが描画されているならplayerの処理より優先
             else {
-                Player_XY();
-                PlayerAction();
-                PlayerMove();
+                co->ChoiceAll();
+                //Player_XY();
+                //PlayerAction();
+                //PlayerMove();
             }
         }//Xキーを押したらメニュー表示
         else {

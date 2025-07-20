@@ -9,12 +9,12 @@ public:
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
 
     int choicemap[4][4][4] = { {
-    {1,0,0,0},
-    {0,0,0,0},
-    {0,0,0,0},
-    {0,0,0,0}
+    {1,1,1,1},
+    {1,1,1,1},
+    {1,1,1,1},
+    {1,1,1,1}
     },{
-    {0,0,0,0},
+    {1,0,0,0},
     {0,0,0,0},
     {0,0,0,0},
     {0,0,0,0}
@@ -38,8 +38,8 @@ public:
     */
 
     ChoiceManager() {
-        x = 1000;
-        y = 650;
+        x = 0;
+        y = 0;
         st = 0;
         pushup = false;
         pushdown = false;
@@ -121,7 +121,7 @@ public:
             }
         }
         else if (Down()) {
-            for (int i = y + 1; i <= 9; i++) {
+            for (int i = y + 1; i <= 3; i++) {
                 if (choicemap[0][i][x]) {
                     choicemap[1][y][x] = 0;
                     choicemap[1][i][x] = 1;
@@ -130,7 +130,7 @@ public:
             }
         }
         else if (Right()) {
-            for (int i = x + 1; i <= 9; i++) {
+            for (int i = x + 1; i <= 3; i++) {
                 if (choicemap[0][y][i]) {
                     choicemap[1][y][x] = 0;
                     choicemap[1][y][i] = 1;
@@ -199,21 +199,16 @@ public:
     //menuの配列内の引数の説明文を表示する関数
 
     int Choicepixel_X(int x) {
-        if (x / 5) {
-            return 690 + (x * 50);
-        }
-        else {
-            return 90 + (x * 50);
-        }
+        return 490 + (x * 100);
     }
     int Choicepixel_Y(int y) {
-        return 110 + (y * 50);
+        return 600 + (y * 25);
     }
     //画面横に表示する座標へ変換
 
     void Choice_XY() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 if (choicemap[1][j][i]) {
                     x = i;
                     y = j;
@@ -230,12 +225,15 @@ public:
     }
     //Stringを初期化する関数
 
-    void ChoiceDraw(int a) {
+    void ChoiceDraw() {
         //String[st] = im->ItemString[a][st];
-        if (st < 999) {
-            st++;
-        }
-        DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", String);
-        DrawTriangle(x, y, x + 10, y - 10, x - 10, y - 10, GetColor(255, 255, 255), true);
+        //DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", String);
+        DrawTriangle(Choicepixel_X(x), Choicepixel_Y(y), Choicepixel_X(x) + 10, Choicepixel_Y(y) - 10, Choicepixel_X(x) - 10, Choicepixel_Y(y) - 10, GetColor(255, 255, 255), true);
+    }
+
+    void ChoiceAll() {
+        ChoiceCursor();
+        Choice_XY();
+        ChoiceDraw();
     }
 };

@@ -154,6 +154,7 @@
     <ClCompile Include="polaris.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="choice.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="menu.h" />

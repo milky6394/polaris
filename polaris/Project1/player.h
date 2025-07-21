@@ -390,6 +390,16 @@ public:
     }
     //playerの位置描画関数
 
+    void ChoseMapChange() {
+        if (co->map) {
+            mp->mapnumber = co->mapnumber;
+            playermap[y][x] = 0;
+            playermap[co->mapb][co->mapa] = 1;
+            co->map = false;
+        }
+    }
+    //choice.hによるmap変更を反映する関数
+
     void PlayerAction() {
         if (Button_Z()) {
             switch (mp->map[mp->mapnumber][1][y][x]) {
@@ -446,6 +456,7 @@ public:
     //playerの位置によって特定のアクションを起こせる関数
 
     void PlayerAll() {
+        ChoseMapChange();
         mp->MapPracer();
         PlayerDraw();//player描画
         if (Button_X()) {

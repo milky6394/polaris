@@ -2,13 +2,14 @@
 
 class ChoiceManager {
 public:
-    MapControler* mp = new MapControler();
+    //MapControler* mp = new MapControler();
 
     int x, y;
     int st;
-    char String[1000] = {};
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
     bool choice;
+    bool map;
+    int mapa, mapb,mapnumber;
 
     int choicemap[4][4][4] = { {
     {1,1,1,1},
@@ -24,7 +25,7 @@ public:
     {0,0,0,1},
     {0,0,0,0},
     {0,0,0,0},
-    {0,0,0,0}
+    {0,0,0,100}
     },{
     {0,0,0,0},
     {0,0,0,0},
@@ -49,6 +50,10 @@ public:
         pushleft = false;
         pushz = false;
         choice = false;
+        map = false;
+        mapa = 0;
+        mapb = 0;
+        mapnumber = 0;
     }
 
     bool Button_Z() {
@@ -166,43 +171,13 @@ public:
                 choice = false;
                 break;
             case 100:
+                ChoseMap(2, 7);
+                choice = false;
                 break;
             }
         }
     }
     //menuの配列内でZキーをクリックしたときに行う処理
-
-    void ChoiceString() {
-        switch (choicemap[2][y][x]) {
-        case 0:
-
-            break;
-        case 1:
-            DrawChoiceString(1);
-            break;
-        case 2:
-            DrawChoiceString(2);
-            break;
-        case 3:
-            DrawChoiceString(3);
-            break;
-        case 4:
-            DrawChoiceString(4);
-            break;
-        case 100:
-            DrawChoiceString(100);
-            break;
-        }
-    }
-    //表示する説明文を選ぶ関数
-
-    void DrawChoiceString(int a) {
-        for (int i = 0; i < 1000; i++) {
-            //menustring[i] = im->ItemString[a][i];
-        }
-        //DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", menustring);
-    }
-    //menuの配列内の引数の説明文を表示する関数
 
     int Choicepixel_X(int x) {
         return 490 + (x * 100);
@@ -224,25 +199,24 @@ public:
     }
     //メニュー選択キーの座標を取得
 
-    void StringReset() {
-        for (int i = 0; i < 1000; i++) {
-            String[i] = {};
-        }
-    }
-    //Stringを初期化する関数
-
     void ChoiceDraw() {
-        //String[st] = im->ItemString[a][st];
-        //DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", String);
         DrawTriangle(Choicepixel_X(x), Choicepixel_Y(y), Choicepixel_X(x) + 10, Choicepixel_Y(y) - 10, Choicepixel_X(x) - 10, Choicepixel_Y(y) - 10, GetColor(255, 255, 255), true);
     }
+    //メニューカーソルを描画する関数
+
+    void ChoseMap(int a, int b) {
+        map = true;
+        mapa = a;
+        mapb = b;
+        mapnumber = choicemap[2][y][x] % 100;
+    }
+    //100で割った余りのIDのマップに飛ぶ。移動先のマップの初期位置は引数でx,yが指定できる
+
 
     void ChoiceAll() {
-        if (choice) {
-            ChoiceCursor();
-            Choice_XY();
-            ChoiceDraw();
-            ChoiceAction();
-        }
+        ChoiceCursor();
+        Choice_XY();
+        ChoiceDraw();
+        ChoiceAction();
     }
 };

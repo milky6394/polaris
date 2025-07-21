@@ -356,8 +356,8 @@ public:
     }
     //inventoryに引数のアイテムが入っているか判定し、入っていたらそれを削除する関数
 
-    void MapChange(int a,int b) {
-        mp->mapnumber = mp->map[mp->mapnumber][1][y][x] % 100;
+    void MapChange(int a,int b,int c) {
+        mp->mapnumber = c;
         playermap[y][x] = 0;
         playermap[b][a] = 1;
     }
@@ -402,55 +402,103 @@ public:
 
     void PlayerAction() {
         if (Button_Z()) {
-            switch (mp->map[mp->mapnumber][1][y][x]) {
-            case 0:
-
-                break;
-            case 1:
-                r = 255;
-                g = 0;
-                b = 0;
-                break;
-            case 2:
-                r = 0;
-                g = 255;
-                b = 0;
-                break;
-            case 3:
-                r = 0;
-                g = 0;
-                b = 255;
-                break;
-            case 4:
-                Invent(1);
-                StringKey(1, 1);
-                break;
-            case 5:
-                Invent(2);
-                StringKey(2, 2);
-                break;
-            case 6:
-                Invent(3);
-                StringKey(3, 3);
-                break;
-            case 7:
-                StringKey(4, 4);
-                Invent(4);
-                break;
-            case 8:
-                StringKey(5, 6);
-                break;
-            case 9:
-                co->choice = true;
-                break;
-            case 100:
-                MapChange(9, 0);
-                break;
-            case 101:
-                MapChange(0, 0);
-                break;
+            if (mp->map[mp->mapnumber][1][y][x] / 10000) {
+                switch (mp->map[mp->mapnumber][1][y][x] % 10000) {
+                case 0:
+                    StringKey(1, 1);
+                    break;
+                case 1:
+                    StringKey(2, 2);
+                    break;
+                case 2:
+                    StringKey(3, 3);
+                    break;
+                case 3:
+                    StringKey(4, 4);
+                    break;
+                case 4:
+                    StringKey(1, 1);
+                    break;
+                case 5:
+                    StringKey(1, 1);
+                    break;
+                case 6:
+                    StringKey(2, 2);
+                    break;
+                case 7:
+                    StringKey(3, 3);
+                    break;
+                case 8:
+                    StringKey(5, 6);
+                    break;
+                }
             }
+            else if (mp->map[mp->mapnumber][1][y][x] / 1000) {
+                switch (mp->map[mp->mapnumber][1][y][x] % 1000) {
+                case 0:
 
+                    break;
+                case 1:
+                    co->choice = true;
+                    break;
+                }
+            }
+            else if (mp->map[mp->mapnumber][1][y][x] / 100) {
+                switch (mp->map[mp->mapnumber][1][y][x] % 100) {
+                case 0:
+
+                    break;
+                case 1:
+                    Invent(1);
+                    StringKey(1, 1);
+                    break;
+                case 2:
+                    Invent(2);
+                    StringKey(2, 2);
+                    break;
+                case 3:
+                    Invent(3);
+                    StringKey(3, 3);
+                    break;
+                case 4:
+                    Invent(4);
+                    StringKey(4, 4);
+                    break;
+                }
+            }
+            else if (mp->map[mp->mapnumber][1][y][x] != 0) {
+                switch (mp->map[mp->mapnumber][1][y][x]) {
+                case 0:
+                    break;
+                case 1:
+                    MapChange(9, 0, mp->map[mp->mapnumber][1][y][x]-1);
+                    break;
+                case 2:
+                    MapChange(0, 0,mp->map[mp->mapnumber][1][y][x] - 1);
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+
+                    break;
+                case 9:
+
+                    break;
+                }
+            }
         }
     }
     //playerの位置によって特定のアクションを起こせる関数

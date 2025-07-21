@@ -400,10 +400,10 @@ public:
     }
     //choice.h‚É‚æ‚émap•ÏX‚ð”½‰f‚·‚éŠÖ”
 
-    void PlayerAction() {
+    void PlayerAction(int a) {
         if (Button_Z()) {
-            if (mp->map[mp->mapnumber][1][y][x] / 10000) {
-                switch (mp->map[mp->mapnumber][1][y][x] % 10000) {
+            if (a / 10000) {
+                switch (a % 10000) {
                 case 0:
                     StringKey(1, 1);
                     break;
@@ -433,8 +433,8 @@ public:
                     break;
                 }
             }
-            else if (mp->map[mp->mapnumber][1][y][x] / 1000) {
-                switch (mp->map[mp->mapnumber][1][y][x] % 1000) {
+            else if (a / 1000) {
+                switch (a % 1000) {
                 case 0:
 
                     break;
@@ -443,8 +443,8 @@ public:
                     break;
                 }
             }
-            else if (mp->map[mp->mapnumber][1][y][x] / 100) {
-                switch (mp->map[mp->mapnumber][1][y][x] % 100) {
+            else if (a / 100) {
+                switch (a % 100) {
                 case 0:
 
                     break;
@@ -466,15 +466,15 @@ public:
                     break;
                 }
             }
-            else if (mp->map[mp->mapnumber][1][y][x] != 0) {
-                switch (mp->map[mp->mapnumber][1][y][x]) {
+            else if (a != 0) {
+                switch (a) {
                 case 0:
                     break;
                 case 1:
-                    MapChange(9, 0, mp->map[mp->mapnumber][1][y][x]-1);
+                    MapChange(9, 0, a - 1);
                     break;
                 case 2:
-                    MapChange(0, 0,mp->map[mp->mapnumber][1][y][x] - 1);
+                    MapChange(0, 0, a - 1);
                     break;
                 case 3:
 
@@ -527,7 +527,7 @@ public:
                 }
                 else {
                     Player_XY();
-                    PlayerAction();
+                    PlayerAction(mp->map[mp->mapnumber][1][y][x]);
                     PlayerMove();
                 }
             }

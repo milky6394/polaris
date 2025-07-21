@@ -2,11 +2,13 @@
 
 class ChoiceManager {
 public:
+    MapControler* mp = new MapControler();
 
     int x, y;
     int st;
     char String[1000] = {};
     bool pushup, pushdown, pushright, pushleft, pushz;//äeÉ{É^ÉìÇí∑âüÇµÇ≈Ç´Ç»Ç¢ÇÊÇ§Ç…Ç∑ÇÈÇΩÇﬂÇÃïœêî
+    bool choice;
 
     int choicemap[4][4][4] = { {
     {1,1,1,1},
@@ -19,7 +21,7 @@ public:
     {0,0,0,0},
     {0,0,0,0}
     },{
-    {0,0,0,0},
+    {0,0,0,1},
     {0,0,0,0},
     {0,0,0,0},
     {0,0,0,0}
@@ -46,6 +48,7 @@ public:
         pushright = false;
         pushleft = false;
         pushz = false;
+        choice = false;
     }
 
     bool Button_Z() {
@@ -157,7 +160,10 @@ public:
 
                 break;
             case 1:
-
+                choice = false;
+                break;
+            case 2:
+                choice = false;
                 break;
             case 100:
                 break;
@@ -232,8 +238,11 @@ public:
     }
 
     void ChoiceAll() {
-        ChoiceCursor();
-        Choice_XY();
-        ChoiceDraw();
+        if (choice) {
+            ChoiceCursor();
+            Choice_XY();
+            ChoiceDraw();
+            ChoiceAction();
+        }
     }
 };

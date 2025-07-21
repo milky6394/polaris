@@ -430,6 +430,9 @@ public:
             case 8:
                 StringKey(5, 6);
                 break;
+            case 9:
+                co->choice = true;
+                break;
             case 100:
                 MapChange(9, 0);
                 break;
@@ -460,10 +463,14 @@ public:
                 }
             }//Stringが描画されているならplayerの処理より優先
             else {
-                co->ChoiceAll();
-                //Player_XY();
-                //PlayerAction();
-                //PlayerMove();
+                if (co->choice) {
+                    co->ChoiceAll();
+                }
+                else {
+                    Player_XY();
+                    PlayerAction();
+                    PlayerMove();
+                }
             }
         }//Xキーを押したらメニュー表示
         else {

@@ -9,7 +9,7 @@ public:
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
     bool choice;
     bool map;
-    int mapa, mapb,mapnumber;
+    int choicenumber;
 
     int choicemap[4][4][4] = { {
     {1,1,1,1},
@@ -22,10 +22,10 @@ public:
     {0,0,0,0},
     {0,0,0,0}
     },{
-    {0,0,0,1},
     {0,0,0,0},
     {0,0,0,0},
-    {0,0,0,100}
+    {0,0,0,0},
+    {0,0,0,1}
     },{
     {0,0,0,0},
     {0,0,0,0},
@@ -51,9 +51,7 @@ public:
         pushz = false;
         choice = false;
         map = false;
-        mapa = 0;
-        mapb = 0;
-        mapnumber = 0;
+        choicenumber = 0;
     }
 
     bool Button_Z() {
@@ -158,27 +156,6 @@ public:
     }
     //上下左右キーを押したときに、その先にアイコンがあった場合移動
 
-    void ChoiceAction() {
-        if (Button_Z()) {
-            switch (choicemap[2][y][x]) {
-            case 0:
-
-                break;
-            case 1:
-                choice = false;
-                break;
-            case 2:
-                choice = false;
-                break;
-            case 100:
-                ChoseMap(2, 7);
-                choice = false;
-                break;
-            }
-        }
-    }
-    //menuの配列内でZキーをクリックしたときに行う処理
-
     int Choicepixel_X(int x) {
         return 490 + (x * 100);
     }
@@ -204,13 +181,14 @@ public:
     }
     //メニューカーソルを描画する関数
 
-    void ChoseMap(int a, int b) {
-        map = true;
-        mapa = a;
-        mapb = b;
-        mapnumber = choicemap[2][y][x] % 100;
+    void ChoiceAction() {
+        if (Button_Z()) {
+            map = true;
+            choicenumber = choicemap[2][y][x];
+            choice = false;
+        }
     }
-    //100で割った余りのIDのマップに飛ぶ。移動先のマップの初期位置は引数でx,yが指定できる
+    //menuの配列内でZキーをクリックしたときに行う処理
 
 
     void ChoiceAll() {

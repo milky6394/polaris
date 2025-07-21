@@ -392,16 +392,13 @@ public:
 
     void ChoseMapChange() {
         if (co->map) {
-            mp->mapnumber = co->mapnumber;
-            playermap[y][x] = 0;
-            playermap[co->mapb][co->mapa] = 1;
+            PlayerAction(co->choicenumber);
             co->map = false;
         }
     }
     //choice.hによるmap変更を反映する関数
 
     void PlayerAction(int a) {
-        if (Button_Z()) {
             if (a / 10000) {
                 switch (a % 10000) {
                 case 0:
@@ -434,6 +431,7 @@ public:
                 }
             }
             else if (a / 1000) {
+                while(CheckHitKey(KEY_INPUT_Z))
                 switch (a % 1000) {
                 case 0:
 
@@ -499,7 +497,7 @@ public:
                     break;
                 }
             }
-        }
+        
     }
     //playerの位置によって特定のアクションを起こせる関数
 
@@ -527,7 +525,9 @@ public:
                 }
                 else {
                     Player_XY();
-                    PlayerAction(mp->map[mp->mapnumber][1][y][x]);
+                    if (Button_Z()) {
+                        PlayerAction(mp->map[mp->mapnumber][1][y][x]);
+                    }
                     PlayerMove();
                 }
             }

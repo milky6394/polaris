@@ -357,11 +357,11 @@ public:
     //inventoryに引数のアイテムが入っているか判定し、入っていたらそれを削除する関数
 
     void MapChange(int a,int b,int c) {
-        mp->mapnumber = c;
+        mp->mapnumber = c-1;
         playermap[y][x] = 0;
         playermap[b][a] = 1;
     }
-    //100で割った余りのIDのマップに飛ぶ。移動先のマップの初期位置は引数でx,yが指定できる
+    //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
     void StringKey(int a,int b) {
         draw = b - a + 1;
@@ -431,7 +431,7 @@ public:
                 }
             }
             else if (a / 1000) {
-                while(CheckHitKey(KEY_INPUT_Z))
+                while(CheckHitKey(KEY_INPUT_Z)){}
                 switch (a % 1000) {
                 case 0:
 
@@ -469,10 +469,10 @@ public:
                 case 0:
                     break;
                 case 1:
-                    MapChange(9, 0, a - 1);
+                    MapChange(9, 0, a);
                     break;
                 case 2:
-                    MapChange(0, 0, a - 1);
+                    MapChange(0, 0, a);
                     break;
                 case 3:
 

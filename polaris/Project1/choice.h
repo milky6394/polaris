@@ -2,10 +2,8 @@
 
 class ChoiceManager {
 public:
-    //MapControler* mp = new MapControler();
 
     int x, y;
-    int st;
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
     bool choice;
     bool map;
@@ -43,7 +41,6 @@ public:
     ChoiceManager() {
         x = 0;
         y = 0;
-        st = 0;
         pushup = false;
         pushdown = false;
         pushright = false;
@@ -186,10 +183,15 @@ public:
             map = true;
             choicenumber = choicemap[2][y][x];
             choice = false;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    choicemap[1][y][x] = 0;
+                }
+            }
+            choicemap[1][0][0] = 1;
         }
     }
     //menuの配列内でZキーをクリックしたときに行う処理
-
 
     void ChoiceAll() {
         ChoiceCursor();

@@ -9,14 +9,15 @@ public:
     bool map;
     int choicenumber;
 
-    int choicemap[4][4][4] = { {
-    {0,0,0,0},
-    {1,0,0,1},
-    {0,0,0,0},
-    {0,0,0,0}
-    },{
+    int cursor[4][4] = {
     {0,0,0,0},
     {1,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}};
+
+    int choicemap[2][4][4] = { {
+    {0,0,0,0},
+    {1,0,0,1},
     {0,0,0,0},
     {0,0,0,0}
     },{
@@ -24,18 +25,11 @@ public:
     {0,0,0,3},
     {0,0,0,0},
     {0,0,0,0}
-    },{
-    {0,0,0,0},
-    {0,0,0,0},
-    {0,0,0,0},
-    {0,0,0,0}
     } };
     /*
     menuのmapを格納する配列
     1層目：アイコンの描画位置の指定
-    2層目：メニューカーソルの位置
-    3層目：そのマスでの特殊操作
-    4層目：そのマスに描画する画像
+    2層目：そのマスでの特殊操作
     */
 
     ChoiceManager() {
@@ -117,8 +111,8 @@ public:
         if (Up()) {
             for (int i = y - 1; i >= 0; i--) {
                 if (choicemap[0][i][x]) {
-                    choicemap[1][y][x] = 0;
-                    choicemap[1][i][x] = 1;
+                    cursor[y][x] = 0;
+                    cursor[i][x] = 1;
                     break;
                 }
             }
@@ -126,8 +120,8 @@ public:
         else if (Down()) {
             for (int i = y + 1; i <= 3; i++) {
                 if (choicemap[0][i][x]) {
-                    choicemap[1][y][x] = 0;
-                    choicemap[1][i][x] = 1;
+                    cursor[y][x] = 0;
+                    cursor[i][x] = 1;
                     break;
                 }
             }
@@ -135,8 +129,8 @@ public:
         else if (Right()) {
             for (int i = x + 1; i <= 3; i++) {
                 if (choicemap[0][y][i]) {
-                    choicemap[1][y][x] = 0;
-                    choicemap[1][y][i] = 1;
+                    cursor[y][x] = 0;
+                    cursor[y][i] = 1;
                     break;
                 }
             }
@@ -144,8 +138,8 @@ public:
         else if (Left()) {
             for (int i = x - 1; i >= 0; i--) {
                 if (choicemap[0][y][i]) {
-                    choicemap[1][y][x] = 0;
-                    choicemap[1][y][i] = 1;
+                    cursor[y][x] = 0;
+                    cursor[y][i] = 1;
                     break;
                 }
             }
@@ -164,7 +158,7 @@ public:
     void Choice_XY() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (choicemap[1][j][i]) {
+                if (cursor[j][i]) {
                     x = i;
                     y = j;
                 }
@@ -181,14 +175,14 @@ public:
     void ChoiceAction() {
         if (Button_Z()) {
             map = true;
-            choicenumber = choicemap[2][y][x];
+            choicenumber = choicemap[1][y][x];
             choice = false;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    choicemap[1][y][x] = 0;
+                    cursor[y][x] = 0;
                 }
             }
-            choicemap[1][1][0] = 1;
+            cursor[1][0] = 1;
         }
     }
     //menuの配列内でZキーをクリックしたときに行う処理

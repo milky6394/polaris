@@ -34,12 +34,12 @@ public:
     int inventory[25] ={};//playermapを格納する配列
 
     Player() {
-        x = 0;
-        y = 0;
+        x = 4;
+        y = 8;
         r = 255;
         g = 0;
         b = 0;
-        playermap[0][0] = 1;//playerの初期位置設定
+        playermap[y][x] = 1;//playerの初期位置設定
         draw = 0;
         flag = true;
         pushx = false;
@@ -49,8 +49,8 @@ public:
         pushright = false;
         pushleft = false;
         st = 0;
-        nowx = 390;
-        nowy = 110;
+        nowx = 440 + (x * 50);
+        nowy = 110 + (y * 50);
         playergraph= LoadGraph("namakubi_dane.png");
     }
 
@@ -142,10 +142,10 @@ public:
     //Xキーを押すたびに真偽が入れ替わる関数
 
     int Playerpixel_X(int x) {
-        if (nowx > 390 + (x * 50)) {
+        if (nowx > 440 + (x * 50)) {
             return nowx -= 5;
         }
-        else if (nowx < 390 + (x * 50)) {
+        else if (nowx < 440 + (x * 50)) {
             return nowx += 5;
         }
         else {
@@ -381,7 +381,7 @@ public:
         mp->mapnumber = c-1;
         playermap[y][x] = 0;
         playermap[b][a] = 1;
-        nowx = 390 + (a * 50);
+        nowx = 440 + (a * 50);
         nowy = 110 + (b * 50);
     }
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
@@ -493,19 +493,19 @@ public:
                 case 0:
                     break;
                 case 1:
-                    MapChange(9, 0, a);
+                    MapChange(4, 0, a);
                     break;
                 case 2:
-                    MapChange(0, 0, a);
+                    MapChange(4, 8, a);
                     break;
                 case 3:
-                    MapChange(5, 5, a);
+                    MapChange(4, 8, a);
                     break;
                 case 4:
-
+                    MapChange(4, 8, a);
                     break;
                 case 5:
-
+                    MapChange(4, 8, a);
                     break;
                 case 6:
 

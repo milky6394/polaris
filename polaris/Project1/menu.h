@@ -263,6 +263,7 @@ public:
         MenuCursor();
         MenuString();
         MenuAction();
+        im->All();
         for (int i = 5; i < 10; i++) {
             for (int j = 5; j < 10; j++) {
                 if (menumap[2][j][i] != 0) {

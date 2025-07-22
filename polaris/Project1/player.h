@@ -11,6 +11,7 @@ public:
     ChoiceManager* co = new ChoiceManager();
 
     int x, y;//Playerの現在の座標
+    int nowx, nowy;
     int r, g, b;
     bool pushx, pushz, pushup, pushdown, pushright, pushleft;//各ボタンを長押しできないようにするための変数
     int draw;
@@ -48,12 +49,15 @@ public:
         pushright = false;
         pushleft = false;
         st = 0;
+        nowx = 390;
+        nowy = 110;
     }
 
     ~Player() {
         delete mp;
         delete sc;
         delete me;
+        delete co;
     }
 
     bool Button_Z() {
@@ -137,10 +141,26 @@ public:
     //Xキーを押すたびに真偽が入れ替わる関数
 
     int Playerpixel_X(int x) {
-        return 390 + (x * 50);
+        if (nowx > 390 + (x * 50)) {
+            return nowx -= 5;
+        }
+        else if (nowx < 390 + (x * 50)) {
+            return nowx += 5;
+        }
+        else {
+            return nowx;
+        }
     }
     int Playerpixel_Y(int y) {
-        return 110 + (y * 50);
+        if (nowy > 110 + (y * 50)) {
+            return nowy -= 5;
+        }
+        else if (nowy < 110 + (y * 50)) {
+            return nowy += 5;
+        }
+        else {
+            return nowy;
+        }
     }
     //playermapの配列座標を画面内座標に変換する関数
 
@@ -360,6 +380,8 @@ public:
         mp->mapnumber = c-1;
         playermap[y][x] = 0;
         playermap[b][a] = 1;
+        nowx = 390 + (a * 50);
+        nowy = 110 + (b * 50);
     }
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
@@ -390,13 +412,13 @@ public:
     }
     //playerの位置描画関数
 
-    void ChoseMapChange() {
+    void ChoiceAction() {
         if (co->map) {
             PlayerAction(co->choicenumber);
             co->map = false;
         }
     }
-    //choice.hによるmap変更を反映する関数
+    //choice.hによるActionを反映する関数
 
     void PlayerAction(int a) {
             if (a / 10000) {
@@ -475,7 +497,7 @@ public:
                     MapChange(0, 0, a);
                     break;
                 case 3:
-
+                    MapChange(5, 5, a);
                     break;
                 case 4:
 
@@ -502,7 +524,7 @@ public:
     //playerの位置によって特定のアクションを起こせる関数
 
     void PlayerAll() {
-        ChoseMapChange();
+        ChoiceAction();
         mp->MapPracer();
         PlayerDraw();//player描画
         if (Button_X()) {

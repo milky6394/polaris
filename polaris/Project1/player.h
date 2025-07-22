@@ -380,6 +380,8 @@ public:
         mp->mapnumber = c-1;
         playermap[y][x] = 0;
         playermap[b][a] = 1;
+        nowx = 390 + (a * 50);
+        nowy = 110 + (b * 50);
     }
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
@@ -495,7 +497,7 @@ public:
                     MapChange(0, 0, a);
                     break;
                 case 3:
-
+                    MapChange(5, 5, a);
                     break;
                 case 4:
 

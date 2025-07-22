@@ -9,7 +9,7 @@ public:
     StringControler* sc = new StringControler();
     MenuControler* me = new MenuControler();
     ChoiceManager* co = new ChoiceManager();
-
+    
     int x, y;//Player‚ÌŒ»İ‚ÌÀ•W
     int nowx, nowy;
     int r, g, b;
@@ -19,18 +19,17 @@ public:
     int st;
     int playergraph;
 
-    int playermap[10][10] =
+    int playermap[9][9] =
     {
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0} };//playermap‚ğŠi”[‚·‚é”z—ñ
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0} };//playermap‚ğŠi”[‚·‚é”z—ñ
 
     int inventory[25] ={};//playermap‚ğŠi”[‚·‚é”z—ñ
 
@@ -167,8 +166,8 @@ public:
     //playermap‚Ì”z—ñÀ•W‚ğ‰æ–Ê“àÀ•W‚É•ÏŠ·‚·‚éŠÖ”
 
     void Player_XY() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 if (playermap[j][i]) {
                     x = i;
                     y = j;

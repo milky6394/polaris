@@ -39,9 +39,4 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\Images\Items\cardkey.png">
-      <Filter>ソース ファイル</Filter>
-    </Image>
-  </ItemGroup>
 </Project>

@@ -161,9 +161,6 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="map.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\Images\Items\cardkey.png" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

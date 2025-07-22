@@ -17,6 +17,7 @@ public:
     int draw;
     bool flag;
     int st;
+    int playergraph;
 
     int playermap[10][10] =
     {
@@ -51,6 +52,7 @@ public:
         st = 0;
         nowx = 390;
         nowy = 110;
+        playergraph= LoadGraph("namakubi_dane.png");
     }
 
     ~Player() {
@@ -408,7 +410,8 @@ public:
     //gameend‚ğmain‚Ö‘—‚éŠÖ”
 
     void PlayerDraw() {
-        DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
+        //DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
+        DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, false);
     }
     //player‚ÌˆÊ’u•`‰æŠÖ”
 

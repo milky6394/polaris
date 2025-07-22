@@ -16,7 +16,7 @@ public:
 
 
     ItemManager() {
-        graph[1] = LoadGraph("cardkey.png");
+        graph[1] = LoadGraph("../../Images/Items/cardkey.png");
     }
 
 };

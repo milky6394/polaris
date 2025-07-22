@@ -469,19 +469,19 @@ public:
 
                     break;
                 case 1:
-                    Invent(1);
+                    Invent(a%100);
                     StringKey(1, 1);
                     break;
                 case 2:
-                    Invent(2);
+                    Invent(a % 100);
                     StringKey(2, 2);
                     break;
                 case 3:
-                    Invent(3);
+                    Invent(a % 100);
                     StringKey(3, 3);
                     break;
                 case 4:
-                    Invent(4);
+                    Invent(a % 100);
                     StringKey(4, 4);
                     break;
                 }

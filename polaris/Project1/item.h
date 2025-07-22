@@ -2,7 +2,7 @@
 
 class ItemManager {
 public:
-    int graph;
+    int graph[300] = {};
     char ItemString[300][1000] = {
         { "test" },
         { "‚³‚Ä‚±‚ê‚ÍƒAƒCƒeƒ€1‚Å‚·" },
@@ -16,10 +16,7 @@ public:
 
 
     ItemManager() {
-        graph = LoadGraph("cardkey.png");
+        graph[1] = LoadGraph("cardkey.png");
     }
 
-    void All() {
-        DrawGraph(100, 100, graph, false);
-    }
 };

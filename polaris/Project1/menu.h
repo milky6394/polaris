@@ -263,11 +263,11 @@ public:
         MenuCursor();
         MenuString();
         MenuAction();
-        im->All();
         for (int i = 5; i < 10; i++) {
             for (int j = 5; j < 10; j++) {
                 if (menumap[2][j][i] != 0) {
-                    DrawCircle(Menupixel_X(i), Menupixel_Y(j), menumap[2][j][i]*10, GetColor(255, 255, 255), TRUE);
+                    DrawGraph(Menupixel_X(i), Menupixel_Y(j), im->graph[menumap[2][j][i]], false);
+                    //DrawCircle(Menupixel_X(i), Menupixel_Y(j), menumap[2][j][i]*10, GetColor(255, 255, 255), TRUE);
                 }//3‘w–Ú‚Ì”š~10‚Ì‘å‚«‚³‚ÌZ‚ğ‚»‚Ìê‚É•`‰æ
             }
         }

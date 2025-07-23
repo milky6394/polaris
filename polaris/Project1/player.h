@@ -456,8 +456,7 @@ public:
             }
             else if (a / 1000) {
                 while(CheckHitKey(KEY_INPUT_Z)){}
-                co->choice = true;
-                co->num = a % 1000;
+                co->choice = a % 1000;
             }
             else if (a / 100) {
                 switch (a % 100) {
@@ -520,7 +519,6 @@ public:
     //playerの位置によって特定のアクションを起こせる関数
 
     void PlayerAll() {
-        ChoiceAction();
         mp->MapPracer();
         PlayerDraw();//player描画
         if (Button_X()) {
@@ -540,6 +538,7 @@ public:
             else {
                 if (co->choice) {
                     co->ChoiceAll();
+                    ChoiceAction();
                 }
                 else {
                     Player_XY();

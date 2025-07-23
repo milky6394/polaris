@@ -5,10 +5,9 @@ public:
 
     int x, y;
     bool pushup, pushdown, pushright, pushleft, pushz;//Šeƒ{ƒ^ƒ“‚ð’·‰Ÿ‚µ‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì•Ï”
-    bool choice;
+    int choice;
     bool map;
     int choicenumber;
-    int num;
 
     int cursor[4][4] = {
     {0,0,0,0},
@@ -79,10 +78,9 @@ public:
         pushright = false;
         pushleft = false;
         pushz = false;
-        choice = false;
+        choice = 0;
         map = false;
         choicenumber = 0;
-        num = 0;
     }
 
     bool Button_Z() {
@@ -150,7 +148,7 @@ public:
     void ChoiceCursor() {
         if (Up()) {
             for (int i = y - 1; i >= 0; i--) {
-                if (choicemap[num][0][i][x]) {
+                if (choicemap[choice][0][i][x]) {
                     cursor[y][x] = 0;
                     cursor[i][x] = 1;
                     break;
@@ -159,7 +157,7 @@ public:
         }
         else if (Down()) {
             for (int i = y + 1; i <= 3; i++) {
-                if (choicemap[num][0][i][x]) {
+                if (choicemap[choice][0][i][x]) {
                     cursor[y][x] = 0;
                     cursor[i][x] = 1;
                     break;
@@ -168,7 +166,7 @@ public:
         }
         else if (Right()) {
             for (int i = x + 1; i <= 3; i++) {
-                if (choicemap[num][0][y][i]) {
+                if (choicemap[choice][0][y][i]) {
                     cursor[y][x] = 0;
                     cursor[y][i] = 1;
                     break;
@@ -177,7 +175,7 @@ public:
         }
         else if (Left()) {
             for (int i = x - 1; i >= 0; i--) {
-                if (choicemap[num][0][y][i]) {
+                if (choicemap[choice][0][y][i]) {
                     cursor[y][x] = 0;
                     cursor[y][i] = 1;
                     break;
@@ -215,8 +213,8 @@ public:
     void ChoiceAction() {
         if (Button_Z()) {
             map = true;
-            choicenumber = choicemap[num][1][y][x];
-            choice = false;
+            choicenumber = choicemap[choice][1][y][x];
+            choice = 0;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
                     cursor[y][x] = 0;

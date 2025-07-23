@@ -14,9 +14,7 @@ public:
     int nowx, nowy;
     int r, g, b;
     bool pushx, pushz, pushup, pushdown, pushright, pushleft;//各ボタンを長押しできないようにするための変数
-    int draw;
     bool flag;
-    int st;
     int playergraph;
 
     int playermap[9][9] =
@@ -40,7 +38,6 @@ public:
         g = 0;
         b = 0;
         playermap[y][x] = 1;//playerの初期位置設定
-        draw = 0;
         flag = true;
         pushx = false;
         pushz = false;
@@ -48,7 +45,6 @@ public:
         pushdown = false;
         pushright = false;
         pushleft = false;
-        st = 0;
         nowx = 440 + (x * 50);
         nowy = 110 + (y * 50);
         playergraph= LoadGraph("../../Images/character_tip/namakubi_dane.png");
@@ -387,9 +383,8 @@ public:
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
     void StringKey(int a,int b) {
-        draw = b - a + 1;
-        st = a;
-        sc->st = 0;
+        sc->draw = b - a + 1;
+        sc->Stringnumber = a;
         sc->StringReset();
     }
     //a~bの配列に入っているオブジェクトの説明文などを出す関数。引数の数だけクリックすると戻る
@@ -458,6 +453,7 @@ public:
                 co->choice = a % 1000;
             }
             else if (a / 100) {
+                while (CheckHitKey(KEY_INPUT_Z)) {}
                 switch (a % 100) {
                 case 0:
 
@@ -525,14 +521,8 @@ public:
         }//Xを押したらメニュー切り替え
 
         if (flag) {
-            if (draw > 0) {
-                sc->EventDraw(st);
-                if (Button_Z()) {
-                    sc->st = 0;
-                    sc->StringReset();
-                    st++;
-                    draw--;
-                }
+            if (sc->draw > 0) {
+                sc->StringAll();
             }//Stringが描画されているならplayerの処理より優先
             else {
                 if (co->choice) {

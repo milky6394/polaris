@@ -515,11 +515,11 @@ public:
 
     void PlayerAll() {
         mp->MapPracer();
+        Player_XY();
         PlayerDraw();//player描画
         if (Button_X()) {
             toggle();
         }//Xを押したらメニュー切り替え
-
         if (flag) {
             if (sc->draw > 0) {
                 sc->StringAll();
@@ -530,11 +530,10 @@ public:
                     ChoiceAction();
                 }
                 else {
-                    Player_XY();
+                    PlayerMove();
                     if (Button_Z()) {
                         PlayerAction(mp->map[mp->mapnumber][1][y][x]);
                     }
-                    PlayerMove();
                 }
             }
         }//Xキーを押したらメニュー表示

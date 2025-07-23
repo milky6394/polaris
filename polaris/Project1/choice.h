@@ -6,7 +6,6 @@ public:
     int x, y;
     bool pushup, pushdown, pushright, pushleft, pushz;//Šeƒ{ƒ^ƒ“‚ğ’·‰Ÿ‚µ‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì•Ï”
     int choice;
-    bool map;
     int choicenumber;
 
     int cursor[4][4] = {
@@ -79,7 +78,6 @@ public:
         pushleft = false;
         pushz = false;
         choice = 0;
-        map = false;
         choicenumber = 0;
     }
 
@@ -212,7 +210,6 @@ public:
 
     void ChoiceAction() {
         if (Button_Z()) {
-            map = true;
             choicenumber = choicemap[choice][1][y][x];
             choice = 0;
             for (int i = 0; i < 4; i++) {

@@ -415,9 +415,8 @@ public:
     //player‚ÌˆÊ’u•`‰æŠÖ”
 
     void ChoiceAction() {
-        if (co->map) {
+        if (co->choicenumber) {
             PlayerAction(co->choicenumber);
-            co->map = false;
         }
     }
     //choice.h‚É‚æ‚éAction‚ğ”½‰f‚·‚éŠÖ”

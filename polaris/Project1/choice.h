@@ -8,6 +8,7 @@ public:
     bool choice;
     bool map;
     int choicenumber;
+    int num;
 
     int cursor[4][4] = {
     {0,0,0,0},
@@ -47,7 +48,7 @@ public:
     {0,0,0,0}}
     ,
    {{0,0,0,0},
-    {0,0,0,3},
+    {0,0,0,4},
     {0,0,0,0},
     {0,0,0,0}}
     }
@@ -59,7 +60,7 @@ public:
     {0,0,0,0}}
     ,
    {{0,0,0,0},
-    {0,0,0,3},
+    {0,0,0,5},
     {0,0,0,0},
     {0,0,0,0}}
     }
@@ -81,6 +82,7 @@ public:
         choice = false;
         map = false;
         choicenumber = 0;
+        num = 0;
     }
 
     bool Button_Z() {
@@ -148,7 +150,7 @@ public:
     void ChoiceCursor() {
         if (Up()) {
             for (int i = y - 1; i >= 0; i--) {
-                if (choicemap[0][i][x]) {
+                if (choicemap[num][0][i][x]) {
                     cursor[y][x] = 0;
                     cursor[i][x] = 1;
                     break;
@@ -157,7 +159,7 @@ public:
         }
         else if (Down()) {
             for (int i = y + 1; i <= 3; i++) {
-                if (choicemap[0][i][x]) {
+                if (choicemap[num][0][i][x]) {
                     cursor[y][x] = 0;
                     cursor[i][x] = 1;
                     break;
@@ -166,7 +168,7 @@ public:
         }
         else if (Right()) {
             for (int i = x + 1; i <= 3; i++) {
-                if (choicemap[0][y][i]) {
+                if (choicemap[num][0][y][i]) {
                     cursor[y][x] = 0;
                     cursor[y][i] = 1;
                     break;
@@ -175,7 +177,7 @@ public:
         }
         else if (Left()) {
             for (int i = x - 1; i >= 0; i--) {
-                if (choicemap[0][y][i]) {
+                if (choicemap[num][0][y][i]) {
                     cursor[y][x] = 0;
                     cursor[y][i] = 1;
                     break;
@@ -213,7 +215,7 @@ public:
     void ChoiceAction() {
         if (Button_Z()) {
             map = true;
-            choicenumber = choicemap[1][y][x];
+            choicenumber = choicemap[num][1][y][x];
             choice = false;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {

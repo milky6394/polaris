@@ -456,14 +456,8 @@ public:
             }
             else if (a / 1000) {
                 while(CheckHitKey(KEY_INPUT_Z)){}
-                switch (a % 1000) {
-                case 0:
-
-                    break;
-                case 1:
-                    co->choice = true;
-                    break;
-                }
+                co->choice = true;
+                co->num = a % 1000;
             }
             else if (a / 100) {
                 switch (a % 100) {

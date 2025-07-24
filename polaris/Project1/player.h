@@ -348,6 +348,7 @@ public:
                 break;
             }
         }
+        StringKey(a, a);
         ItemMenu();
     }
     //inventoryに引数の値を格納する関数
@@ -454,27 +455,7 @@ public:
             }
             else if (a / 100) {
                 while (CheckHitKey(KEY_INPUT_Z)) {}
-                switch (a % 100) {
-                case 0:
-
-                    break;
-                case 1:
-                    Invent(a%100);
-                    StringKey(1, 1);
-                    break;
-                case 2:
-                    Invent(a % 100);
-                    StringKey(2, 2);
-                    break;
-                case 3:
-                    Invent(a % 100);
-                    StringKey(3, 3);
-                    break;
-                case 4:
-                    Invent(a % 100);
-                    StringKey(4, 4);
-                    break;
-                }
+                Invent(a % 100);
             }
             else if (a != 0) {
                 switch (a) {
@@ -509,7 +490,6 @@ public:
                     break;
                 }
             }
-        
     }
     //playerの位置によって特定のアクションを起こせる関数
 

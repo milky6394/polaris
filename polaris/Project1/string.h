@@ -45,7 +45,7 @@ public:
     }
     //String‚ð‰Šú‰»‚·‚éŠÖ”
 
-    void EventDraw(int a) {
+    void StringDraw(int a) {
         String[st] = im->ItemString[a][st];
         if (st < 999) {
             st++;
@@ -55,7 +55,7 @@ public:
     }
 
     void StringAll() {
-        EventDraw(Stringnumber);
+        StringDraw(Stringnumber);
         if (Button_Z()) {
             st = 0;
             StringReset();

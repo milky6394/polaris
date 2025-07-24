@@ -16,6 +16,7 @@ public:
     bool pushx, pushz, pushup, pushdown, pushright, pushleft;//各ボタンを長押しできないようにするための変数
     bool flag;
     int playergraph;
+    bool movex, movey;
 
     int playermap[9][9] =
     {
@@ -45,6 +46,8 @@ public:
         pushdown = false;
         pushright = false;
         pushleft = false;
+        movex = false;
+        movey = false;
         nowx = 440 + (x * 50);
         nowy = 110 + (y * 50);
         playergraph= LoadGraph("../../Images/character_tip/namakubi_dane.png");
@@ -66,54 +69,6 @@ public:
         }
         else {
             pushz = false;
-        }
-        return false;
-    }
-    bool Up() {
-        if (CheckHitKey(KEY_INPUT_UP)) {
-            if (!pushup) {
-                pushup = true;
-                return true;
-            }
-        }
-        else {
-            pushup = false;
-        }
-        return false;
-    }
-    bool Down() {
-        if (CheckHitKey(KEY_INPUT_DOWN)) {
-            if (!pushdown) {
-                pushdown = true;
-                return true;
-            }
-        }
-        else {
-            pushdown = false;
-        }
-        return false;
-    }
-    bool Right() {
-        if (CheckHitKey(KEY_INPUT_RIGHT)) {
-            if (!pushright) {
-                pushright = true;
-                return true;
-            }
-        }
-        else {
-            pushright = false;
-        }
-        return false;
-    }
-    bool Left() {
-        if (CheckHitKey(KEY_INPUT_LEFT)) {
-            if (!pushleft) {
-                pushleft = true;
-                return true;
-            }
-        }
-        else {
-            pushleft = false;
         }
         return false;
     }
@@ -139,23 +94,29 @@ public:
 
     int Playerpixel_X(int x) {
         if (nowx > 440 + (x * 50)) {
+            movex = true;
             return nowx -= 5;
         }
         else if (nowx < 440 + (x * 50)) {
+            movex = true;
             return nowx += 5;
         }
         else {
+            movex = false;
             return nowx;
         }
     }
     int Playerpixel_Y(int y) {
         if (nowy > 110 + (y * 50)) {
+            movey = true;
             return nowy -= 5;
         }
         else if (nowy < 110 + (y * 50)) {
+            movey = true;
             return nowy += 5;
         }
         else {
+            movey = false;
             return nowy;
         }
     }
@@ -174,169 +135,171 @@ public:
     //playerのplayermap内での配列座標を取得する関数
 
     void PlayerMove() {
-        switch (mp->map[mp->mapnumber][0][y][x]) {
-        case 10:
-            break;
-        case 11:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
+        if (!movex && !movey) {
+            switch (mp->map[mp->mapnumber][0][y][x]) {
+            case 10:
+                break;
+            case 11:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                break;
+            case 12:
+                if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                break;
+            case 13:
+                if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                break;
+            case 14:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                break;
+            case 15:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                break;
+            case 16:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                break;
+            case 17:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                break;
+            case 18:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                break;
+            case 19:
+                if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                break;
+            case 20:
+                if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                break;
+            case 21:
+                if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                break;
+            case 22:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                break;
+            case 23:
+                if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                break;
+            case 24:
+                if (CheckHitKey(KEY_INPUT_UP)) {
+                    playermap[y][x] = 0;
+                    playermap[y - 1][x] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_DOWN)) {
+                    playermap[y][x] = 0;
+                    playermap[y + 1][x] = 1;
+                }
+                break;
+            case 25:
+                if (CheckHitKey(KEY_INPUT_RIGHT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x + 1] = 1;
+                }
+                else if (CheckHitKey(KEY_INPUT_LEFT)) {
+                    playermap[y][x] = 0;
+                    playermap[y][x - 1] = 1;
+                }
+                break;
+            default:
+                break;
             }
-            else if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 12:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 13:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        case 14:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        case 15:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        case 16:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 17:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 18:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 19:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            else if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 20:
-            if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            break;
-        case 21:
-            if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        case 22:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            break;
-        case 23:
-            if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            break;
-        case 24:
-            if (Up()) {
-                playermap[y][x] = 0;
-                playermap[y - 1][x] = 1;
-            }
-            else if (Down()) {
-                playermap[y][x] = 0;
-                playermap[y + 1][x] = 1;
-            }
-            break;
-        case 25:
-            if (Right()) {
-                playermap[y][x] = 0;
-                playermap[y][x + 1] = 1;
-            }
-            else if (Left()) {
-                playermap[y][x] = 0;
-                playermap[y][x - 1] = 1;
-            }
-            break;
-        default:
-            break;
         }
     }
     //playerを移動させる関数 mapの位置によって移動できる方向が異なる

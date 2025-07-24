@@ -376,6 +376,7 @@ public:
     void ChoiceAction() {
         if (co->choicenumber) {
             PlayerAction(co->choicenumber);
+            co->choicenumber = 0;
         }
     }
     //choice.h‚É‚æ‚éAction‚ğ”½‰f‚·‚éŠÖ”

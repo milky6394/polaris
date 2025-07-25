@@ -4,7 +4,6 @@ class MapControler {
 public:
     int mapnumber;
     int retu, gyou;
-    int c;//文字を格納する変数
     bool eofFlag;
 
 
@@ -132,27 +131,32 @@ public:
 
     MapControler() {
         mapnumber = 0;
-
-        FILE* fp;//ファイルのポインタを宣言
-        fp = fopen("testmap.csv", "r");//fpを読み取り形式で開く
+        FILE* fp = nullptr;//ファイルのポインタを宣言
+        fopen_s(&fp, "testmap.csv", "r");//fpを読み取り形式で開く
         if (fp == NULL)DebugBreak();
         retu = 0;
         gyou = 0;
+        int c;//文字を格納する変数
         char buf[10];//文字列を格納する
         memset(buf, 0, sizeof(buf));
         eofFlag = false;
-        while (true) {
-            while (true) {
-                c = fgetc(fp);//文字読んでcに格納
+        while (1) {
+            while (1) {
+                if (fp != nullptr) {
+                    c = fgetc(fp);//文字読んでcに格納
+                }
                 if (c == EOF) {
                     eofFlag = true;//EndOfFileの時にループを抜ける
                     break;
                 }
                 if (c != ',' && c != '\n') {
-                    strcat(buf, (const char*)&c);//cがセルの区切りか改行でなければ、bufに連結する
+                    //strcat(buf, (const char*)&c);//cがセルの区切りか改行でなければ、bufに連結する
+                    //strcat_s(buf, sizeof(buf), (const char*)&c);
+                    char onechar[2] = { (char)c, '\0' }; // 1文字＋終端で文字列を作る
+                    strcat_s(buf, sizeof(buf), onechar); // 安全に連結
                 }
                 else {
-                    int num = atoi(buf);//bufをint型に直して、即席のローカル変数numに代入
+                    int num = (int)strtol(buf, nullptr, 10);//bufをint型に直して、即席のローカル変数numに代入atoi(buf); 
                     map[0][0][retu][gyou] = num;//num番目のチップ画像のハンドルを取得
                     memset(buf, 0, sizeof(buf));//bufをリセット
                     break;//区切りか改行ならループを抜ける
@@ -166,8 +170,9 @@ public:
                 retu = 0;
             }
         }
-        fclose(fp);
-
+        if (fp != nullptr) {
+            fclose(fp);
+        }
     }
 
     int Mappixel_X(int x) {

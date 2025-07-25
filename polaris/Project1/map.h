@@ -3,6 +3,11 @@
 class MapControler {
 public:
     int mapnumber;
+    int retu, gyou;
+    int c;//文字を格納する変数
+    bool eofFlag;
+
+
     int map[5][2][9][9] = { {
     {
     {10,10,10,19,12,13,10,10,10},
@@ -127,6 +132,42 @@ public:
 
     MapControler() {
         mapnumber = 0;
+
+        FILE* fp;//ファイルのポインタを宣言
+        fp = fopen("testmap.csv", "r");//fpを読み取り形式で開く
+        if (fp == NULL)DebugBreak();
+        retu = 0;
+        gyou = 0;
+        char buf[10];//文字列を格納する
+        memset(buf, 0, sizeof(buf));
+        eofFlag = false;
+        while (true) {
+            while (true) {
+                c = fgetc(fp);//文字読んでcに格納
+                if (c == EOF) {
+                    eofFlag = true;//EndOfFileの時にループを抜ける
+                    break;
+                }
+                if (c != ',' && c != '\n') {
+                    strcat(buf, (const char*)&c);//cがセルの区切りか改行でなければ、bufに連結する
+                }
+                else {
+                    int num = atoi(buf);//bufをint型に直して、即席のローカル変数numに代入
+                    map[0][0][retu][gyou] = num;//num番目のチップ画像のハンドルを取得
+                    memset(buf, 0, sizeof(buf));//bufをリセット
+                    break;//区切りか改行ならループを抜ける
+                }
+            }
+            //1セル分のループを抜けたら
+            if (eofFlag)break;
+            if (c == ',')retu++;
+            if (c == '\n') {//改行だったら行を増やす
+                gyou++;
+                retu = 0;
+            }
+        }
+        fclose(fp);
+
     }
 
     int Mappixel_X(int x) {

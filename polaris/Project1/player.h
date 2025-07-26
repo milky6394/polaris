@@ -441,7 +441,7 @@ public:
                     MapChange(4, 8, a);
                     break;
                 case 6:
-
+                    MapChange(4, 8, a);
                     break;
                 case 7:
 

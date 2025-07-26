@@ -1,15 +1,11 @@
 #include "DxLib.h"
 #include <string>
 
-#define MAPS 5//mapの数を表すマクロ
+#define MAPS 6//mapの数を表すマクロ
 
 class MapControler {
 public:
     int mapnumber;
-    int retu, gyou;
-    int c;//文字を格納する変数
-    bool eofFlag;
-
 
     int map[MAPS][2][9][9] = {};
     /*
@@ -25,6 +21,9 @@ public:
 
     MapControler() {
         mapnumber = 0;
+        int c = 0;
+        int retu, gyou;
+        bool eofFlag;
         FILE* fp = nullptr;
         for (int i = 0; i < MAPS; i++) {
             std::string filename ="../../Maps/map"+std::to_string(i+1)+".csv";
@@ -112,7 +111,6 @@ public:
                 fclose(fp);
             }
         }
-
     }
 
     int Mappixel_X(int x) {

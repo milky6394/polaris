@@ -136,7 +136,7 @@ public:
 
         FILE* fp = nullptr;
         for (int i = 0; i < 5; i++) {
-            std::string filename ="testmap"+std::to_string(i+1)+".csv";
+            std::string filename ="../../Maps/testmap"+std::to_string(i+1)+".csv";
             fopen_s(&fp, filename.c_str(), "r");
             if (fp == nullptr) {
                 DebugBreak();  // ファイルが開けなかった

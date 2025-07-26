@@ -1,3 +1,4 @@
+#pragma once
 #include "DxLib.h"
 #include "map.h"
 #include "menu.h"

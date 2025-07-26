@@ -384,6 +384,17 @@ public:
 
     void PlayerAction(int a) {
             if (a / 10000) {
+                MapChange((a % 100) / 10, a % 10, (a - 10000) / 100);
+            }
+            else if (a / 2000) {
+                while(CheckHitKey(KEY_INPUT_Z)){}
+                co->choice = a - 2000;
+            }
+            else if (a / 1000) {
+                while (CheckHitKey(KEY_INPUT_Z)) {}
+                Invent(a - 1000);
+            }
+            else if (a != 0) {
                 switch (a % 10000) {
                 case 0:
                     StringKey(1, 1);
@@ -411,47 +422,6 @@ public:
                     break;
                 case 8:
                     StringKey(5, 6);
-                    break;
-                }
-            }
-            else if (a / 1000) {
-                while(CheckHitKey(KEY_INPUT_Z)){}
-                co->choice = a % 1000;
-            }
-            else if (a / 100) {
-                while (CheckHitKey(KEY_INPUT_Z)) {}
-                Invent(a % 100);
-            }
-            else if (a != 0) {
-                switch (a) {
-                case 0:
-                    break;
-                case 1:
-                    MapChange(4, 0, a);
-                    break;
-                case 2:
-                    MapChange(4, 8, a);
-                    break;
-                case 3:
-                    MapChange(4, 8, a);
-                    break;
-                case 4:
-                    MapChange(4, 8, a);
-                    break;
-                case 5:
-                    MapChange(4, 8, a);
-                    break;
-                case 6:
-                    MapChange(4, 8, a);
-                    break;
-                case 7:
-
-                    break;
-                case 8:
-
-                    break;
-                case 9:
-
                     break;
                 }
             }

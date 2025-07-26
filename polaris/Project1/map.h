@@ -163,7 +163,7 @@ public:
                     }
                     else {
                         int num = (int)strtol(buf, nullptr, 10);
-                        map[i][0][retu][gyou] = num;//num番目のチップ画像のハンドルを取得
+                        map[i][0][gyou][retu] = num;//num番目のチップ画像のハンドルを取得
                         memset(buf, 0, sizeof(buf));//bufをリセット
                         break;//区切りか改行ならループを抜ける
                     }
@@ -180,6 +180,50 @@ public:
                 fclose(fp);
             }
         }
+        for (int i = 0; i < MAPS; i++) {
+            std::string filename = "../../Maps/mapaction" + std::to_string(i + 1) + ".csv";
+            fopen_s(&fp, filename.c_str(), "r");
+            if (fp == nullptr) {
+                DebugBreak();  // ファイルが開けなかった
+            }
+            retu = 0;
+            gyou = 0;
+            char buf[10];//文字列を格納する
+            memset(buf, 0, sizeof(buf));
+            eofFlag = false;
+            while (true) {
+                while (true) {
+                    if (fp != nullptr) {
+                        c = fgetc(fp);
+                    }
+                    if (c == EOF) {
+                        eofFlag = true;//EndOfFileの時にループを抜ける
+                        break;
+                    }
+                    if (c != ',' && c != '\n') {
+                        char oneChar[2] = { (char)c, '\0' };
+                        strcat_s(buf, sizeof(buf), oneChar);
+                    }
+                    else {
+                        int num = (int)strtol(buf, nullptr, 10);
+                        map[i][1][gyou][retu] = num;//num番目のチップ画像のハンドルを取得
+                        memset(buf, 0, sizeof(buf));//bufをリセット
+                        break;//区切りか改行ならループを抜ける
+                    }
+                }
+                //1セル分のループを抜けたら
+                if (eofFlag)break;
+                if (c == ',')retu++;
+                if (c == '\n') {//改行だったら行を増やす
+                    gyou++;
+                    retu = 0;
+                }
+            }
+            if (fp != nullptr) {
+                fclose(fp);
+            }
+        }
+
     }
 
     int Mappixel_X(int x) {

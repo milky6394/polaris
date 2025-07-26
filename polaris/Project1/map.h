@@ -1,6 +1,8 @@
 #include "DxLib.h"
 #include <string>
 
+#define MAPS 5//mapの数を表すマクロ
+
 class MapControler {
 public:
     int mapnumber;
@@ -9,7 +11,7 @@ public:
     bool eofFlag;
 
 
-    int map[5][2][9][9] = { {
+    int map[MAPS][2][9][9] = { {
     {
     {10,10,10,19,12,13,10,10,10},
     {10,10,10,18,11,14,10,10,10},
@@ -135,8 +137,8 @@ public:
         mapnumber = 0;
 
         FILE* fp = nullptr;
-        for (int i = 0; i < 5; i++) {
-            std::string filename ="../../Maps/testmap"+std::to_string(i+1)+".csv";
+        for (int i = 0; i < MAPS; i++) {
+            std::string filename ="../../Maps/map"+std::to_string(i+1)+".csv";
             fopen_s(&fp, filename.c_str(), "r");
             if (fp == nullptr) {
                 DebugBreak();  // ファイルが開けなかった

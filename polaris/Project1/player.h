@@ -312,7 +312,7 @@ public:
                 break;
             }
         }
-        StringKey(a, a);
+        StringKey(a, a, 1);
         ItemMenu();
     }
     //inventoryに引数の値を格納する関数
@@ -347,10 +347,11 @@ public:
     }
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
-    void StringKey(int a,int b) {
+    void StringKey(int a,int b,int c) {
         sc->draw = b - a + 1;
         sc->Stringnumber = a;
         sc->StringReset();
+        sc->mo = c;
     }
     //a~bの配列に入っているオブジェクトの説明文などを出す関数。引数の数だけクリックすると戻る
 
@@ -385,7 +386,7 @@ public:
     void PlayerAction(int a) {
         while (CheckHitKey(KEY_INPUT_Z)) {}
         if (a / 100000) {
-            StringKey((a - 100000) / 100, (a - 100000) % 100);
+            StringKey((a - 100000) / 100, (a - 100000) % 100, 2);
         }
         else if (a / 10000) {
             MapChange((a % 100) / 10, a % 10, (a - 10000) / 100);

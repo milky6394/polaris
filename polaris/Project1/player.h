@@ -383,48 +383,19 @@ public:
     //choice.hによるActionを反映する関数
 
     void PlayerAction(int a) {
-            if (a / 10000) {
-                MapChange((a % 100) / 10, a % 10, (a - 10000) / 100);
-            }
-            else if (a / 2000) {
-                while(CheckHitKey(KEY_INPUT_Z)){}
-                co->choice = a - 2000;
-            }
-            else if (a / 1000) {
-                while (CheckHitKey(KEY_INPUT_Z)) {}
-                Invent(a - 1000);
-            }
-            else if (a != 0) {
-                switch (a % 10000) {
-                case 0:
-                    StringKey(1, 1);
-                    break;
-                case 1:
-                    StringKey(2, 2);
-                    break;
-                case 2:
-                    StringKey(3, 3);
-                    break;
-                case 3:
-                    StringKey(4, 4);
-                    break;
-                case 4:
-                    StringKey(1, 1);
-                    break;
-                case 5:
-                    StringKey(1, 1);
-                    break;
-                case 6:
-                    StringKey(2, 2);
-                    break;
-                case 7:
-                    StringKey(3, 3);
-                    break;
-                case 8:
-                    StringKey(5, 6);
-                    break;
-                }
-            }
+        while (CheckHitKey(KEY_INPUT_Z)) {}
+        if (a / 100000) {
+            StringKey((a - 100000) / 100, (a - 100000) % 100);
+        }
+        else if (a / 10000) {
+            MapChange((a % 100) / 10, a % 10, (a - 10000) / 100);
+        }
+        else if (a / 2000) {
+            co->choice = a - 2000;
+        }
+        else if (a / 1000) {
+            Invent(a - 1000);
+        }
     }
     //playerの位置によって特定のアクションを起こせる関数
 

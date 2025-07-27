@@ -25,11 +25,12 @@ public:
     bool DrawClear(int a) {
         SetDrawBright(bright--, bright--, bright--);
         if (bright < -30) {
+            gamestate = a;
+            bright = 255;
             return true;
         }
         else {
             bright--;
-            gamestate = a;
             return false;
         }
 

@@ -7,23 +7,58 @@
 class GameControl {
 public:
     Player* pl = new Player();
+    
+    int gamestate;
+    int bright;
 
     GameControl() {
+        gamestate = 1;
+        bright = 255;
 
     }
 
     ~GameControl() {
         delete pl;
+        InitGraph();
     }
+
+    bool DrawClear(int a) {
+        SetDrawBright(bright--, bright--, bright--);
+        if (bright < -30) {
+            return true;
+        }
+        else {
+            bright--;
+            gamestate = a;
+            return false;
+        }
+
+    }
+
     bool GameEnd() {
         return pl->PlEnd();
     }
     //gameend‚ðplayer‚©‚çŽó‚¯Žæ‚éŠÖ”
 
     void All() {
-        pl->PlayerAll();
+        if (gamestate == 1) {
+            pl->StringKey(1, 8, 2);
+            gamestate = 2;
+        }
+        else if (gamestate == 2) {
+            pl->PlayerAll();
+        }
+        else if (gamestate == 3) {
+            if (DrawClear(4)) {
+                pl->StringKey(9, 12, 2);
+            }
+        }
+        else if (gamestate == 4) {
+            pl->PlayerAll();
+        }
     }
 };
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     LPSTR lpCmdLine, int nCmdShow) {

@@ -13,14 +13,12 @@ public:
     
     int x, y;//Playerの現在の座標
     int nowx, nowy;
-    int r, g, b;
     bool pushx, pushz, pushup, pushdown, pushright, pushleft;//各ボタンを長押しできないようにするための変数
     bool flag;
     int playergraph;
     bool movex, movey;
 
-    int playermap[9][9] =
-    {
+    int playermap[9][9] ={
     {0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0},
@@ -36,9 +34,6 @@ public:
     Player() {
         x = 4;
         y = 8;
-        r = 255;
-        g = 0;
-        b = 0;
         playermap[y][x] = 1;//playerの初期位置設定
         flag = true;
         pushx = false;
@@ -370,8 +365,7 @@ public:
     //gameendをmainへ送る関数
 
     void PlayerDraw() {
-        //DrawCircle(Playerpixel_X(x), Playerpixel_Y(y), 5, GetColor(r, g, b), TRUE);
-        DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, false);
+        DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, true);
     }
     //playerの位置描画関数
 

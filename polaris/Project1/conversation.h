@@ -26,11 +26,23 @@ public:
     { ".  .  .  .  ." },
     { "だって君、ここに来る前は眠っていたでしょ？" },
     { "" },
+    { "瞬間、そうだ眠っていたんだ、と思い出した。" },
+    { "適当な学校を出て、そのあと自堕落に生きていた俺が" },
+    { "ちょっとばかし情報系に強いからって、突然政府からスカウトされた" },
+    { "麻薬取締専門の国家機密組織「オルド」" },
+    { "この国で蔓延ってる最悪のクスリを、跡形もなく消し去るのが使命で、俺はその1隊員" },
+    { "今日もその任務を終えて、自室のベッドに身を預けたところだった" },
+    { "" },
+    { "" },
+    { "" },
+    { "" },
+    { "" },
+    { "" },
     };
 
     ConvControler() {
-        x = 1000;
-        y = 650;
+        x = 0;
+        y = 0;
         st = 0;
         draw = 0;
         pushz = false;
@@ -56,24 +68,9 @@ public:
         for (int i = 0; i < 1000; i++) {
             String[i] = {};
         }
+        st = 0;
     }
     //Stringを初期化する関数
-
-    void StringDraw(int a) {
-        String[st] = ConvString[a][st];
-        if (st < 999 && speed == 0) {
-            st++;
-            speed++;
-        }
-        else {
-            speed++;
-            if (speed == STRINGSPEED) {
-                speed = 0;
-            }
-        }
-        DrawString(300, 600, String, GetColor(255, 255, 255));
-        DrawTriangle(x, y, x + 10, y - 10, x - 10, y - 10, GetColor(255, 255, 255), true);
-    }
 
     void StoryDraw(int a) {
         String[st] = ConvString[a][st];
@@ -87,19 +84,21 @@ public:
                 speed = 0;
             }
         }
-        DrawString(300, 600, String, GetColor(255, 255, 255));
-        DrawTriangle(x, y, x + 10, y - 10, x - 10, y - 10, GetColor(255, 255, 255), true);
+        DrawString(x, y, String, GetColor(255, 255, 255));
+        DrawTriangle(1000, y + 50, 1010, y + 40, 990, y + 40, GetColor(255, 255, 255), true);
     }
 
-    void StringKey(int a, int b) {
+    void StringKey(int a, int b,int c,int d) {
         draw = b - a + 1;
         Stringnumber = a;
+        x = c;
+        y = d;
         StringReset();
     }
 
     void StringAll() {
         StoryDraw(Stringnumber);
-        if (Button_Z()) {
+        if (Button_Z() && draw > 0) {
             st = 0;
             StringReset();
             Stringnumber++;

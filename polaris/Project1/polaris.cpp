@@ -16,7 +16,6 @@ public:
     GameControl() {
         gamestate = 1;
         bright = 255;
-
     }
 
     ~GameControl() {
@@ -25,17 +24,15 @@ public:
     }
 
     void DrawClear(int a) {
-        SetDrawBright(bright, bright, bright);
-        if (bright <= 0) {
-            gamestate = a;
+        if (bright >= 0) {
+            bright -= 2;
         }
         else {
-            bright-=2;
+            gamestate = a;
         }
     }
 
     void DrawBrighter() {
-        SetDrawBright(bright, bright, bright);
         if (bright <= 255) {
             bright+=2;
         }
@@ -47,31 +44,37 @@ public:
     //gameend‚ðplayer‚©‚çŽó‚¯Žæ‚éŠÖ”
 
     void All() {
+        SetDrawBright(bright, bright, bright);
         switch (gamestate) {
             case 0:
                 break;
             case 1:
-                cv->StringKey(1, 8);
+                cv->StringKey(1, 8, 300, 600);
+                bright = 255;
                 gamestate = 2;
                 break;
             case 2:
                 cv->StringAll();
-                if (cv->draw == 0) {
+                if (cv->draw <= 0) {
                     DrawClear(3);
                 }
                 break;
             case 3:
+                cv->StringKey(10, 15, 300, 300);
+                bright = 255;
+                gamestate = 4;
+                break;
+            case 4:
+                cv->StringAll();
+                if (cv->draw <= 0) {
+                    DrawClear(5);
+                }
+                break;
+            case 5:
                 DrawBrighter();
                 pl->PlayerAll();
                 break;
-            case 4:
-                DrawClear(5);
-                break;
-            case 5:
-                pl->StringKey(9, 12);
-                break;
             case 6:
-                pl->PlayerAll();
                 break;
             case 7:
                 break;

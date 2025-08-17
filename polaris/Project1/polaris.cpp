@@ -24,18 +24,21 @@ public:
         InitGraph();
     }
 
-    bool DrawClear(int a) {
-        SetDrawBright(bright--, bright--, bright--);
-        if (bright < -30) {
+    void DrawClear(int a) {
+        SetDrawBright(bright, bright, bright);
+        if (bright <= 0) {
             gamestate = a;
-            bright = 255;
-            return true;
         }
         else {
-            bright--;
-            return false;
+            bright-=2;
         }
+    }
 
+    void DrawBrighter() {
+        SetDrawBright(bright, bright, bright);
+        if (bright <= 255) {
+            bright+=2;
+        }
     }
 
     bool GameEnd() {
@@ -54,21 +57,21 @@ public:
             case 2:
                 cv->StringAll();
                 if (cv->draw == 0) {
-                    gamestate = 3;
+                    DrawClear(3);
                 }
                 break;
             case 3:
+                DrawBrighter();
                 pl->PlayerAll();
                 break;
             case 4:
-                if (DrawClear(4)) {
-                    pl->StringKey(9, 12);
-                }
+                DrawClear(5);
                 break;
             case 5:
-                pl->PlayerAll();
+                pl->StringKey(9, 12);
                 break;
             case 6:
+                pl->PlayerAll();
                 break;
             case 7:
                 break;

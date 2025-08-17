@@ -62,7 +62,7 @@ public:
                 break;
             case 4:
                 if (DrawClear(4)) {
-                    pl->StringKey(9, 12, 2);
+                    pl->StringKey(9, 12);
                 }
                 break;
             case 5:

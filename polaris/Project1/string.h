@@ -114,6 +114,7 @@ public:
     }
 
 
+
     void StringAll() {
         if (mo == 1) {
             ItemString(Stringnumber);

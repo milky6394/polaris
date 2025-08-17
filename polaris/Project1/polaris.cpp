@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "player.h"
+#include "conversation.h"
 
 #define WINDOW_X 1280
 #define WINDOW_Y 720
@@ -7,6 +8,7 @@
 class GameControl {
 public:
     Player* pl = new Player();
+    ConvControler* cv = new ConvControler();
     
     int gamestate;
     int bright;
@@ -42,20 +44,34 @@ public:
     //gameend‚ðplayer‚©‚çŽó‚¯Žæ‚éŠÖ”
 
     void All() {
-        if (gamestate == 1) {
-            pl->StringKey(1, 8, 2);
-            gamestate = 2;
-        }
-        else if (gamestate == 2) {
-            pl->PlayerAll();
-        }
-        else if (gamestate == 3) {
-            if (DrawClear(4)) {
-                pl->StringKey(9, 12, 2);
-            }
-        }
-        else if (gamestate == 4) {
-            pl->PlayerAll();
+        switch (gamestate) {
+            case 0:
+                break;
+            case 1:
+                cv->StringKey(1, 8);
+                gamestate = 2;
+                break;
+            case 2:
+                cv->StringAll();
+                if (cv->draw == 0) {
+                    gamestate = 3;
+                }
+                break;
+            case 3:
+                pl->PlayerAll();
+                break;
+            case 4:
+                if (DrawClear(4)) {
+                    pl->StringKey(9, 12, 2);
+                }
+                break;
+            case 5:
+                pl->PlayerAll();
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
         }
     }
 };

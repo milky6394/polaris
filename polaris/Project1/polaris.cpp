@@ -101,6 +101,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         ga->All();
 
         if (ga->GameEnd() == true)break;//gameend‚ªtrue‚É‚È‚Á‚½‚çI—¹
+        if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)break;//Escape‚ğ‰Ÿ‚·‚ÆI—¹
         int endTime = GetNowCount();
         WaitTimer((1000 / 60) - (endTime - startTime));
     }

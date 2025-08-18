@@ -18,7 +18,7 @@ public:
 
     char ConvString[300][1000] = {
     { "test" },
-    { "おはよう、親愛なる僕の隊員くん・・・って、今はまだ一応違うのかな？" },
+    { "おはよう、親愛なる僕の隊員くん・・・って、今はまだ一応違うのかな？\0" },
     { "すごいすごい、何が起こってるの？って顔だね。\n自己紹介してあげよう、僕はCOGMA。" },
     { "Cognitive Management Asistant・・・略してCOGMA！\nこぐまってよんでね。分かりやすいと思うから。" },
     { "僕は君の未来の上司、です。\nこれが終わったらじきに収集命令が来ると思うから、準備しておいてね。" },
@@ -75,21 +75,27 @@ public:
     }
     //Stringを初期化する関数
 
-    void StoryDraw(int a) {
-        String[st] = ConvString[a][st];
-        if (st < 999 && speed == 0) {
-            st++;
-            speed++;
-        }
-        else {
-            speed++;
-            if (speed == STRINGSPEED) {
-                speed = 0;
-            }
-        }
+    bool StoryDraw(int a) {
         DrawGraph(x - 100, y, convgraph[personnumber], true);
         DrawString(x, y, String, GetColor(255, 255, 255));
         DrawTriangle(1000, y + 50, 1010, y + 40, 990, y + 40, GetColor(255, 255, 255), true);
+        if (ConvString[a][st] == '\0') {
+            return true;
+        }
+        else {
+            String[st] = ConvString[a][st];
+            if (st < 999 && speed == 0) {
+                st++;
+                speed++;
+            }
+            else {
+                speed++;
+                if (speed == STRINGSPEED) {
+                    speed = 0;
+                }
+            }
+            return false;
+        }
     }
     //StringKeyで受け取った会話を再生する関数
 
@@ -104,16 +110,17 @@ public:
     //会話イベントの情報を受け取る関数。a~bの会話を座標c,dに話者eで表示する。
 
     void StringAll() {
-        StoryDraw(Stringnumber);
-        if (Button_Z()) {
-            if (draw == 1) {
-                draw--;
-            }
-            else if (draw > 1) {
-                st = 0;
-                StringReset();
-                Stringnumber++;
-                draw--;
+        if (StoryDraw(Stringnumber)) {
+            if (Button_Z()) {
+                if (draw == 1) {
+                    draw--;
+                }
+                else if (draw > 1) {
+                    st = 0;
+                    StringReset();
+                    Stringnumber++;
+                    draw--;
+                }
             }
         }
     }

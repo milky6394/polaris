@@ -83,6 +83,13 @@ public:
             return true;
         }
         else {
+            if (Button_Z()) {
+                while (!(ConvString[a][st] == '\0')) {
+                    String[st] = ConvString[a][st];
+                    st++;
+                }
+                return true;
+            }
             String[st] = ConvString[a][st];
             if (st < 999 && speed == 0) {
                 st++;

@@ -14,6 +14,8 @@ public:
     int Stringnumber;
     int personnumber;//˜bÒ‚Ì”Ô†‚ğŠi”[‚·‚é•Ï”
     int convgraph[10] = {};//˜bÒ‚Ì‰æ‘œ‚ğŠi”[‚·‚é•Ï”
+    int stringsound;
+    int sound;
     char String[1000] = {};
 
     char ConvString[300][1000] = {
@@ -50,8 +52,10 @@ public:
         Stringnumber = 0;
         speed = 0;
         personnumber = 0;
+        sound = 0;
         convgraph[0] = 0;
         convgraph[1] = LoadGraph("../../Images/character_tip/namakubi_dane.png");
+        stringsound= LoadSoundMem("../../Sound/ƒJ[ƒ\ƒ‹ˆÚ“®9.mp3");
     }
 
     bool Button_Z() {
@@ -97,7 +101,12 @@ public:
                 speed++;
                 if (speed == STRINGSPEED) {
                     speed = 0;
+                    sound++;
                 }
+            }
+            if (sound >= 4) {
+                PlaySoundMem(stringsound, DX_PLAYTYPE_BACK);
+                sound = 0;
             }
             return false;
         }
@@ -107,6 +116,8 @@ public:
     void PersonDraw() {
         DrawGraph(x - 100, y, convgraph[personnumber], true);
     }
+    //˜bÒ‚ğ•`‰æ‚·‚éŠÖ”
+
     void StringKey(int a, int b,int c,int d,int e) {
         draw = b - a + 1;
         Stringnumber = a;

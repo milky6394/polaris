@@ -16,6 +16,7 @@ public:
     bool pushx, pushz, pushup, pushdown, pushright, pushleft;//äeÉ{É^ÉìÇí∑âüÇµÇ≈Ç´Ç»Ç¢ÇÊÇ§Ç…Ç∑ÇÈÇΩÇﬂÇÃïœêî
     bool flag;
     int playergraph;
+    int walksound;
     bool movex, movey;
 
     int playermap[9][9] ={
@@ -47,6 +48,7 @@ public:
         nowx = 440 + (x * 50);
         nowy = 110 + (y * 50);
         playergraph = LoadGraph("../../Images/character_tip/namakubi_dane.png");
+        walksound= LoadSoundMem("../../Sound/ävåCÇ≈ï‡Ç≠.mp3");
     }
 
     ~Player() {
@@ -139,158 +141,222 @@ public:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 12:
                 if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 13:
                 if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 14:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 15:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 16:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 17:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 18:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 19:
                 if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 20:
                 if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 21:
                 if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 22:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 23:
                 if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 24:
                 if (CheckHitKey(KEY_INPUT_UP)) {
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             case 25:
                 if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
+                    PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
+
                 }
                 break;
             default:

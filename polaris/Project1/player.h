@@ -46,7 +46,7 @@ public:
         movey = false;
         nowx = 440 + (x * 50);
         nowy = 110 + (y * 50);
-        playergraph= LoadGraph("../../Images/character_tip/namakubi_dane.png");
+        playergraph = LoadGraph("../../Images/character_tip/namakubi_dane.png");
     }
 
     ~Player() {

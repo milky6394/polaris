@@ -49,7 +49,7 @@ public:
             case 0:
                 break;
             case 1:
-                cv->StringKey(1, 8, 300, 600);
+                cv->StringKey(1, 8, 300, 600,1);
                 bright = 255;
                 gamestate = 2;
                 break;
@@ -60,7 +60,7 @@ public:
                 }
                 break;
             case 3:
-                cv->StringKey(10, 15, 300, 300);
+                cv->StringKey(10, 15, 300, 300,0);
                 bright = 255;
                 gamestate = 4;
                 break;

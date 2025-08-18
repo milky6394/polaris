@@ -12,7 +12,8 @@ public:
     bool pushz;
     int speed;
     int Stringnumber;
-    int mo;
+    int personnumber;
+    int convgraph[10] = {};
     char String[1000] = {};
 
     char ConvString[300][1000] = {
@@ -48,7 +49,9 @@ public:
         pushz = false;
         Stringnumber = 0;
         speed = 0;
-        mo = 0;
+        personnumber = 0;
+        convgraph[0] = 0;
+        convgraph[1] = LoadGraph("../../Images/character_tip/namakubi_dane.png");
     }
 
     bool Button_Z() {
@@ -84,15 +87,17 @@ public:
                 speed = 0;
             }
         }
+        DrawGraph(x - 100, y, convgraph[personnumber], true);
         DrawString(x, y, String, GetColor(255, 255, 255));
         DrawTriangle(1000, y + 50, 1010, y + 40, 990, y + 40, GetColor(255, 255, 255), true);
     }
 
-    void StringKey(int a, int b,int c,int d) {
+    void StringKey(int a, int b,int c,int d,int e) {
         draw = b - a + 1;
         Stringnumber = a;
         x = c;
         y = d;
+        personnumber = e;
         StringReset();
     }
 

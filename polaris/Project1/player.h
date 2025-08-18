@@ -393,10 +393,15 @@ public:
     }
     //playerの位置によって特定のアクションを起こせる関数
 
-    void PlayerAll() {
+    void GameDraw() {
         mp->MapPracer();
         Player_XY();
         PlayerDraw();//player描画
+    }
+    //ゲームの基本描画の関数
+
+    void PlayerAll() {
+        GameDraw();
         if (Button_X()) {
             toggle();
         }//Xを押したらメニュー切り替え

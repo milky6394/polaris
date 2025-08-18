@@ -80,6 +80,7 @@ public:
                 }
                 break;
             case 5:
+                pl->GameDraw();
                 if (DrawBrighter()) {
                     pl->PlayerAll();
                 }

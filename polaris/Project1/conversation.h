@@ -78,7 +78,6 @@ public:
     bool StoryDraw(int a) {
         DrawGraph(x - 100, y, convgraph[personnumber], true);
         DrawString(x, y, String, GetColor(255, 255, 255));
-        DrawTriangle(1000, y + 50, 1010, y + 40, 990, y + 40, GetColor(255, 255, 255), true);
         if (ConvString[a][st] == '\0') {
             return true;
         }
@@ -129,6 +128,7 @@ public:
                     draw--;
                 }
             }
+            DrawTriangle(1000, y + 50, 1010, y + 40, 990, y + 40, GetColor(255, 255, 255), true);
         }
     }
 };

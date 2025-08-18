@@ -6,7 +6,7 @@ public:
 
     int x, y;
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
-    int choce;//何番目の選択肢を表示するかを制御する変数
+    int choice;//何番目の選択肢を表示するかを制御する変数
     int choicenumber;
 
     int cursor[4][4] = {

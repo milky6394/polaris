@@ -105,11 +105,16 @@ public:
 
     void StringAll() {
         StoryDraw(Stringnumber);
-        if (Button_Z() && draw > 0) {
-            st = 0;
-            StringReset();
-            Stringnumber++;
-            draw--;
+        if (Button_Z()) {
+            if (draw == 1) {
+                draw--;
+            }
+            else if (draw > 1) {
+                st = 0;
+                StringReset();
+                Stringnumber++;
+                draw--;
+            }
         }
     }
 };

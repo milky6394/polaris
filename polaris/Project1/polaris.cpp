@@ -14,8 +14,8 @@ public:
     int bright;//画面の明るさを制御する変数
 
     GameControl() {
-        gamestate = 1;
-        bright = 255;
+        gamestate = 0;
+        bright = 0;
     }
 
     ~GameControl() {
@@ -33,9 +33,13 @@ public:
     }
     //画面がだんだん暗くなる関数。完全に暗くなった後、引数のシーンに遷移する
 
-    void DrawBrighter() {
+    bool DrawBrighter() {
         if (bright <= 255) {
             bright+=2;
+            return false;
+        }
+        else {
+            return true;
         }
     }
     //画面がだんだん明るくなる関数
@@ -49,11 +53,14 @@ public:
         SetDrawBright(bright, bright, bright);
         switch (gamestate) {
             case 0:
+                cv->StringKey(1, 8, 300, 600, 1);
+                gamestate = 1;
                 break;
             case 1:
-                cv->StringKey(1, 8, 300, 600,1);
-                bright = 255;
-                gamestate = 2;
+                if (DrawBrighter()) {
+                    gamestate = 2;
+                }
+                cv->PersonDraw();
                 break;
             case 2:
                 cv->StringAll();
@@ -73,8 +80,9 @@ public:
                 }
                 break;
             case 5:
-                DrawBrighter();
-                pl->PlayerAll();
+                if (DrawBrighter()) {
+                    pl->PlayerAll();
+                }
                 break;
             case 6:
                 break;

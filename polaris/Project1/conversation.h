@@ -76,7 +76,6 @@ public:
     //Stringを初期化する関数
 
     bool StoryDraw(int a) {
-        DrawGraph(x - 100, y, convgraph[personnumber], true);
         DrawString(x, y, String, GetColor(255, 255, 255));
         if (ConvString[a][st] == '\0') {
             return true;
@@ -105,6 +104,9 @@ public:
     }
     //StringKeyで受け取った会話を再生する関数
 
+    void PersonDraw() {
+        DrawGraph(x - 100, y, convgraph[personnumber], true);
+    }
     void StringKey(int a, int b,int c,int d,int e) {
         draw = b - a + 1;
         Stringnumber = a;
@@ -116,6 +118,7 @@ public:
     //会話イベントの情報を受け取る関数。a~bの会話を座標c,dに話者eで表示する。
 
     void StringAll() {
+        PersonDraw();
         if (StoryDraw(Stringnumber)) {
             if (Button_Z()) {
                 if (draw == 1) {

@@ -449,6 +449,7 @@ public:
         while (CheckHitKey(KEY_INPUT_Z)) {}
         if (a / 100000000) {
             br->branch = a - 100000000;
+            br->BranchStringKey(a - 100000000);
         }
         else if (a / 20000000) {
             if (ItemOff((a - 20000000) / 100000)) {

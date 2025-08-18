@@ -6,8 +6,24 @@ public:
 
     int x;
     bool pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
-    int branch;//何番目の選択肢を表示するかを制御する変数
+    int branch;
     int branchnumber;
+    int st;
+    int draw;
+    int speed;
+    int Stringnumber;
+    char String[1000] = {};
+    char BranchString[300][1000] = {
+    { "test" },
+    { "部屋A。カードキーを消費することで入れる。\n※部屋は一度入ると出られません" },
+    { "部屋B。カードキーを消費することで入れる。\n※部屋は一度入ると出られません" },
+    { "部屋C。カードキーを消費することで入れる。\n※部屋は一度入ると出られません" },
+    { "" },
+    { "" },
+    { "" },
+    { "" },
+    };
+
 
     int cursor[2] = { 0,0 };
 
@@ -18,6 +34,9 @@ public:
         pushz = false;
         branch = 0;
         branchnumber = 0;
+        st = 0;
+        draw = 0;
+        speed = 0;
     }
 
     bool Button_Z() {
@@ -85,7 +104,7 @@ public:
     //メニュー選択キーの座標を取得
 
     void BranchDraw() {
-        DrawTriangle(Branchpixel_X(x), 600, Branchpixel_X(x) + 10, 600 - 10, Branchpixel_X(x) - 10, 600 - 10, GetColor(255, 255, 255), true);
+        DrawTriangle(Branchpixel_X(x), 650, Branchpixel_X(x) + 10, 650 - 10, Branchpixel_X(x) - 10, 650 - 10, GetColor(255, 255, 255), true);
     }
     //メニューカーソルを描画する関数
 
@@ -103,11 +122,65 @@ public:
                 cursor[1] = 0;
                 cursor[0] = 1;
             }
+            st = 0;
+            StringReset();
+            Stringnumber++;
+            draw--;
         }
     }
     //menuの配列内でZキーをクリックしたときに行う処理
 
+    void StringKey(int a) {
+        draw = 1;
+        Stringnumber = a;
+        StringReset();
+    }
+
+    void BranchStringKey(int a) {
+        switch (a) {
+            case 20101348:
+                StringKey(1);
+                break;
+            case 20101448:
+                StringKey(2);
+                break;
+            case 20101548:
+                StringKey(3);
+                break;
+        }
+    }
+
+    void StringReset() {
+        for (int i = 0; i < 1000; i++) {
+            String[i] = {};
+        }
+    }
+    //Stringを初期化する関数
+
+    void ItemString(int a) {
+        String[st] = BranchString[a][st];
+        if (st < 999 && speed == 0) {
+            st++;
+            speed++;
+        }
+        else {
+            speed++;
+            if (speed == 3) {
+                speed = 0;
+            }
+        }
+        DrawString(500, 550, String, GetColor(255, 255, 255));
+    }
+    //引数で指定したIDのアイテムの説明を表示する関数
+
+    void StringAll() {
+        if (draw > 0) {
+            ItemString(Stringnumber);
+        }
+    }
+
     void BranchAll() {
+        StringAll();
         BranchCursor();
         Branch_X();
         BranchDraw();

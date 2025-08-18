@@ -63,7 +63,7 @@ public:
                 speed = 0;
             }
         }
-        DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", String);
+        DrawString(300, 600, String, GetColor(255, 255, 255));
         DrawTriangle(x, y, x + 10, y - 10, x - 10, y - 10, GetColor(255, 255, 255), true);
     }
     //引数で指定したIDのアイテムの説明を表示する関数

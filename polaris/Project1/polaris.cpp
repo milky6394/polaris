@@ -20,6 +20,7 @@ public:
 
     ~GameControl() {
         delete pl;
+        delete cv;
         InitGraph();
     }
 

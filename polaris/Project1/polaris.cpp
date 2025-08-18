@@ -4,6 +4,7 @@
 
 #define WINDOW_X 1280
 #define WINDOW_Y 720
+#define STARTSCENE 5
 
 class GameControl {
 public:
@@ -14,7 +15,7 @@ public:
     int bright;//‰æ–Ê‚Ì–¾‚é‚³‚ğ§Œä‚·‚é•Ï”
 
     GameControl() {
-        gamestate = 0;
+        gamestate = STARTSCENE;
         bright = 0;
     }
 

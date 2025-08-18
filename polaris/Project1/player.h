@@ -373,7 +373,7 @@ public:
                 break;
             }
         }
-        StringKey(a, a);
+        StringKey(a, 1);
         ItemMenu();
     }
     //inventoryに引数の値を格納する関数
@@ -384,6 +384,7 @@ public:
                 return true;
             }
         }
+        StringKey(0, 1);
         return false;
     }
     //inventoryに引数のアイテムが入っているか判定する関数
@@ -392,9 +393,11 @@ public:
         for (int i = 0; i < 25; i++) {
             if (inventory[i] == a) {
                 inventory[i] = 0;
+                ItemMenu();
                 return true;
             }
         }
+        StringKey(0, 1);
         return false;
     }
     //inventoryに引数のアイテムが入っているか判定し、入っていたらそれを削除する関数
@@ -409,7 +412,7 @@ public:
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
     void StringKey(int a,int b) {
-        sc->draw = b - a + 1;
+        sc->draw = b;
         sc->Stringnumber = a;
         sc->StringReset();
     }
@@ -444,17 +447,27 @@ public:
 
     void PlayerAction(int a) {
         while (CheckHitKey(KEY_INPUT_Z)) {}
-        if (a / 1000000) {
-            br->branch = a - 1000000;
+        if (a / 100000000) {
+            br->branch = a - 100000000;
         }
-        else if (a / 100000) {
-            StringKey((a - 100000) / 100, (a - 100000) % 100);
+        else if (a / 20000000) {
+            if (ItemOff((a - 20000000) / 100000)) {
+                PlayerAction(a % 100000);
+            }
+        }
+        else if (a / 10000000) {
+            if (ItemCheck((a - 10000000) / 100000)) {
+                PlayerAction(a % 100000);
+            }
         }
         else if (a / 10000) {
-            MapChange((a % 100) / 10, a % 10, (a - 10000) / 100);
+            StringKey((a - 10000) / 10, a % 10);
         }
         else if (a / 1000) {
-            Invent(a - 1000);
+            MapChange((a % 100) / 10, a % 10, (a - 1000) / 100);
+        }
+        else if (a / 100) {
+            Invent(a - 100);
         }
     }
     //playerの位置によって特定のアクションを起こせる関数

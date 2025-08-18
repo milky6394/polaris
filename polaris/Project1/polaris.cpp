@@ -10,8 +10,8 @@ public:
     Player* pl = new Player();
     ConvControler* cv = new ConvControler();
     
-    int gamestate;
-    int bright;
+    int gamestate;//ゲームシーンを制御する変数
+    int bright;//画面の明るさを制御する変数
 
     GameControl() {
         gamestate = 1;
@@ -31,12 +31,14 @@ public:
             gamestate = a;
         }
     }
+    //画面がだんだん暗くなる関数。完全に暗くなった後、引数のシーンに遷移する
 
     void DrawBrighter() {
         if (bright <= 255) {
             bright+=2;
         }
     }
+    //画面がだんだん明るくなる関数
 
     bool GameEnd() {
         return pl->PlEnd();

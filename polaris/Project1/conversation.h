@@ -12,8 +12,8 @@ public:
     bool pushz;
     int speed;
     int Stringnumber;
-    int personnumber;
-    int convgraph[10] = {};
+    int personnumber;//話者の番号を格納する変数
+    int convgraph[10] = {};//話者の画像を格納する変数
     char String[1000] = {};
 
     char ConvString[300][1000] = {
@@ -91,6 +91,7 @@ public:
         DrawString(x, y, String, GetColor(255, 255, 255));
         DrawTriangle(1000, y + 50, 1010, y + 40, 990, y + 40, GetColor(255, 255, 255), true);
     }
+    //StringKeyで受け取った会話を再生する関数
 
     void StringKey(int a, int b,int c,int d,int e) {
         draw = b - a + 1;
@@ -100,6 +101,7 @@ public:
         personnumber = e;
         StringReset();
     }
+    //会話イベントの情報を受け取る関数。a~bの会話を座標c,dに話者eで表示する。
 
     void StringAll() {
         StoryDraw(Stringnumber);

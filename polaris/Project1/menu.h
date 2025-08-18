@@ -268,8 +268,7 @@ public:
             for (int j = 5; j < 10; j++) {
                 if (menumap[2][j][i] != 0) {
                     DrawGraph(Menupixel_X(i), Menupixel_Y(j), im->graph[menumap[2][j][i]], false);
-                    //DrawCircle(Menupixel_X(i), Menupixel_Y(j), menumap[2][j][i]*10, GetColor(255, 255, 255), TRUE);
-                }//3‘w–Ú‚Ì”š~10‚Ì‘å‚«‚³‚ÌZ‚ğ‚»‚Ìê‚É•`‰æ
+                }
             }
         }
         DrawTriangle(Menupixel_X(x), Menupixel_Y(y), Menupixel_X(x), Menupixel_Y(y) - 20, Menupixel_X(x) + 10, Menupixel_Y(y) - 10, GetColor(255, 0, 0), true);

@@ -16,7 +16,6 @@ public:
     int Stringnumber;
     char String[1000] = {};
 
-
     StringControler() {
         x = 1000;
         y = 650;
@@ -43,6 +42,7 @@ public:
         }
         return false;
     }
+    //キー1回押しの関数
 
     void StringReset() {
         for (int i = 0; i < 1000; i++) {
@@ -66,6 +66,7 @@ public:
         DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", String);
         DrawTriangle(x, y, x + 10, y - 10, x - 10, y - 10, GetColor(255, 255, 255), true);
     }
+    //引数で指定したIDのアイテムの説明を表示する関数
 
     void StringAll() {
         ItemString(Stringnumber);

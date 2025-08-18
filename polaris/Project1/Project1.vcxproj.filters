@@ -41,5 +41,8 @@
     <ClInclude Include="conversation.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="branch.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

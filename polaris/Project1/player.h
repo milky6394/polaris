@@ -2,14 +2,14 @@
 #include "DxLib.h"
 #include "map.h"
 #include "menu.h"
-#include "choice.h"
+#include "branch.h"
 
 class Player {
 public:
     MapControler* mp = new MapControler();
     StringControler* sc = new StringControler();
     MenuControler* me = new MenuControler();
-    ChoiceManager* co = new ChoiceManager();
+    BranchManager* br = new BranchManager();
     
     int x, y;//Player‚ÌŒ»Ý‚ÌÀ•W
     int nowx, nowy;
@@ -55,7 +55,7 @@ public:
         delete mp;
         delete sc;
         delete me;
-        delete co;
+        delete br;
     }
 
     bool Button_Z() {
@@ -434,24 +434,24 @@ public:
     }
     //player‚ÌˆÊ’u•`‰æŠÖ”
 
-    void ChoiceAction() {
-        if (co->choicenumber) {
-            PlayerAction(co->choicenumber);
-            co->choicenumber = 0;
+    void BranchAction() {
+        if (br->branchnumber) {
+            PlayerAction(br->branchnumber);
+            br->branchnumber = 0;
         }
     }
     //choice.h‚É‚æ‚éAction‚ð”½‰f‚·‚éŠÖ”
 
     void PlayerAction(int a) {
         while (CheckHitKey(KEY_INPUT_Z)) {}
-        if (a / 100000) {
+        if (a / 1000000) {
+            br->branch = a - 1000000;
+        }
+        else if (a / 100000) {
             StringKey((a - 100000) / 100, (a - 100000) % 100);
         }
         else if (a / 10000) {
             MapChange((a % 100) / 10, a % 10, (a - 10000) / 100);
-        }
-        else if (a / 2000) {
-            co->choice = a - 2000;
         }
         else if (a / 1000) {
             Invent(a - 1000);
@@ -476,9 +476,9 @@ public:
                 sc->StringAll();
             }//String‚ª•`‰æ‚³‚ê‚Ä‚¢‚é‚È‚çplayer‚Ìˆ—‚æ‚è—Dæ
             else {
-                if (co->choice) {
-                    co->ChoiceAll();
-                    ChoiceAction();
+                if (br->branch) {
+                    br->BranchAll();
+                    BranchAction();
                 }
                 else {
                     PlayerMove();

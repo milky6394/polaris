@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include "item.h"
 
-#define STRINGSPEED 3
+#define STRINGSPEED 2
 
 class StringControler {
 public:
@@ -12,7 +12,6 @@ public:
     int st;
     int draw;
     bool pushz;
-    int speed;
     int Stringnumber;
     char String[1000] = {};
 
@@ -23,7 +22,6 @@ public:
         draw = 0;
         pushz = false;
         Stringnumber = 0;
-        speed = 0;
     }
 
     ~StringControler() {
@@ -53,15 +51,8 @@ public:
 
     void ItemString(int a) {
         String[st] = im->ItemString[a][st];
-        if (st < 999 && speed == 0) {
+        if (st < 999) {
             st++;
-            speed++;
-        }
-        else {
-            speed++;
-            if (speed == STRINGSPEED) {
-                speed = 0;
-            }
         }
         DrawString(300, 600, String, GetColor(255, 255, 255));
         DrawTriangle(x, y, x + 10, y - 10, x - 10, y - 10, GetColor(255, 255, 255), true);

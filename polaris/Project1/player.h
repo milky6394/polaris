@@ -17,6 +17,7 @@ public:
     bool flag;
     int playergraph;
     int walksound;
+    int itemsound;
     bool movex, movey;
 
     int playermap[9][9] ={
@@ -49,6 +50,7 @@ public:
         nowy = 110 + (y * 50);
         playergraph = LoadGraph("../../Images/character_tip/namakubi_dane.png");
         walksound= LoadSoundMem("../../Sound/革靴で歩く.mp3");
+        itemsound = LoadSoundMem("../../Sound/決定ボタンを押す28.mp3");
     }
 
     ~Player() {
@@ -475,6 +477,7 @@ public:
         }
         else if (a / 100) {
             Invent(a - 100);
+            PlaySoundMem(itemsound, DX_PLAYTYPE_BACK);
         }
     }
     //playerの位置によって特定のアクションを起こせる関数
@@ -488,29 +491,28 @@ public:
 
     void PlayerAll() {
         GameDraw();
-        if (Button_X()) {
-            toggle();
-        }//Xを押したらメニュー切り替え
-        if (flag) {
-            if (sc->draw > 0) {
-                sc->StringAll();
-            }//Stringが描画されているならplayerの処理より優先
+        if (sc->draw > 0) {
+            sc->StringAll();
+        }//Stringが描画されているならplayerの処理より優先
+        else {
+            if (br->branch) {
+                br->BranchAll();
+                BranchAction();
+            }
             else {
-                if (br->branch) {
-                    br->BranchAll();
-                    BranchAction();
-                }
-                else {
+                if (Button_X()) {
+                    toggle();
+                }//Xを押したらメニュー切り替え
+                if (flag) {
                     PlayerMove();
                     if (Button_Z()) {
                         PlayerAction(mp->map[mp->mapnumber][1][y][x]);
                     }
                 }
+                else {
+                    me->MenuDraw();
+                }//Xキーを押したらメニュー表示
             }
-        }//Xキーを押したらメニュー表示
-        else {
-            me->MenuDraw();
         }
     }
-
 };

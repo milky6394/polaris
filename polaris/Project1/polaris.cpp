@@ -16,7 +16,7 @@ public:
 
     GameControl() {
         gamestate = STARTSCENE;
-        bright = 0;
+        bright = 255;
     }
 
     ~GameControl() {
@@ -56,6 +56,7 @@ public:
         switch (gamestate) {
             case 0:
                 cv->StringKey(1, 8, 300, 600, 1);
+                bright = 0;
                 gamestate = 1;
                 break;
             case 1:

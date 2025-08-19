@@ -12,6 +12,7 @@ public:
     int draw;
     int speed;
     int Stringnumber;
+    int branchsound;
     char String[1000] = {};
     char BranchString[300][1000] = {
     { "test" },
@@ -37,12 +38,14 @@ public:
         st = 0;
         draw = 0;
         speed = 0;
+        branchsound= LoadSoundMem("../../Sound/カーソル移動12.mp3");
     }
 
     bool Button_Z() {
         if (CheckHitKey(KEY_INPUT_Z)) {
             if (!pushz) {
                 pushz = true;
+                PlaySoundMem(branchsound, DX_PLAYTYPE_BACK);
                 return true;
             }
         }
@@ -81,10 +84,12 @@ public:
         if (Right()) {
             cursor[0] = 0;
             cursor[1] = 1;
+            PlaySoundMem(branchsound, DX_PLAYTYPE_BACK);
         }
         else if (Left()) {
             cursor[1] = 0;
             cursor[0] = 1;
+            PlaySoundMem(branchsound, DX_PLAYTYPE_BACK);
         }
     }
     //左右キーを押したときに、その先に移動

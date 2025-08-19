@@ -128,6 +128,9 @@ public:
                 if (map[mapnumber][0][j][i] != 10) {
                     DrawCircle(Mappixel_X(i), Mappixel_Y(j), 10, GetColor(255, 255, 255), TRUE);
                 }
+                if (map[mapnumber][1][j][i] < 1000&& map[mapnumber][1][j][i] != 0) {
+                    DrawCircle(Mappixel_X(i), Mappixel_Y(j), 5, GetColor(255, 0, 0), TRUE);
+                }
             }
         }
     }

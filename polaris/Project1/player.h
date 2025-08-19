@@ -162,7 +162,7 @@ public:
             walkvec = 4;
         }
         if (!movex && !movey) {
-            switch (mp->map[mp->mapnumber][0][y][x]) {
+            switch (mp->map[mp->mapnumber][0][y][x] % 100) {
             case 10:
                 break;
             case 11:
@@ -482,8 +482,7 @@ public:
 }
     //choice.hによるActionを反映する関数
     
-    void PlayerAction(int a) {
-        while (CheckHitKey(KEY_INPUT_Z)) {}
+    void MapAction(int a) {
         if (a / 100000000) {
             br->branch = a - 100000000;
             br->BranchStringKey(a - 100000000);
@@ -515,6 +514,26 @@ public:
         else if (a / 100) {
             Invent(a - 100);
             PlaySoundMem(itemsound, DX_PLAYTYPE_BACK);
+        }
+    }
+    void PlayerAction(int a) {
+        while (CheckHitKey(KEY_INPUT_Z)) {}
+        if (mp->map[mp->mapnumber][0][y][x] / 100) {
+            if (mp->map[mp->mapnumber][0][y][x] / 100 == 1&&walkvec==10) {
+                MapAction(a);
+            }
+            else if (mp->map[mp->mapnumber][0][y][x] / 100 == 2 && walkvec == 7) {
+                MapAction(a);
+            }
+            else if (mp->map[mp->mapnumber][0][y][x] / 100 == 3 && walkvec == 1) {
+                MapAction(a);
+            }
+            else if (mp->map[mp->mapnumber][0][y][x] / 100 == 4 && walkvec == 4) {
+                MapAction(a);
+            }
+        }
+        else {
+            MapAction(a);
         }
     }
     //playerの位置によって特定のアクションを起こせる関数

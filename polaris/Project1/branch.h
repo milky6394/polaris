@@ -10,10 +10,11 @@ public:
     int branchnumber;
     int st;
     int draw;
-    int speed;
     int Stringnumber;
     int branchsound;
     char String[1000] = {};
+    char YesString[10] = {"はい"};
+    char NoString[10] = {"いいえ"};
     char BranchString[300][1000] = {
     { "test" },
     { "部屋A。カードキーを消費することで入れる。\n※部屋は一度入ると出られません" },
@@ -37,7 +38,6 @@ public:
         branchnumber = 0;
         st = 0;
         draw = 0;
-        speed = 0;
         branchsound= LoadSoundMem("../../Sound/カーソル移動12.mp3");
     }
 
@@ -110,6 +110,8 @@ public:
 
     void BranchDraw() {
         DrawTriangle(Branchpixel_X(x), 650, Branchpixel_X(x) + 10, 650 - 10, Branchpixel_X(x) - 10, 650 - 10, GetColor(255, 255, 255), true);
+        DrawString(470, 670, NoString, GetColor(255, 255, 255));
+        DrawString(770, 670, YesString, GetColor(255, 255, 255));
     }
     //メニューカーソルを描画する関数
 
@@ -164,15 +166,8 @@ public:
 
     void ItemString(int a) {
         String[st] = BranchString[a][st];
-        if (st < 999 && speed == 0) {
+        if (st < 999) {
             st++;
-            speed++;
-        }
-        else {
-            speed++;
-            if (speed == 3) {
-                speed = 0;
-            }
         }
         DrawString(500, 550, String, GetColor(255, 255, 255));
     }

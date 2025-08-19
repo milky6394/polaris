@@ -475,6 +475,11 @@ public:
         else if (a / 1000) {
             MapChange((a % 100) / 10, a % 10, (a - 1000) / 100);
         }
+        else if (a / 200) {
+            Invent(a - 200);
+            mp->map[mp->mapnumber][1][y][x] = 0;
+            PlaySoundMem(itemsound, DX_PLAYTYPE_BACK);
+        }
         else if (a / 100) {
             Invent(a - 100);
             PlaySoundMem(itemsound, DX_PLAYTYPE_BACK);

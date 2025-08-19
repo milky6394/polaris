@@ -30,7 +30,7 @@ public:
     {0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0} };//playermap‚ğŠi”[‚·‚é”z—ñ
 
-    int inventory[25] ={};//playermap‚ğŠi”[‚·‚é”z—ñ
+    int inventory[50] ={};//playermap‚ğŠi”[‚·‚é”z—ñ
 
     Player() {
         x = 4;
@@ -86,6 +86,12 @@ public:
 
     bool toggle() {
         flag = !flag;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                me->menumap[1][j][i] = 0;
+            }
+        }
+        me->menumap[1][0][0] = 1;
         return !flag;
     }
     //XƒL[‚ğ‰Ÿ‚·‚½‚Ñ‚É^‹U‚ª“ü‚ê‘Ö‚í‚éŠÖ”
@@ -367,7 +373,7 @@ public:
     //player‚ğˆÚ“®‚³‚¹‚éŠÖ” map‚ÌˆÊ’u‚É‚æ‚Á‚ÄˆÚ“®‚Å‚«‚é•ûŒü‚ªˆÙ‚È‚é
 
     void Invent(int a) {
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 50; i++) {
             if (inventory[i] == 0) {
                 inventory[i] = a;
                 break;
@@ -379,7 +385,7 @@ public:
     //inventory‚Éˆø”‚Ì’l‚ğŠi”[‚·‚éŠÖ”
     
     bool ItemCheck(int a) {
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 50; i++) {
             if (inventory[i] == a) {
                 return true;
             }
@@ -390,7 +396,7 @@ public:
     //inventory‚Éˆø”‚ÌƒAƒCƒeƒ€‚ª“ü‚Á‚Ä‚¢‚é‚©”»’è‚·‚éŠÖ”
 
     bool ItemOff(int a) {
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 50; i++) {
             if (inventory[i] == a) {
                 inventory[i] = 0;
                 ItemMenu();
@@ -420,8 +426,8 @@ public:
 
     void ItemMenu() {
         for (int i = 5; i < 10; i++) {
-            for (int j = 5; j < 10; j++) {
-                me->menumap[2][j][i] = inventory[(i - 5) + ((j - 5) * 5)];
+            for (int j = 0; j < 10; j++) {
+                me->menumap[2][j][i] = inventory[(i-5) + (j * 5)];
             }
         }
     }

@@ -85,14 +85,29 @@ public:
             case 5:
                 if (DrawBrighter()) {
                     pl->PlayerAll();
+                    if (pl->statechange) {
+                        gamestate = pl->statechange;
+                        pl->statechange = 0;
+                    }
                 }
                 else {
                     pl->GameDraw();
                 }
                 break;
             case 6:
+                cv->StringKey(17, 18, 300, 600, 1);
+                pl->GameDraw();
+                gamestate = 7;
                 break;
             case 7:
+                cv->StringAll();
+                if (cv->draw <= 0) {
+                    gamestate = 8;;
+                }
+                pl->GameDraw();
+                break;
+            case 8:
+                pl->PlayerAll();
                 break;
         }
     }

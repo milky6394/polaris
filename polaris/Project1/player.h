@@ -19,6 +19,7 @@ public:
     int walksound;
     int itemsound;
     bool movex, movey;
+    int statechange;
 
     int playermap[9][9] ={
     {0,0,0,0,0,0,0,0,0},
@@ -48,6 +49,7 @@ public:
         movey = false;
         nowx = 440 + (x * 50);
         nowy = 110 + (y * 50);
+        statechange = 0;
         playergraph = LoadGraph("../../Images/character_tip/namakubi_dane.png");
         walksound= LoadSoundMem("../../Sound/革靴で歩く.mp3");
         itemsound = LoadSoundMem("../../Sound/決定ボタンを押す28.mp3");
@@ -375,84 +377,84 @@ public:
     //playerを移動させる関数 mapの位置によって移動できる方向が異なる
 
     void Invent(int a) {
-        for (int i = 0; i < 50; i++) {
-            if (inventory[i] == 0) {
-                inventory[i] = a;
-                break;
-            }
+    for (int i = 0; i < 50; i++) {
+        if (inventory[i] == 0) {
+            inventory[i] = a;
+            break;
         }
-        StringKey(a, 1);
-        ItemMenu();
     }
+    StringKey(a, 1);
+    ItemMenu();
+}
     //inventoryに引数の値を格納する関数
-    
+
     bool ItemCheck(int a) {
-        for (int i = 0; i < 50; i++) {
-            if (inventory[i] == a) {
-                return true;
-            }
+    for (int i = 0; i < 50; i++) {
+        if (inventory[i] == a) {
+            return true;
         }
-        StringKey(0, 1);
-        return false;
     }
+    StringKey(0, 1);
+    return false;
+}
     //inventoryに引数のアイテムが入っているか判定する関数
 
     bool ItemOff(int a) {
-        for (int i = 0; i < 50; i++) {
-            if (inventory[i] == a) {
-                inventory[i] = 0;
-                ItemMenu();
-                return true;
-            }
+    for (int i = 0; i < 50; i++) {
+        if (inventory[i] == a) {
+            inventory[i] = 0;
+            ItemMenu();
+            return true;
         }
-        StringKey(0, 1);
-        return false;
     }
+    StringKey(0, 1);
+    return false;
+}
     //inventoryに引数のアイテムが入っているか判定し、入っていたらそれを削除する関数
 
-    void MapChange(int a,int b,int c) {
-        mp->mapnumber = c-1;
-        playermap[y][x] = 0;
-        playermap[b][a] = 1;
-        nowx = 440 + (a * 50);
-        nowy = 110 + (b * 50);
-    }
+    void MapChange(int a, int b, int c) {
+    mp->mapnumber = c - 1;
+    playermap[y][x] = 0;
+    playermap[b][a] = 1;
+    nowx = 440 + (a * 50);
+    nowy = 110 + (b * 50);
+}
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
-    void StringKey(int a,int b) {
-        sc->draw = b;
-        sc->Stringnumber = a;
-        sc->StringReset();
-    }
+    void StringKey(int a, int b) {
+    sc->draw = b;
+    sc->Stringnumber = a;
+    sc->StringReset();
+}
     //a~bの配列に入っているオブジェクトの説明文などを出す関数。引数の数だけクリックすると戻る
 
     void ItemMenu() {
-        for (int i = 5; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                me->menumap[2][j][i] = inventory[(i-5) + (j * 5)];
-            }
+    for (int i = 5; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            me->menumap[2][j][i] = inventory[(i - 5) + (j * 5)];
         }
     }
+}
     //playerのインベントリをmenuに反映
 
     bool PlEnd() {
-        return me->MeEnd();
-    }
+    return me->MeEnd();
+}
     //gameendをmainへ送る関数
 
     void PlayerDraw() {
-        DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, true);
-    }
+    DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, true);
+}
     //playerの位置描画関数
 
     void BranchAction() {
-        if (br->branchnumber) {
-            PlayerAction(br->branchnumber);
-            br->branchnumber = 0;
-        }
+    if (br->branchnumber) {
+        PlayerAction(br->branchnumber);
+        br->branchnumber = 0;
     }
+}
     //choice.hによるActionを反映する関数
-
+    
     void PlayerAction(int a) {
         while (CheckHitKey(KEY_INPUT_Z)) {}
         if (a / 100000000) {
@@ -474,6 +476,9 @@ public:
         }
         else if (a / 1000) {
             MapChange((a % 100) / 10, a % 10, (a - 1000) / 100);
+            if (((a - 1000) / 100) == 6) {
+                statechange = 6;
+            }
         }
         else if (a / 200) {
             Invent(a - 200);

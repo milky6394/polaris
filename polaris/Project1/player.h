@@ -149,6 +149,18 @@ public:
     //player‚Ìplayermap“à‚Å‚Ì”z—ñÀ•W‚ðŽæ“¾‚·‚éŠÖ”
 
     void PlayerMove() {
+        if (CheckHitKey(KEY_INPUT_UP)) {
+            walkvec = 10;
+        }
+        else if (CheckHitKey(KEY_INPUT_DOWN)) {
+            walkvec = 1;
+        }
+        else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+            walkvec = 7;
+        }
+        else if (CheckHitKey(KEY_INPUT_LEFT)) {
+            walkvec = 4;
+        }
         if (!movex && !movey) {
             switch (mp->map[mp->mapnumber][0][y][x]) {
             case 10:
@@ -448,18 +460,6 @@ public:
 
     void PlayerDraw() {
         //DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, true);
-        if (CheckHitKey(KEY_INPUT_UP)) {
-            walkvec = 10;
-        }
-        else if (CheckHitKey(KEY_INPUT_DOWN)) {
-            walkvec = 1;
-        }
-        else if (CheckHitKey(KEY_INPUT_RIGHT)) {
-            walkvec = 7;
-        }
-        else if (CheckHitKey(KEY_INPUT_LEFT)) {
-            walkvec = 4;
-        }
         if (movex || movey) {
             if (walkflag) {
                 DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), gh[walkvec + 1], true);

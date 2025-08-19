@@ -20,6 +20,9 @@ public:
     int itemsound;
     bool movex, movey;
     int statechange;
+    int gh[12];
+    int walkvec;
+    bool walkflag;
 
     int playermap[9][9] ={
     {0,0,0,0,0,0,0,0,0},
@@ -50,9 +53,12 @@ public:
         nowx = 440 + (x * 50);
         nowy = 110 + (y * 50);
         statechange = 0;
+        walkvec = 1;
+        walkflag = false;
         playergraph = LoadGraph("../../Images/character_tip/namakubi_dane.png");
         walksound= LoadSoundMem("../../Sound/ävåCÇ≈ï‡Ç≠.mp3");
         itemsound = LoadSoundMem("../../Sound/åàíËÉ{É^ÉìÇâüÇ∑28.mp3");
+        LoadDivGraph("../../Images/character_tip/20150503142545.png", 12, 3, 4, 20, 28, gh);
     }
 
     ~Player() {
@@ -152,25 +158,25 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 12:
@@ -178,19 +184,19 @@ public:
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 13:
@@ -198,13 +204,13 @@ public:
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 14:
@@ -212,19 +218,19 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 15:
@@ -232,13 +238,13 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 16:
@@ -246,19 +252,19 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 17:
@@ -266,13 +272,13 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 18:
@@ -280,19 +286,19 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 19:
@@ -300,13 +306,13 @@ public:
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_RIGHT)) {
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 20:
@@ -314,7 +320,7 @@ public:
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 21:
@@ -322,7 +328,7 @@ public:
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 22:
@@ -330,7 +336,7 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 23:
@@ -338,7 +344,7 @@ public:
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 24:
@@ -346,13 +352,13 @@ public:
                     playermap[y][x] = 0;
                     playermap[y - 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_DOWN)) {
                     playermap[y][x] = 0;
                     playermap[y + 1][x] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 break;
             case 25:
@@ -360,16 +366,14 @@ public:
                     playermap[y][x] = 0;
                     playermap[y][x + 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
                 else if (CheckHitKey(KEY_INPUT_LEFT)) {
                     playermap[y][x] = 0;
                     playermap[y][x - 1] = 1;
                     PlaySoundMem(walksound, DX_PLAYTYPE_BACK);
-
+                    walkflag = !walkflag;
                 }
-                break;
-            default:
                 break;
             }
         }
@@ -443,8 +447,31 @@ public:
     //gameendÇmainÇ÷ëóÇÈä÷êî
 
     void PlayerDraw() {
-    DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, true);
-}
+        //DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, true);
+        if (CheckHitKey(KEY_INPUT_UP)) {
+            walkvec = 10;
+        }
+        else if (CheckHitKey(KEY_INPUT_DOWN)) {
+            walkvec = 1;
+        }
+        else if (CheckHitKey(KEY_INPUT_RIGHT)) {
+            walkvec = 7;
+        }
+        else if (CheckHitKey(KEY_INPUT_LEFT)) {
+            walkvec = 4;
+        }
+        if (movex || movey) {
+            if (walkflag) {
+                DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), gh[walkvec + 1], true);
+            }
+            else {
+                DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), gh[walkvec - 1], true);
+            }
+        }
+        else {
+            DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), gh[walkvec], true);
+        }
+    }
     //playerÇÃà íuï`âÊä÷êî
 
     void BranchAction() {

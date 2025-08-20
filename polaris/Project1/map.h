@@ -2,7 +2,7 @@
 #include "DxLib.h"
 #include <string>
 
-#define MAPS 6//mapの数を表すマクロ
+#define MAPS 23//mapの数を表すマクロ
 
 class MapControler {
 public:

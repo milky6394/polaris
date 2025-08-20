@@ -429,12 +429,15 @@ public:
     //inventoryに引数のアイテムが入っているか判定し、入っていたらそれを削除する関数
 
     void MapChange(int a, int b, int c) {
-    mp->mapnumber = c - 1;
-    playermap[y][x] = 0;
-    playermap[b][a] = 1;
-    nowx = 440 + (a * 50);
-    nowy = 110 + (b * 50);
-}
+        mp->mapnumber = c - 1;
+        playermap[y][x] = 0;
+        playermap[b][a] = 1;
+        nowx = 440 + (a * 50);
+        nowy = 110 + (b * 50);
+        if ((a == 1 && b == 0) || (a == 2 && b == 0)) {
+            walkvec = 1;
+        }
+    }
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
     void StringKey(int a, int b) {
@@ -506,13 +509,9 @@ public:
                 statechange = 6;
             }
         }
-        else if (a / 200) {
-            Invent(a - 200);
-            mp->map[mp->mapnumber][1][y][x] = 0;
-            PlaySoundMem(itemsound, DX_PLAYTYPE_BACK);
-        }
         else if (a / 100) {
             Invent(a - 100);
+            mp->map[mp->mapnumber][1][y][x] = 0;
             PlaySoundMem(itemsound, DX_PLAYTYPE_BACK);
         }
     }

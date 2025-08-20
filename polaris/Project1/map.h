@@ -27,7 +27,7 @@ public:
         bool eofFlag;
         FILE* fp = nullptr;
         for (int i = 0; i < MAPS; i++) {
-            std::string filename ="../../Maps/map"+std::to_string(i+1)+".csv";
+            std::string filename = "../../Maps/map" + std::to_string(i + 1) + ".csv";
             fopen_s(&fp, filename.c_str(), "r");
             if (fp == nullptr) {
                 DebugBreak();  // ファイルが開けなかった
@@ -70,7 +70,7 @@ public:
             }
         }
         for (int i = 0; i < MAPS; i++) {
-            std::string filename = "../../Maps/mapaction" + std::to_string(i + 1) + ".csv";
+            std::string filename = "../../Maps/map" + std::to_string(i + 1) + "action.csv";
             fopen_s(&fp, filename.c_str(), "r");
             if (fp == nullptr) {
                 DebugBreak();  // ファイルが開けなかった

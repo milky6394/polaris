@@ -3,11 +3,13 @@
 #include "map.h"
 #include "menu.h"
 #include "branch.h"
+#include "string.h"
 
 class Player {
 public:
     MapControler* mp = new MapControler();
     StringControler* sc = new StringControler();
+    ItemManager* im = new ItemManager();
     MenuControler* me = new MenuControler();
     BranchManager* br = new BranchManager();
     
@@ -63,9 +65,10 @@ public:
 
     ~Player() {
         delete mp;
-        delete sc;
+        delete im;
         delete me;
         delete br;
+        delete sc;
     }
 
     bool Button_Z() {
@@ -393,15 +396,17 @@ public:
     //playerを移動させる関数 mapの位置によって移動できる方向が異なる
 
     void Invent(int a) {
-    for (int i = 0; i < 50; i++) {
-        if (inventory[i] == 0) {
-            inventory[i] = a;
-            break;
+        for (int i = 0; i < 50; i++) {
+            if (inventory[i] == 0) {
+                inventory[i] = a;
+                break;
+            }
         }
+        im->draw = 1;
+        im->Stringnumber = a;
+        im->StringReset();
+        ItemMenu();
     }
-    StringKey(a, 1);
-    ItemMenu();
-}
     //inventoryに引数の値を格納する関数
 
     bool ItemCheck(int a) {
@@ -441,10 +446,10 @@ public:
     //引数cのマップに飛ぶ。移動先のマップの初期位置は引数a,bでx,yが指定できる
 
     void StringKey(int a, int b) {
-    sc->draw = b;
-    sc->Stringnumber = a;
-    sc->StringReset();
-}
+        sc->draw = b;
+        sc->Stringnumber = a;
+        sc->StringReset();
+    }
     //a~bの配列に入っているオブジェクトの説明文などを出す関数。引数の数だけクリックすると戻る
 
     void ItemMenu() {
@@ -486,7 +491,17 @@ public:
     //choice.hによるActionを反映する関数
     
     void MapAction(int a) {
-        if (a / 100000000) {
+
+
+        if (a / 200000000) {
+            switch (a) {
+            case 200000001:
+                StringKey(1, 1);
+                Invent(2);
+                mp->map[mp->mapnumber][1][y][x] = 0;
+            }
+        }
+        else if (a / 100000000) {
             br->branch = a - 100000000;
             br->BranchStringKey(a - 100000000);
         }
@@ -548,25 +563,30 @@ public:
         GameDraw();
         if (sc->draw > 0) {
             sc->StringAll();
-        }//Stringが描画されているならplayerの処理より優先
+        }//観察のStringが描画されているならアイテムの処理より優先
         else {
-            if (br->branch) {
-                br->BranchAll();
-                BranchAction();
-            }
+            if (im->draw > 0) {
+                im->StringAll();
+            }//アイテムのStringが描画されているならplayerの処理より優先
             else {
-                if (Button_X()) {
-                    toggle();
-                }//Xを押したらメニュー切り替え
-                if (flag) {
-                    PlayerMove();
-                    if (Button_Z()) {
-                        PlayerAction(mp->map[mp->mapnumber][1][y][x]);
-                    }
+                if (br->branch) {
+                    br->BranchAll();
+                    BranchAction();
                 }
                 else {
-                    me->MenuDraw();
-                }//Xキーを押したらメニュー表示
+                    if (Button_X()) {
+                        toggle();
+                    }//Xを押したらメニュー切り替え
+                    if (flag) {
+                        PlayerMove();
+                        if (Button_Z()) {
+                            PlayerAction(mp->map[mp->mapnumber][1][y][x]);
+                        }
+                    }
+                    else {
+                        me->MenuDraw();
+                    }//Xキーを押したらメニュー表示
+                }
             }
         }
     }

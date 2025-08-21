@@ -4,7 +4,7 @@
 
 #define WINDOW_X 1280
 #define WINDOW_Y 720
-#define STARTSCENE 0
+#define STARTSCENE 5
 
 class GameControl {
 public:

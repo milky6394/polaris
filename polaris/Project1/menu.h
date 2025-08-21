@@ -1,6 +1,6 @@
 #pragma once
 #include "DxLib.h"
-#include "string.h"
+#include "item.h"
 
 class MenuControler {
 public:

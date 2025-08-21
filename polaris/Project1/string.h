@@ -1,12 +1,10 @@
 #pragma once
 #include "DxLib.h"
-#include "item.h"
 
 #define STRINGSPEED 2
 
 class StringControler {
 public:
-    ItemManager* im = new ItemManager();
 
     int x, y;
     int st;
@@ -14,6 +12,16 @@ public:
     bool pushz;
     int Stringnumber;
     char String[1000] = {};
+    char CheckString[300][1000] = {
+    { "" },
+    { "ベッドの下から何かファイルが出てきた。\n特化調査書だ！" },
+    { "" },
+    { "" },
+    { "" },
+    { "" },
+    { "" },
+    { "" },
+    };
 
     StringControler() {
         x = 1000;
@@ -22,10 +30,6 @@ public:
         draw = 0;
         pushz = false;
         Stringnumber = 0;
-    }
-
-    ~StringControler() {
-        delete im;
     }
 
     bool Button_Z() {
@@ -50,7 +54,7 @@ public:
     //Stringを初期化する関数
 
     void ItemString(int a) {
-        String[st] = im->ItemString[a][st];
+        String[st] = CheckString[a][st];
         if (st < 999) {
             st++;
         }

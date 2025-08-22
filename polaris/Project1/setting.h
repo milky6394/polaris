@@ -211,12 +211,16 @@ public:
                 set = true;
                 break;
             case 4:
+                SetWindowSize(1920, 1080);
                 break;
             case 5:
+                SetWindowSize(1280, 720);
                 break;
             case 6:
+                SetWindowSize(896, 504);
                 break;
             case 7:
+                SetWindowSize(640, 360);
                 break;
             case 8:
                 settingpage = 0;

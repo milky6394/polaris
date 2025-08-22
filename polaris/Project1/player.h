@@ -595,11 +595,9 @@ public:
                                 se->set = false;
                                 se->settingpage = 0;
                                 for (int i = 0; i < 10; i++) {
-                                    for (int j = 0; j < 10; j++) {
-                                        se->cursormap[j][i] = 0;
-                                    }
+                                        se->cursormap[i] = 0;
                                 }
-                                se->cursormap[7][4] = 1;
+                                se->cursormap[7] = 1;
                             }
                         }//Xキーを押したらメニュー表示
 

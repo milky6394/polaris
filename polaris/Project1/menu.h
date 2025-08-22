@@ -11,7 +11,8 @@ public:
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
     bool gameend;
     bool set;
-    char menustring[1000] = {};
+    int menusound;
+    char menustring[100] = {};
 
     int menumap[4][10][10] = {{
     {1,0,0,0,0,1,1,1,1,1},
@@ -75,6 +76,7 @@ public:
         pushz = false;
         gameend = false;
         set = false;
+        menusound = LoadSoundMem("../../Sound/カーソル移動12.mp3");
     }
 
     ~MenuControler() {
@@ -85,6 +87,7 @@ public:
         if (CheckHitKey(KEY_INPUT_Z)) {
             if (!pushz) {
                 pushz = true;
+                PlaySoundMem(menusound, DX_PLAYTYPE_BACK);
                 return true;
             }
         }
@@ -174,6 +177,7 @@ public:
                 if (menumap[0][i][x]) {
                     menumap[1][y][x] = 0;
                     menumap[1][i][x] = 1;
+                    PlaySoundMem(menusound, DX_PLAYTYPE_BACK);
                     break;
                 }
             }
@@ -183,6 +187,7 @@ public:
                 if (menumap[0][i][x]) {
                     menumap[1][y][x] = 0;
                     menumap[1][i][x] = 1;
+                    PlaySoundMem(menusound, DX_PLAYTYPE_BACK);
                     break;
                 }
             }
@@ -192,6 +197,7 @@ public:
                 if (menumap[0][y][i]) {
                     menumap[1][y][x] = 0;
                     menumap[1][y][i] = 1;
+                    PlaySoundMem(menusound, DX_PLAYTYPE_BACK);
                     break;
                 }
             }
@@ -201,6 +207,7 @@ public:
                 if (menumap[0][y][i]) {
                     menumap[1][y][x] = 0;
                     menumap[1][y][i] = 1;
+                    PlaySoundMem(menusound, DX_PLAYTYPE_BACK);
                     break;
                 }
             }
@@ -255,7 +262,7 @@ public:
     //表示する説明文を選ぶ関数
 
     void DrawMenuString(int a) {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             menustring[i] = im->ItemString[a][i];
         }
         DrawFormatString(300, 600, GetColor(255, 255, 255), "%s", menustring);

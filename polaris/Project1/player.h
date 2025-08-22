@@ -26,6 +26,7 @@ public:
     int gh[12];
     int walkvec;
     bool walkflag;
+    int menusound;
 
     int playermap[9][9] ={
     {0,0,0,0,0,0,0,0,0},
@@ -61,6 +62,7 @@ public:
         playergraph = LoadGraph("../../Images/character_tip/namakubi_dane.png");
         walksound= LoadSoundMem("../../Sound/革靴で歩く.mp3");
         itemsound = LoadSoundMem("../../Sound/決定ボタンを押す28.mp3");
+        menusound = LoadSoundMem("../../Sound/カーソル移動12.mp3");
         LoadDivGraph("../../Images/character_tip/20150503142545.png", 12, 3, 4, 20, 28, gh);
     }
 
@@ -100,6 +102,7 @@ public:
 
     bool toggle() {
         flag = !flag;
+        PlaySoundMem(menusound, DX_PLAYTYPE_BACK);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 me->menumap[1][j][i] = 0;

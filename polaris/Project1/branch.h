@@ -37,7 +37,7 @@ public:
         branchnumber = 0;
         st = 0;
         draw = 0;
-        branchsound= LoadSoundMem("../../Sound/カーソル移動12.mp3");
+        branchsound = LoadSoundMem("../../Sound/カーソル移動12.mp3");
     }
 
     bool Button_Z() {

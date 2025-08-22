@@ -8,7 +8,8 @@ public:
     bool pushup, pushdown, pushz;//各ボタンを長押しできないようにするための変数
     int settingpage;
     bool set;
-    char SetString[300][1000] = {
+    int setsound;
+    char SetString[30][100] = {
     { "" },
     { "ウィンドウサイズ設定" },
     { "ボリューム設定" },
@@ -44,12 +45,14 @@ public:
         pushz = true;
         settingpage = 0;
         set = false;
+        setsound = LoadSoundMem("../../Sound/カーソル移動12.mp3");
     }
 
     bool Button_Z() {
         if (CheckHitKey(KEY_INPUT_Z)) {
             if (!pushz) {
                 pushz = true;
+                PlaySoundMem(setsound, DX_PLAYTYPE_BACK);
                 return true;
             }
         }
@@ -107,6 +110,7 @@ public:
                 if (settingmap[settingpage][i]) {
                     cursormap[y] = 0;
                     cursormap[i] = 1;
+                    PlaySoundMem(setsound, DX_PLAYTYPE_BACK);
                     break;
                 }
             }
@@ -116,6 +120,7 @@ public:
                 if (settingmap[settingpage][i]) {
                     cursormap[y] = 0;
                     cursormap[i] = 1;
+                    PlaySoundMem(setsound, DX_PLAYTYPE_BACK);
                     break;
                 }
             }

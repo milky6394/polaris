@@ -8,11 +8,30 @@ public:
     bool pushup, pushdown, pushz;//各ボタンを長押しできないようにするための変数
     int settingpage;
     bool set;
+    char SetString[300][1000] = {
+    { "" },
+    { "ウィンドウサイズ設定" },
+    { "ボリューム設定" },
+    { "戻る" },
+    { "1920×1080" },
+    { "1280×720" },
+    { "896×504" },
+    { "640×360" },
+    { "戻る" },
+    { "100%" },
+    { "80%" },
+    { "60%" },
+    { "40%" },
+    { "20%" },
+    { "0%" },
+    { "戻る" },
+
+    };
 
     int settingmap[3][10] = {
     {0,1,0,0,2,0,0,3,0,0},
     {0,4,0,5,0,6,0,7,0,8},
-    {9,10,11,12,13,14,15,16,17,18}
+    {0,0,0,9,10,11,12,13,14,15}
     };
 
     int cursormap[10] = {0,0,0,0,0,0,0,0,0,0};//playermapを格納する配列
@@ -118,7 +137,7 @@ public:
             case 2:
                 settingpage = 2;
                 cursormap[y] = 0;
-                cursormap[0] = 1;
+                cursormap[9] = 1;
                 break;
             case 3:
                 set = true;
@@ -175,30 +194,24 @@ public:
                 cursormap[y] = 0;
                 cursormap[4] = 1;
                 break;
-            case 16:
-                settingpage = 0;
-                cursormap[y] = 0;
-                cursormap[4] = 1;
-                break;
-            case 17:
-                settingpage = 0;
-                cursormap[y] = 0;
-                cursormap[4] = 1;
-                break;
-            case 18:
-                settingpage = 0;
-                cursormap[y] = 0;
-                cursormap[4] = 1;
-                break;
             }
         }
     }
     //menuの配列内でZキーをクリックしたときに行う処理
 
+    void DrawSetString() {
+        for (int i = 0; i < 10; i++) {
+            if (settingmap[settingpage][i]) {
+                DrawString(Settingpixel_X(x), Settingpixel_Y(i), SetString[settingmap[settingpage][i]], GetColor(255, 255, 255));
+            }
+        }
+    }
+
     void SettingDraw() {
         SettingAction();
         Setting_Y();
         SettingCursor();
+        DrawSetString();
         DrawTriangle(Settingpixel_X(x), Settingpixel_Y(y), Settingpixel_X(x), Settingpixel_Y(y) - 20, Settingpixel_X(x) + 10, Settingpixel_Y(y) - 10, GetColor(255, 0, 0), true);
     }
 };

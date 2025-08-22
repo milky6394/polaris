@@ -1,6 +1,7 @@
 #pragma once
 #include "DxLib.h"
 #include "item.h"
+#include "setting.h"
 
 class MenuControler {
 public:
@@ -9,6 +10,7 @@ public:
     int x, y;
     bool pushup, pushdown, pushright, pushleft, pushz;//Šeƒ{ƒ^ƒ“‚ğ’·‰Ÿ‚µ‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì•Ï”
     bool gameend;
+    bool set;
     char menustring[1000] = {};
 
     int menumap[4][10][10] = {{
@@ -34,7 +36,7 @@ public:
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
     },{
-    {0,0,0,0,0,0,0,0,0,0},
+    {10,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0},
@@ -72,6 +74,7 @@ public:
         pushleft = false;
         pushz = false;
         gameend = false;
+        set = false;
     }
 
     ~MenuControler() {
@@ -216,8 +219,8 @@ public:
             case 0:
 
                 break;
-            case 1:
-
+            case 10:
+                set = true;
                 break;
             case 100:
                 gameend = true;

@@ -157,6 +157,7 @@
     <ClInclude Include="branch.h" />
     <ClInclude Include="choice.h" />
     <ClInclude Include="conversation.h" />
+    <ClInclude Include="setting.h" />
     <ClInclude Include="string.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="menu.h" />

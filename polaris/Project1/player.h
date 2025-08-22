@@ -12,6 +12,7 @@ public:
     ItemManager* im = new ItemManager();
     MenuControler* me = new MenuControler();
     BranchManager* br = new BranchManager();
+    SettingControler* se = new SettingControler();
     
     int x, y;//Playerの現在の座標
     int nowx, nowy;
@@ -491,8 +492,6 @@ public:
     //choice.hによるActionを反映する関数
     
     void MapAction(int a) {
-
-
         if (a / 200000000) {
             switch (a) {
             case 200000001:
@@ -560,34 +559,54 @@ public:
     //ゲームの基本描画の関数
 
     void PlayerAll() {
-        GameDraw();
-        if (sc->draw > 0) {
-            sc->StringAll();
-        }//観察のStringが描画されているならアイテムの処理より優先
+        if (me->set) {
+            se->SettingDraw();
+            if (se->set) {
+                me->set = false;
+                se->set = false;
+            }
+        }
         else {
-            if (im->draw > 0) {
-                im->StringAll();
-            }//アイテムのStringが描画されているならplayerの処理より優先
+            if (sc->draw > 0) {
+                sc->StringAll();
+            }//観察のStringが描画されているならアイテムの処理より優先
             else {
-                if (br->branch) {
-                    br->BranchAll();
-                    BranchAction();
-                }
+                if (im->draw > 0) {
+                    im->StringAll();
+                }//アイテムのStringが描画されているならplayerの処理より優先
                 else {
-                    if (Button_X()) {
-                        toggle();
-                    }//Xを押したらメニュー切り替え
-                    if (flag) {
-                        PlayerMove();
-                        if (Button_Z()) {
-                            PlayerAction(mp->map[mp->mapnumber][1][y][x]);
-                        }
+                    if (br->branch) {
+                        br->BranchAll();
+                        BranchAction();
                     }
                     else {
-                        me->MenuDraw();
-                    }//Xキーを押したらメニュー表示
+                        if (Button_X()) {
+                            toggle();
+                        }//Xを押したらメニュー切り替え
+                        if (flag) {
+                            PlayerMove();
+                            if (Button_Z()) {
+                                PlayerAction(mp->map[mp->mapnumber][1][y][x]);
+                            }
+                        }
+                        else {
+                            me->MenuDraw();
+                            if (me->set) {
+                                se->set = false;
+                                se->settingpage = 0;
+                                for (int i = 0; i < 10; i++) {
+                                    for (int j = 0; j < 10; j++) {
+                                        se->cursormap[j][i] = 0;
+                                    }
+                                }
+                                se->cursormap[7][4] = 1;
+                            }
+                        }//Xキーを押したらメニュー表示
+
+                    }
                 }
             }
+            GameDraw();
         }
     }
 };

@@ -44,5 +44,8 @@
     <ClInclude Include="branch.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="setting.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

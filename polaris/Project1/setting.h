@@ -1,6 +1,8 @@
 #pragma once
 #include "DxLib.h"
 
+bool gameend = false;
+
 class SettingControler {
 public:
 
@@ -15,9 +17,9 @@ public:
     { "É{ÉäÉÖÅ[ÉÄê›íË" },
     { "ñﬂÇÈ" },
     { "1920Å~1080" },
+    { "1536Å~864" },
     { "1280Å~720" },
-    { "896Å~504" },
-    { "640Å~360" },
+    { "1024Å~576" },
     { "ñﬂÇÈ" },
     { "100%" },
     { "80%" },
@@ -26,13 +28,16 @@ public:
     { "20%" },
     { "0%" },
     { "ñﬂÇÈ" },
+    { "ÉQÅ[ÉÄÇèIóπ" },
+    { "ÉLÉÉÉìÉZÉã" },
 
     };
 
-    int settingmap[3][10] = {
+    int settingmap[4][10] = {
     {0,1,0,0,2,0,0,3,0,0},
     {0,4,0,5,0,6,0,7,0,8},
-    {0,0,0,9,10,11,12,13,14,15}
+    {0,0,0,9,10,11,12,13,14,15},
+    {0,0,0,0,16,0,0,17,0,0}
     };
 
     int cursormap[10] = {0,0,0,0,0,0,0,0,0,0};//playermapÇäiî[Ç∑ÇÈîzóÒ
@@ -151,13 +156,13 @@ public:
                 SetWindowSize(1920, 1080);
                 break;
             case 5:
-                SetWindowSize(1280, 720);
+                SetWindowSize(1536, 864);
                 break;
             case 6:
-                SetWindowSize(896, 504);
+                SetWindowSize(1280, 720);   
                 break;
             case 7:
-                SetWindowSize(640, 360);
+                SetWindowSize(1024, 576);
                 break;
             case 8:
                 settingpage = 0;
@@ -198,6 +203,12 @@ public:
                 settingpage = 0;
                 cursormap[y] = 0;
                 cursormap[4] = 1;
+                break;
+            case 16:
+                gameend = true;
+                break;
+            case 17:
+                set = true;
                 break;
             }
         }

@@ -9,8 +9,8 @@ public:
 
     int x, y;
     bool pushup, pushdown, pushright, pushleft, pushz;//各ボタンを長押しできないようにするための変数
-    bool gameend;
     bool set;
+    int setnumber;
     int menusound;
     char menustring[100] = {};
 
@@ -76,6 +76,7 @@ public:
         pushz = false;
         gameend = false;
         set = false;
+        setnumber = 0;
         menusound = LoadSoundMem("../../Sound/カーソル移動12.mp3");
     }
 
@@ -215,11 +216,6 @@ public:
     }
     //上下左右キーを押したときに、その先にアイコンがあった場合移動
 
-    bool MeEnd() {
-        return gameend;
-    }
-    //gameendをplayerへ送る関数
-
     void MenuAction() {
         if (Button_Z()) {
             switch (menumap[2][y][x]) {
@@ -228,9 +224,11 @@ public:
                 break;
             case 10:
                 set = true;
+                setnumber = 0;
                 break;
             case 100:
-                gameend = true;
+                set = true;
+                setnumber = 3;
                 break;
             }
         }
@@ -281,6 +279,8 @@ public:
                 }
             }
         }
+        DrawString(Menupixel_X(0), Menupixel_Y(0), "ゲーム設定", GetColor(255, 255, 255));
+        DrawString(Menupixel_X(0), Menupixel_Y(9), "終了", GetColor(255, 255, 255));
         DrawTriangle(Menupixel_X(x), Menupixel_Y(y), Menupixel_X(x), Menupixel_Y(y) - 20, Menupixel_X(x) + 10, Menupixel_Y(y) - 10, GetColor(255, 0, 0), true);
     }
 };

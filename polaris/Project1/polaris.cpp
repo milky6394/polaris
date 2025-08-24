@@ -46,11 +46,6 @@ public:
     }
     //‰æ–Ê‚ª‚¾‚ñ‚¾‚ñ–¾‚é‚­‚È‚éŠÖ”
 
-    bool GameEnd() {
-        return pl->PlEnd();
-    }
-    //gameend‚ğplayer‚©‚çó‚¯æ‚éŠÖ”
-
     void All() {
         SetDrawBright(bright, bright, bright);
         switch (gamestate) {
@@ -118,6 +113,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     LPSTR lpCmdLine, int nCmdShow) {
     ChangeWindowMode(TRUE);
     SetGraphMode(WINDOW_X, WINDOW_Y, 32);
+    SetWindowSize(WINDOW_X, WINDOW_Y);
     if (DxLib_Init() == -1)return -1;
     SetDrawScreen(DX_SCREEN_BACK);
     GameControl* ga = new GameControl();
@@ -129,7 +125,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
         ga->All();
 
-        if (ga->GameEnd() == true)break;//gameend‚ªtrue‚É‚È‚Á‚½‚çI—¹
+        if (gameend)break;//gameend‚ªtrue‚É‚È‚Á‚½‚çI—¹
         if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)break;//Escape‚ğ‰Ÿ‚·‚ÆI—¹
         int endTime = GetNowCount();
         WaitTimer((1000 / 60) - (endTime - startTime));

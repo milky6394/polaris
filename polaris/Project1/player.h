@@ -465,11 +465,6 @@ public:
 }
     //player‚ÌƒCƒ“ƒxƒ“ƒgƒŠ‚ğmenu‚É”½‰f
 
-    bool PlEnd() {
-    return me->MeEnd();
-}
-    //gameend‚ğmain‚Ö‘—‚éŠÖ”
-
     void PlayerDraw() {
         //DrawGraph(Playerpixel_X(x), Playerpixel_Y(y), playergraph, true);
         if (movex || movey) {
@@ -596,7 +591,7 @@ public:
                             me->MenuDraw();
                             if (me->set) {
                                 se->set = false;
-                                se->settingpage = 0;
+                                se->settingpage = me->setnumber;
                                 for (int i = 0; i < 10; i++) {
                                         se->cursormap[i] = 0;
                                 }
